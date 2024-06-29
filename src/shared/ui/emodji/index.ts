@@ -1,2 +1,2 @@
 export * from './emodji';
-export * as emodjiTypes from './emodji.types';
+export * as emodjiTypes from './types';

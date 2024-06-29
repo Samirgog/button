@@ -1,15 +1,21 @@
-import { Balance } from "@/features/balance";
-import { Layout, Typography } from "@/shared/ui";
+import { Balance } from "@/entities/balance";
+import { Button, Layout, Typography, Stack } from "@/shared/ui";
 import React from "react";
-import { PortfolioStyled } from "./portfolio.styled";
+import { CompletedCard } from "@/features/completed-card";
+import { EarnedCard } from "@/features/earned-card";
 
 export const Portfolio: React.FC = () => {
     return (
         <Layout>
-            <PortfolioStyled>
+            <Stack direction="column" gap={24} style={{alignItems: 'center'}}>
                 <Balance />
                 <Typography type="title" weight="medium">Statistics</Typography>
-            </PortfolioStyled>
+                <Stack gap={16}>
+                    <CompletedCard />
+                    <EarnedCard />
+                </Stack>
+                <Button type="main" size="xl" disabled>CONVERT TO TON</Button>
+            </Stack>
         </Layout>
     );
 }

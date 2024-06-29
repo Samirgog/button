@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { NavbarItemWrapperStyled, NavbarWrapperStyled } from "./navbar.styled";
+import { NavbarItemWrapperStyled, NavbarWrapperStyled } from "./styled";
 import { Emodji, Typography } from '@/shared/ui';
-import { IdNavbarItem } from "./navbar.types";
-import { optionsNavbar } from "./navbar.consts";
+import { IdNavbarItem } from "./types";
+import { optionsNavbar } from "./consts";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import { SizeCard } from "./card.types";
-import { CardStyled } from "./card.styled";
+import { SizeCard } from "./types";
+import { CardStyled } from "./styled";
 
 type Props = {
     size?: SizeCard;

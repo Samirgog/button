@@ -1,13 +1,17 @@
 import styled, { css } from "styled-components";
-import { SizeButton, TypeButton } from "./button.types";
+import { SizeButton, TypeButton } from "./types";
 
-export const ButtonStyled = styled.button<{ $type: TypeButton; $size: SizeButton }>`
+export const ButtonStyled = styled.button<{ $disabled: boolean; $type: TypeButton; $size: SizeButton }>`
   display: flex;
   border-radius: 25px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
   font-weight: medium;
+
+  ${({$disabled}) => $disabled && css`
+      opacity: 0.5;  
+  `}
 
   ${({$type}) => {
     if ($type === 'main') {

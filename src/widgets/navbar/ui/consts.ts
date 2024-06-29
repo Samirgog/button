@@ -1,5 +1,5 @@
 import { emodjiTypes } from "@/shared/ui";
-import { OptionNavbar } from "./navbar.types";
+import { OptionNavbar } from "./types";
 
 export const optionsNavbar: OptionNavbar[] = [
     {id: 'portfolio', emodjiName: emodjiTypes.EmodjiName.MONEY_BAG, label: 'Portfolio'},

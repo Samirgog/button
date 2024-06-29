@@ -1,7 +1,7 @@
 import React from "react";
-import { EmodjiName } from "./emodji.types";
-import { MAP_NAMES_EMODJI } from "./emodji.consts";
-import { EmodjiStyled } from "./emodji.styled";
+import { EmodjiName } from "./types";
+import { MAP_NAMES_EMODJI } from "./consts";
+import { EmodjiStyled } from "./styled";
 
 type Props = {
     emodjiName: EmodjiName;
