@@ -1,5 +1,5 @@
 import React from "react";
-import { LinkStyled } from "./link.styled";
+import { LinkStyled } from "./styled";
 
 type Props = {
     children: React.ReactElement;

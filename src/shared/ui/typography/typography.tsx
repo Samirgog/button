@@ -1,6 +1,6 @@
 import React from "react";
-import { ColorTypography, TypeTypography, WeightTypography } from "./typography.types";
-import { TypographyStyled } from "./typography.styled";
+import { ColorTypography, TypeTypography, WeightTypography } from "./types";
+import { TypographyStyled } from "./styled";
 
 type Props = {
     type?: TypeTypography;
