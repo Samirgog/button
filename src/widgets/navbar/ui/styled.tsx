@@ -8,6 +8,8 @@ export const NavbarWrapperStyled = styled.div`
     padding: 5px 40px;
     gap: 24px;
     align-items: center;
+    position: fixed;
+    bottom: 12px;
 `;
 
 export const NavbarItemWrapperStyled = styled.div<{ $active?: boolean }>`
