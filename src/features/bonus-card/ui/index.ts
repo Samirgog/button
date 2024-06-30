@@ -1,1 +1,1 @@
-export * from './friends-card';
+export * from './bonus-card';

@@ -7,7 +7,7 @@ export const Balance: React.FC = () => {
 
     return (
         <Stack gap={16}>
-            <img src={require('../../../../public/coin_64.png')?.default} />
+            <img src={'/coin_64.png'} />
             <Typography type="mega" weight="medium">{balance}</Typography>
         </Stack>
     );

@@ -22,7 +22,7 @@ export const Friends: React.FC = () => {
                     <Card size="xl">
                         <Stack direction="column" gap={38}>
                             <Stack gap={12}>
-                                <img src={require('../../../../public/coin_48.png')?.default} />
+                                <img src={'/coin_48.png'} />
                                 <Typography type="mega" weight="semi-bold">+150</Typography>
                             </Stack>
                             <Typography type="text" weight="semi-bold">FOR YOU AND A FRIEND</Typography>
