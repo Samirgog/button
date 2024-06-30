@@ -8,5 +8,7 @@ export const MAP_NAMES_EMODJI: Record<EmodjiName, string> = {
     [EmodjiName.SUCCESS_CHECK]: '✅',
     [EmodjiName.TARGET]: '🎯',
     [EmodjiName.WEED_GESTURE]: '🤙',
-    [EmodjiName.FRIEND]: '🙋‍♂️'
+    [EmodjiName.FRIEND]: '🙋‍♂️',
+    [EmodjiName.ARROW_RIGHT]: '➡️',
+    [EmodjiName.BREAD]: '🥖'
 };

@@ -4,10 +4,14 @@ import { MAP_NAMES_EMODJI } from "./consts";
 import { EmodjiStyled } from "./styled";
 
 type Props = {
-    emodjiName: EmodjiName;
+    emodjiName?: EmodjiName;
     size?: number;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
-export const Emodji: React.FC<Props> = ({size = 16, emodjiName}) => {
-    return <EmodjiStyled $size={size}>{MAP_NAMES_EMODJI[emodjiName]}</EmodjiStyled>
+export const Emodji: React.FC<Props> = ({size = 16, emodjiName = EmodjiName.BREAD, children, ...htmlAttributes}) => {
+    return (
+        <EmodjiStyled $size={size} {...htmlAttributes}>
+            {children ?? MAP_NAMES_EMODJI[emodjiName]}
+        </EmodjiStyled>
+    );
 }
