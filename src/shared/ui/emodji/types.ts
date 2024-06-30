@@ -6,5 +6,7 @@ export enum EmodjiName {
     MONEY_BAG = 'MONEY_BAG',
     HANDSHAKE = 'HANDSHAKE',
     TARGET = 'TARGET',
-    FRIEND = 'FRIEND'
+    FRIEND = 'FRIEND',
+    ARROW_RIGHT = 'ARROW_RIGHT',
+    BREAD = 'BREAD',
 }
