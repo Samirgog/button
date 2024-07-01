@@ -1,16 +1,23 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: rgba(10, 4, 0, 1) linear-gradient(180deg, #111111 0%, rgba(17, 17, 17, 0.2) 50%, rgba(254, 182, 2, 0.2) 100%) no-repeat;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: rgba(10, 4, 0, 1)
+    linear-gradient(
+      180deg,
+      #111111 0%,
+      rgba(17, 17, 17, 0.2) 50%,
+      rgba(254, 182, 2, 0.2) 100%
+    )
+    no-repeat;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
