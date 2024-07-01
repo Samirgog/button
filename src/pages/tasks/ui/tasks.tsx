@@ -1,14 +1,15 @@
-import { Emodji, Layout, Stack, Typography, emodjiTypes} from "@/shared/ui";
+import {Emodji, Stack, Typography, emodjiTypes, Link} from "@/shared/ui";
 import React from "react";
+import {TaskList} from "@/widgets/task-list";
 
 export const Tasks: React.FC = () => {
     return (
-        <Layout>
-            <Stack gap={12}>
-                <Emodji emodjiName={emodjiTypes.EmodjiName.FLYING_MONEY} size={48} />
-                <Typography type="mega" weight="medium">Earn Button Coins</Typography>
-            </Stack>
-            
-        </Layout>
+      <Stack direction="column" gap={24}>
+        <Stack gap={12} align='center' justify='center'>
+          <Emodji emodjiName={emodjiTypes.EmodjiName.FLYING_MONEY} size={24} />
+          <Typography type="title" weight="medium">Earn Buttons</Typography>
+        </Stack>
+        <TaskList />
+      </Stack>
     );
 }

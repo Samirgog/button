@@ -2,9 +2,10 @@ import styled, { css } from "styled-components";
 import { ColorTypography, TypeTypography, WeightTypography } from "./types";
 
 export const TypographyStyled = styled.span<{
-     $type: TypeTypography; 
-     $weight: WeightTypography; 
-     $color: ColorTypography 
+     $type: TypeTypography;
+     $weight: WeightTypography;
+     $color: ColorTypography;
+     $lineClamp?: number;
     }>`
     font-family: 'Roboto', sans-serif;
     font-weight: ${({ $weight }) => $weight};
@@ -12,7 +13,7 @@ export const TypographyStyled = styled.span<{
     ${({ $type }) => {
         if ($type === 'mega') {
             return css`
-                font-size: 36px;
+                font-size: 32px;
             `;
         }
 
@@ -60,6 +61,26 @@ export const TypographyStyled = styled.span<{
             return css`
                 color: #ff4e2b;
             `;
+        }
+
+        if ($color === 'disabled') {
+            return css`
+                color: #7f7a75;
+            `;
+        }
+    }}
+
+    ${({ $lineClamp }) => {
+        if ($lineClamp) {
+            return css`
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: ${$lineClamp};
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+            `;
+        } else {
+            return ''
         }
     }}
 `

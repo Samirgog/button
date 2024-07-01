@@ -3,9 +3,10 @@ import { SizeCard } from "./types";
 
 export const CardStyled = styled.div<{ $size: SizeCard}>`
     display: flex;
-    background: linear-gradient(to right, rgba(255, 255, 255, 15%) 0%, rgba(255, 255, 255, 20%) 25%, rgba(255, 255, 255, 15%) 50%, rgba(255, 255, 255, 20%) 75%, rgba(255, 255, 255, 15%) 100%);
-    border-radius: 25px;
-    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 12px;
 
     ${({$size}) => {
         if ($size === 'sm') {
