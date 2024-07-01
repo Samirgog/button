@@ -1,33 +1,33 @@
 import styled, { css } from "styled-components";
 import { SizeCard } from "./types";
 
-export const CardStyled = styled.div<{ $size: SizeCard}>`
-    display: flex;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 12px;
+export const CardStyled = styled.div<{ $size: SizeCard }>`
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px;
 
-    ${({$size}) => {
-        if ($size === 'sm') {
-            return css`
-              min-height: 100px;
-              min-width: 160px;  
-            `;
-        }
+  ${({ $size }) => {
+    if ($size === "sm") {
+      return css`
+        min-height: 100px;
+        min-width: 160px;
+      `;
+    }
 
-        if ($size === 'md') {
-            return css`
-                width: 100%;
-            `;
-        }
+    if ($size === "md") {
+      return css`
+        width: 100%;
+      `;
+    }
 
-        if ($size === 'xl') {
-            return css`
-              width: 100%;  
-            `;
-        }
+    if ($size === "xl") {
+      return css`
+        width: 100%;
+      `;
+    }
 
-        return '';
-    }}
+    return "";
+  }}
 `;

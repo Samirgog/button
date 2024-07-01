@@ -1,1 +1,1 @@
-export type SizeCard = 'sm' | 'md' | 'xl';
+export type SizeCard = "sm" | "md" | "xl";

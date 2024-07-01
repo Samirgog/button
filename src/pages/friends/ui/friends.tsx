@@ -6,28 +6,36 @@ import { Stack } from "@/shared/ui";
 import React from "react";
 
 export const Friends: React.FC = () => {
-    return (
-        <Stack direction="column" gap={24}>
-                <InviteButton />
-                <Stack direction="column" gap={8}>
-                    <Typography type="title" weight="medium">Statistics</Typography>
-                    <Stack gap={16}>
-                        <FriendsCard />
-                        <BonusCard />
-                    </Stack>
-                </Stack>
-                <Stack direction="column" gap={8}>
-                    <Typography type="title" weight="medium">Invite friends and get Bonus</Typography>
-                    <Card size="xl">
-                        <Stack direction="column" align='center' gap={24}>
-                            <Stack align='center' justify='center' gap={12}>
-                                <img width={48} height={48} src={'/loaf_coin.png'} />
-                                <Typography type="mega" weight="semi-bold">+150</Typography>
-                            </Stack>
-                            <Typography type="text" weight="semi-bold">FOR YOU AND A FRIEND</Typography>
-                        </Stack>
-                    </Card>
-                </Stack>
+  return (
+    <Stack direction="column" gap={24}>
+      <InviteButton />
+      <Stack direction="column" gap={8}>
+        <Typography type="title" weight="medium">
+          Statistics
+        </Typography>
+        <Stack gap={16}>
+          <FriendsCard />
+          <BonusCard />
+        </Stack>
+      </Stack>
+      <Stack direction="column" gap={8}>
+        <Typography type="title" weight="medium">
+          Invite friends and get Bonus
+        </Typography>
+        <Card size="xl">
+          <Stack direction="column" align="center" gap={24}>
+            <Stack align="center" justify="center" gap={12}>
+              <img width={48} height={48} src={"/loaf_coin.png"} />
+              <Typography type="mega" weight="semi-bold">
+                +150
+              </Typography>
             </Stack>
-    );
-}
+            <Typography type="text" weight="semi-bold">
+              FOR YOU AND A FRIEND
+            </Typography>
+          </Stack>
+        </Card>
+      </Stack>
+    </Stack>
+  );
+};

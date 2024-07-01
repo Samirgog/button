@@ -10,7 +10,14 @@
     "preview": "vite preview",
     "configbot": "node configure.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lint-staged": "lint-staged",
+    "lint:es": "eslint -c .js,.jsx,.ts,.tsx src/",
+    "lint:es:fix": "npm run lint:es -- --fix",
+    "prettier:check": "prettier ./src/. --check",
+    "prettier:fix": "prettier src/ --write",
+    "check-types": "tsc",
+    "pre-commit": "npm run lint-staged"
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.0.0",
@@ -36,7 +43,19 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@vitejs/plugin-react": "^3.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.9.0",
+    "eslint-plugin-no-secrets": "^1.0.2",
+    "eslint-plugin-optimize-regex": "^1.2.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-security": "^3.0.1",
+    "prettier": "3.3.2",
     "typescript": "^4.9.5",
     "vite": "^4.0.4"
   }
