@@ -1,5 +1,6 @@
-import { Button, Emodji, Stack, Typography, emodjiTypes } from "@/shared/ui";
 import React from "react";
+
+import { Button, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 
 export const InviteButton: React.FC = () => {
   const handleClick = () => {

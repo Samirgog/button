@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { SizeCard } from "./types";
 
 export const CardStyled = styled.div<{ $size: SizeCard }>`

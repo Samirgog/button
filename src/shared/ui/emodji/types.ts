@@ -11,5 +11,5 @@ export enum EmodjiName {
   BREAD = "BREAD",
   EYES = "EYES",
   SELFIE = "SELFIE",
-  SPEECH_BALLOON = "SPEECH_BALLOON",
+  SPEECH_BALLOON = "SPEECH_BALLOON"
 }

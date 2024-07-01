@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   extends: [
     // REACT
@@ -45,6 +46,9 @@ module.exports = {
 
         // JavaScript, TypeScript
         "security/detect-object-injection": "off",
+
+        // HTML
+        "jsx-a11y/alt-text": "off",
       },
     },
     // {
@@ -71,7 +75,7 @@ module.exports = {
         ignore: ["jsx", "global"],
       },
     ],
-    "jsx-quotes": ["error", "prefer-single"],
+    // "jsx-quotes": ["error", "prefer-single"],
     "xss/no-mixed-html": [
       "warn",
       {
@@ -116,8 +120,7 @@ module.exports = {
       },
     ],
     "import/prefer-default-export": "off",
-    "import/no-cycle":
-      process.env.ESLINT_CYCLE_ENABLED === "true" ? "error" : "off",
+    "import/no-cycle": "off",
     "import/no-default-export": "error",
     "import/order": [
       "error",

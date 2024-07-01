@@ -1,7 +1,7 @@
 export enum TaskType {
   "VIDEO" = "VIDEO",
   "SUBSCRIBE" = "SUBSCRIBE",
-  "TELEGRAM" = "TELEGRAM",
+  "TELEGRAM" = "TELEGRAM"
 }
 
 // TODO: Поправить модель если надо

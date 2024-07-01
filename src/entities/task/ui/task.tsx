@@ -1,8 +1,10 @@
-import { Card, Emodji, Stack, Typography, emodjiTypes } from "@/shared/ui";
-import { AvatarCircle } from "@/shared/ui/avatar-circle";
 import React from "react";
+
 import { TaskItem, useTask } from "../model";
+
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
+import { Card, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
+import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
   task: TaskItem;
@@ -37,9 +39,7 @@ export const Task: React.FC<Props> = ({ task }) => {
         </Stack>
         <Emodji
           emodjiName={
-            completed
-              ? emodjiTypes.EmodjiName.SUCCESS_CHECK
-              : emodjiTypes.EmodjiName.ARROW_RIGHT
+            completed ? emodjiTypes.EmodjiName.SUCCESS_CHECK : emodjiTypes.EmodjiName.ARROW_RIGHT
           }
         />
       </Stack>

@@ -1,6 +1,7 @@
 import React from "react";
-import { AlignStack, DirectionStack, JustifyStack } from "./types";
+
 import { StackStyled } from "./styled";
+import { AlignStack, DirectionStack, JustifyStack } from "./types";
 
 type Props = {
   direction?: DirectionStack;

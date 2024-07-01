@@ -1,9 +1,11 @@
-import { Balance } from "@/entities/balance";
-import { Button, Stack, Typography } from "@/shared/ui";
 import React from "react";
+
+import { TonConnectButton } from "@tonconnect/ui-react";
+
+import { Balance } from "@/entities/balance";
 import { CompletedCard } from "@/features/completed-card";
 import { EarnedCard } from "@/features/earned-card";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import { Button, Stack, Typography } from "@/shared/ui";
 
 export const Portfolio: React.FC = () => {
   return (

@@ -13,5 +13,5 @@ export const MAP_NAMES_EMODJI: Record<EmodjiName, string> = {
   [EmodjiName.BREAD]: "🥖",
   [EmodjiName.EYES]: "👀",
   [EmodjiName.SELFIE]: "🤳",
-  [EmodjiName.SPEECH_BALLOON]: "💬",
+  [EmodjiName.SPEECH_BALLOON]: "💬"
 };

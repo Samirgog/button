@@ -8,7 +8,7 @@ const mock: { items: TaskItem[] } = {
       reward: 50,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.VIDEO,
-      completed: false,
+      completed: false
     },
     {
       id: 2,
@@ -16,7 +16,7 @@ const mock: { items: TaskItem[] } = {
       reward: 150,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.SUBSCRIBE,
-      completed: false,
+      completed: false
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ const mock: { items: TaskItem[] } = {
       reward: 25,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.TELEGRAM,
-      completed: true,
+      completed: true
     },
     {
       id: 4,
@@ -32,7 +32,7 @@ const mock: { items: TaskItem[] } = {
       reward: 50,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.VIDEO,
-      completed: false,
+      completed: false
     },
     {
       id: 5,
@@ -40,7 +40,7 @@ const mock: { items: TaskItem[] } = {
       reward: 100,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.VIDEO,
-      completed: true,
+      completed: true
     },
     {
       id: 6,
@@ -48,9 +48,9 @@ const mock: { items: TaskItem[] } = {
       reward: 50,
       url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
       type: TaskType.VIDEO,
-      completed: false,
-    },
-  ],
+      completed: false
+    }
+  ]
 };
 export function useTaskList() {
   // TODO: реализация запроса списка задач
