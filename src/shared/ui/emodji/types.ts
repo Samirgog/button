@@ -9,4 +9,7 @@ export enum EmodjiName {
     FRIEND = 'FRIEND',
     ARROW_RIGHT = 'ARROW_RIGHT',
     BREAD = 'BREAD',
+    EYES = 'EYES',
+    SELFIE = 'SELFIE',
+    SPEECH_BALLOON = 'SPEECH_BALLOON',
 }

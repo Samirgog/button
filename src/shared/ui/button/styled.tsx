@@ -3,11 +3,15 @@ import { SizeButton, TypeButton } from "./types";
 
 export const ButtonStyled = styled.button<{ $disabled: boolean; $type: TypeButton; $size: SizeButton }>`
   display: flex;
-  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
-  font-weight: medium;
+  font-weight: 500;
+  border: none;
+  width: 100%;
 
   ${({$disabled}) => $disabled && css`
       opacity: 0.5;  
@@ -17,7 +21,6 @@ export const ButtonStyled = styled.button<{ $disabled: boolean; $type: TypeButto
     if ($type === 'main') {
         return css`
             background: #feb602;
-            box-shadow: inset 0 4px 4px 0 #000;;
         `;
     }
 
@@ -33,15 +36,13 @@ export const ButtonStyled = styled.button<{ $disabled: boolean; $type: TypeButto
   ${({$size}) => {
     if ($size === 'md') {
         return css`
-            padding: 10px 0 10px 36px;
-            width: 270px;
+            padding: 10px;
         `;
     }
 
     if ($size === 'xl') {
         return css`
-          width: 100%;
-          padding: 16px 0 16px 44px;
+          padding: 16px;
         `;
     }
 

@@ -1,14 +1,13 @@
 import { BonusCard } from "@/features/bonus-card";
 import { FriendsCard } from "@/features/friends-card";
 import { InviteButton } from "@/features/invite-button";
-import { Card, Layout, Typography } from "@/shared/ui";
+import { Card, Typography } from "@/shared/ui";
 import { Stack } from "@/shared/ui";
 import React from "react";
 
 export const Friends: React.FC = () => {
     return (
-        <Layout>
-            <Stack direction="column" gap={24}>
+        <Stack direction="column" gap={24}>
                 <InviteButton />
                 <Stack direction="column" gap={8}>
                     <Typography type="title" weight="medium">Statistics</Typography>
@@ -20,9 +19,9 @@ export const Friends: React.FC = () => {
                 <Stack direction="column" gap={8}>
                     <Typography type="title" weight="medium">Invite friends and get Bonus</Typography>
                     <Card size="xl">
-                        <Stack direction="column" gap={38}>
-                            <Stack gap={12}>
-                                <img src={'/coin_48.png'} />
+                        <Stack direction="column" align='center' gap={24}>
+                            <Stack align='center' justify='center' gap={12}>
+                                <img width={48} height={48} src={'/loaf_coin.png'} />
                                 <Typography type="mega" weight="semi-bold">+150</Typography>
                             </Stack>
                             <Typography type="text" weight="semi-bold">FOR YOU AND A FRIEND</Typography>
@@ -30,6 +29,5 @@ export const Friends: React.FC = () => {
                     </Card>
                 </Stack>
             </Stack>
-        </Layout>
     );
 }
