@@ -21,7 +21,7 @@ export const Portfolio: React.FC = () => {
         <Button type="main" size="xl" disabled>
           <Stack gap={8} justify="center" align="center">
             <Typography type="title">Convert to TON</Typography>
-            <img width={28} height={28} src={"/ton.png"} />
+            <img width={28} height={28} src={"/ton.png"} alt={"ton"} />
             <Typography type="mini">(soon)</Typography>
           </Stack>
         </Button>

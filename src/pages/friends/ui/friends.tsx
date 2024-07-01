@@ -25,7 +25,7 @@ export const Friends: React.FC = () => {
         <Card size="xl">
           <Stack direction="column" align="center" gap={24}>
             <Stack align="center" justify="center" gap={12}>
-              <img width={48} height={48} src={"/loaf_coin.png"} />
+              <img width={48} height={48} src={"/loaf_coin.png"} alt={"coin"} />
               <Typography type="mega" weight="semi-bold">
                 +150
               </Typography>

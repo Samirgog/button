@@ -33,7 +33,7 @@ export const Task: React.FC<Props> = ({ task }) => {
                 type="mini"
                 color="warning"
               >{`${completed ? "" : "+"}${reward}`}</Typography>
-              <img width={16} height={16} src="/loaf_coin.png" />
+              <img width={16} height={16} src={"/loaf_coin.png"} alt={"coin"} />
             </Stack>
           </Stack>
         </Stack>
