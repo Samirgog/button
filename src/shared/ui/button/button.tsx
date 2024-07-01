@@ -1,6 +1,7 @@
 import React from "react";
-import { SizeButton, TypeButton } from "./types";
+
 import { ButtonStyled } from "./styled";
+import { SizeButton, TypeButton } from "./types";
 
 type Props = {
   type: TypeButton;
@@ -8,12 +9,7 @@ type Props = {
   disabled?: boolean;
 } & React.HTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<Props> = ({
-  type,
-  size,
-  disabled = false,
-  ...htmlAttributes
-}) => {
+export const Button: React.FC<Props> = ({ type, size, disabled = false, ...htmlAttributes }) => {
   return (
     <ButtonStyled
       $disabled={disabled}

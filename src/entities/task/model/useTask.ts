@@ -7,8 +7,8 @@ export function useTask(url: string) {
   return {
     getHandlers: () => {
       return {
-        onClick: handleClick,
+        onClick: handleClick
       };
-    },
+    }
   };
 }

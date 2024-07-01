@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { EmodjiName } from "@/shared/ui/emodji/types";
 

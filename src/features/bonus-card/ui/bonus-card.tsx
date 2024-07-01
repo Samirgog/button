@@ -1,6 +1,8 @@
-import { emodjiTypes } from "@/shared/ui";
 import React from "react";
+
 import { useBonusCard } from "../model";
+
+import { emodjiTypes } from "@/shared/ui";
 import { CardStats } from "@/shared/ui/card-stats";
 
 export const BonusCard: React.FC = () => {

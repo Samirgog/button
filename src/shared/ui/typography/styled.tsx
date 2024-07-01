@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+
 import { ColorTypography, TypeTypography, WeightTypography } from "./types";
 
 export const TypographyStyled = styled.span<{

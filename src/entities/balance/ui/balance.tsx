@@ -1,6 +1,8 @@
 import React from "react";
-import { Stack, Typography } from "@/shared/ui";
+
 import { useBalance } from "../model";
+
+import { Stack, Typography } from "@/shared/ui";
 
 export const Balance: React.FC = () => {
   const { balance } = useBalance();

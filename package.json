@@ -1,8 +1,8 @@
 {
-  "name": "ton-starter-twa-vite",
+  "name": "button",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "type": "commonjs",
   "homepage": "https://github.com/Samirgog/button",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint-staged": "lint-staged",
-    "lint:es": "eslint -c .js,.jsx,.ts,.tsx src/",
+    "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint:es:fix": "npm run lint:es -- --fix",
     "prettier:check": "prettier ./src/. --check",
     "prettier:fix": "prettier src/ --write",
@@ -55,6 +55,7 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-xss": "^0.1.12",
     "prettier": "3.3.2",
     "typescript": "^4.9.5",
     "vite": "^4.0.4"

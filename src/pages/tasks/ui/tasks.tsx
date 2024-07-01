@@ -1,5 +1,6 @@
-import { Emodji, Stack, Typography, emodjiTypes, Link } from "@/shared/ui";
 import React from "react";
+
+import { Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { TaskList } from "@/widgets/task-list";
 
 export const Tasks: React.FC = () => {

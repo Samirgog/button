@@ -1,6 +1,7 @@
-import { Stack } from "@/shared/ui";
 import React from "react";
+
 import { Task } from "@/entities/task";
+import { Stack } from "@/shared/ui";
 import { useTaskList } from "@/widgets/task-list/model";
 
 export const TaskList = () => {

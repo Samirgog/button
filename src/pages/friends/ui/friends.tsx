@@ -1,9 +1,9 @@
+import React from "react";
+
 import { BonusCard } from "@/features/bonus-card";
 import { FriendsCard } from "@/features/friends-card";
 import { InviteButton } from "@/features/invite-button";
-import { Card, Typography } from "@/shared/ui";
-import { Stack } from "@/shared/ui";
-import React from "react";
+import { Card, Stack, Typography } from "@/shared/ui";
 
 export const Friends: React.FC = () => {
   return (
