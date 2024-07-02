@@ -9,7 +9,7 @@ import { Portfolio } from "@/pages/portfolio";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
 
-const manifestUrl = "https://Samirgog.github.io/button/tonconnect-manifest.json";
+const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
 
 export const App: React.FC = () => {
   return (
