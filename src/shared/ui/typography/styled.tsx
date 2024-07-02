@@ -69,8 +69,8 @@ export const TypographyStyled = styled.span<{
         color: #7f7a75;
       `;
     }
-    
-    return '';
+
+    return "";
   }}
 
     ${({ $lineClamp }) => {

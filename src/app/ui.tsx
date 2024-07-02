@@ -1,7 +1,13 @@
 import React from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Outlet,
+  Route,
+  RouterProvider
+} from "react-router-dom";
 
 import { Layout } from "@/app/layouts/layout";
 import { Friends } from "@/pages/friends";
@@ -11,27 +17,30 @@ import { Navbar } from "@/widgets/navbar";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={
+        <Layout>
+          <Outlet />
+          <Navbar />
+        </Layout>
+      }
+    >
+      <Route index element={<Portfolio />} />
+      <Route path="/portfolio" element={<Portfolio />} />
+      <Route path="/friends" element={<Friends />} />
+      <Route path="/tasks" element={<Tasks />} />
+    </Route>
+  )
+);
+
 export const App: React.FC = () => {
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              element={
-                <Layout>
-                  <Outlet />
-                  <Navbar />
-                </Layout>
-              }
-            >
-              <Route path="/" element={<Portfolio />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/friends" element={<Friends />} />
-              <Route path="/tasks" element={<Tasks />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </TonConnectUIProvider>
     </React.StrictMode>
   );
