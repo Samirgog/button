@@ -7,9 +7,9 @@ import { Layout } from "@/app/layouts/layout";
 import { Friends } from "@/pages/friends";
 import { Portfolio } from "@/pages/portfolio";
 import { Tasks } from "@/pages/tasks";
-import { Navbar } from "@/widgets/navbar/ui";
+import { Navbar } from "@/widgets/navbar";
 
-const manifestUrl = "https://alefmanvladimir.github.io/my-twa/tonconnect-manifest.json";
+const manifestUrl = "https://Samirgog.github.io/button/tonconnect-manifest.json";
 
 export const App: React.FC = () => {
   return (

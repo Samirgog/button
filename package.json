@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "commonjs",
-  "homepage": "https://github.com/Samirgog/button",
+  "homepage": "https://Samirgog.github.io/button",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
