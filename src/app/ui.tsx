@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import {
@@ -12,6 +12,7 @@ import {
 import { Layout } from "@/app/layouts/layout";
 import { Friends } from "@/pages/friends";
 import { Portfolio } from "@/pages/portfolio";
+import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
 
@@ -37,10 +38,20 @@ const router = createBrowserRouter(
 );
 
 export const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowSplash(false);
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        <RouterProvider router={router} />
+        {showSplash ? <Splash /> : <RouterProvider router={router} />}
       </TonConnectUIProvider>
     </React.StrictMode>
   );
