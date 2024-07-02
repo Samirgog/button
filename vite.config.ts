@@ -9,5 +9,10 @@ export default defineConfig({
   base: "/button/",
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "./src") }]
+  },
+  build: {
+    rollupOptions: {
+      external: ["react-router-dom"]
+    }
   }
 });
