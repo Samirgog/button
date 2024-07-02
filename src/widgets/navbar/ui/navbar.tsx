@@ -10,10 +10,14 @@ import { Emodji, Typography } from "@/shared/ui";
 export const Navbar: React.FC = () => {
   const { pathname } = useLocation();
 
+  const getActiveTab = (id: string) => {
+    return pathname.includes(id) || (id === "portfolio" && pathname === "/");
+  };
+
   return (
     <NavbarWrapperStyled>
       {optionsNavbar.map(({ id, emodjiName, label }) => (
-        <NavbarItemWrapperStyled $active={pathname.includes(id)} key={id} to={`/button/${id}`}>
+        <NavbarItemWrapperStyled $active={getActiveTab(id)} key={id} to={`/${id}`}>
           <Emodji emodjiName={emodjiName} size={24} />
           <Typography type="mini">{label}</Typography>
         </NavbarItemWrapperStyled>
