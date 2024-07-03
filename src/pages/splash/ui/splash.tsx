@@ -97,7 +97,7 @@ export const Splash = () => {
   return (
     <Stack direction="column" align="center" style={{ paddingTop: "30%", overflow: "hidden" }}>
       <Text>
-        <Circle src={isTonIcon ? "/ton.png" : "/loaf_coin.png"} alt={"coin"} />
+        <Circle src={isTonIcon ? "/button/ton.png" : "/button/loaf_coin.png"} alt={"coin"} />
         {text.split("").map((letter, index) => (
           <div key={index} style={{ padding: "0 10px" }}>
             {letter}
@@ -109,7 +109,7 @@ export const Splash = () => {
         nothing but ton...
       </Typography>
 
-      <Coin src={"/loaf_coin.png"} alt={"coin"} />
+      <Coin src={"/button/loaf_coin.png"} alt={"coin"} />
     </Stack>
   );
 };
