@@ -42,6 +42,12 @@ export const TypographyStyled = styled.span<{
       `;
     }
 
+    if ($type === "micro") {
+      return css`
+        font-size: 12px;
+      `;
+    }
+
     return "";
   }}
 
@@ -73,7 +79,7 @@ export const TypographyStyled = styled.span<{
     return "";
   }}
 
-    ${({ $lineClamp }) => {
+  ${({ $lineClamp }) => {
     if ($lineClamp) {
       return css`
         overflow: hidden;
@@ -82,8 +88,7 @@ export const TypographyStyled = styled.span<{
         -webkit-box-orient: vertical;
         word-break: break-all;
       `;
-    } else {
-      return "";
     }
+    return "";
   }}
 `;

@@ -11,6 +11,8 @@ export type TaskItem = {
   reward: number;
   url: string;
   type: TaskType;
+  total: number;
+  remaining: number;
   emodji?: string;
   completed?: boolean;
 };

@@ -52,8 +52,9 @@ const mock: { items: TaskItem[] } = {
     }
   ]
 };
-export function useTaskList() {
-  // TODO: реализация запроса списка задач
 
+export function useTaskList(shouldGetCurrentTasks = false) {
+  // TODO: реализация запроса списка задач
+  // shouldGetCurrentTasks ? request created tasks : request all tasks
   return mock;
 }

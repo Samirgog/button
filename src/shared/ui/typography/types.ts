@@ -1,4 +1,4 @@
-export type TypeTypography = "text" | "title" | "note" | "mini" | "mega";
+export type TypeTypography = "text" | "title" | "note" | "mini" | "mega" | "micro";
 
 export type WeightTypography = "regular" | "medium" | "bold" | "semi-bold";
 

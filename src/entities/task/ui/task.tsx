@@ -3,15 +3,16 @@ import React from "react";
 import { TaskItem, useTask } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
-import { Card, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
+import { Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
   task: TaskItem;
+  showStats?: boolean;
 };
 
-export const Task: React.FC<Props> = ({ task }) => {
-  const { title, reward, url, type, completed } = task ?? {};
+export const Task: React.FC<Props> = ({ task, showStats = false }) => {
+  const { title, reward, url, type, completed, total, remaining } = task ?? {};
   const { getHandlers } = useTask(url);
 
   return (
@@ -37,11 +38,20 @@ export const Task: React.FC<Props> = ({ task }) => {
             </Stack>
           </Stack>
         </Stack>
-        <Emodji
+        {/* <Emodji
           emodjiName={
             completed ? emodjiTypes.EmodjiName.SUCCESS_CHECK : emodjiTypes.EmodjiName.ARROW_RIGHT
           }
-        />
+        /> */}
+        {showStats && (
+          <Stack direction="column" gap={4}>
+            <Typography type="micro">{total}</Typography>
+            <hr />
+            <Typography type="micro" color="link">
+              {total - remaining}
+            </Typography>
+          </Stack>
+        )}
       </Stack>
     </Card>
   );
