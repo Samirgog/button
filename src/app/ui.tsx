@@ -42,9 +42,15 @@ export const App: React.FC = () => {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     console.log("window.Telegram.WebApp", window?.Telegram?.WebApp);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     console.log("window.Telegram.WebApp.initData", window?.Telegram?.WebApp?.initData);
     validateInitData(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       window?.Telegram?.WebApp?.initData,
       // eslint-disable-next-line no-secrets/no-secrets
       "7384853882:AAHbmhykajKEjK2hV_0dwG3mB5_xF-dybVo"
