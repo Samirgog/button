@@ -16,7 +16,7 @@ export const CreateTasks: React.FC = () => {
           </Typography>
           <TonConnectButton style={{ alignSelf: "flex-end" }} />
         </Stack>
-        <Balance />
+        <Balance balance={1000} />
       </Stack>
       <Typography type="title" weight="medium">
         My tasks
