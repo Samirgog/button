@@ -7,16 +7,9 @@ type Props = {
   emodjiName: EmodjiName;
   title: string;
   total: number;
-  dailyValue: number;
 } & React.HTMLAttributes<HTMLDivElement>;
 
-export const CardStats: React.FC<Props> = ({
-  emodjiName,
-  title,
-  total,
-  dailyValue,
-  ...htmlAttributes
-}) => {
+export const CardStats: React.FC<Props> = ({ emodjiName, title, total, ...htmlAttributes }) => {
   return (
     <Card size="sm" {...htmlAttributes}>
       <Stack direction="column" gap={16}>
@@ -27,9 +20,6 @@ export const CardStats: React.FC<Props> = ({
         <Stack gap={10} align="center">
           <Typography type="text" weight="medium" color="warning">
             {total}
-          </Typography>
-          <Typography type="note" weight="medium">
-            (+ {dailyValue})
           </Typography>
         </Stack>
       </Stack>

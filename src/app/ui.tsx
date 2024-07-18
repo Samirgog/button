@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import {
@@ -10,11 +10,11 @@ import {
 } from "react-router-dom";
 
 import { Layout } from "@/app/layouts/layout";
+import { userModel } from "@/entities/user";
 import { Friends } from "@/pages/friends";
 import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
-import { validateInitData } from "@/shared/lib/validate-init-data";
 import { Navbar } from "@/widgets/navbar";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
@@ -39,36 +39,12 @@ const router = createBrowserRouter(
 );
 
 export const App: React.FC = () => {
-  const [showSplash, setShowSplash] = useState(true);
-
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("window.Telegram.WebApp", window?.Telegram?.WebApp);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("window.Telegram.WebApp.initData", window?.Telegram?.WebApp?.initData);
-    validateInitData(
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      window?.Telegram?.WebApp?.initData,
-      // eslint-disable-next-line no-secrets/no-secrets
-      "7384853882:AAHbmhykajKEjK2hV_0dwG3mB5_xF-dybVo"
-    );
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setShowSplash(false);
-    }, 4000);
-
-    return () => clearTimeout(timeout);
-  }, []);
+  const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
 
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        {showSplash ? <Splash /> : <RouterProvider router={router} />}
+        {isLoadingAuth && !isAuthenticated ? <Splash /> : <RouterProvider router={router} />}
       </TonConnectUIProvider>
     </React.StrictMode>
   );

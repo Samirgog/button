@@ -1,11 +1,12 @@
 import React from "react";
 
-import { BonusCard } from "@/features/bonus-card";
-import { FriendsCard } from "@/features/friends-card";
+import { userModel } from "@/entities/user";
 import { InviteButton } from "@/features/invite-button";
-import { Card, Stack, Typography } from "@/shared/ui";
+import { Card, CardStats, emodjiTypes, Stack, Typography } from "@/shared/ui";
 
 export const Friends: React.FC = () => {
+  const user = userModel.useUser();
+
   return (
     <Stack direction="column" gap={24}>
       <InviteButton />
@@ -14,8 +15,18 @@ export const Friends: React.FC = () => {
           Statistics
         </Typography>
         <Stack gap={16}>
-          <FriendsCard />
-          <BonusCard />
+          <CardStats
+            title="Friends"
+            emodjiName={emodjiTypes.EmodjiName.WEED_GESTURE}
+            total={user?.referrals?.length ?? 0}
+            style={{ flexBasis: "50%" }}
+          />
+          <CardStats
+            title="Bonus"
+            emodjiName={emodjiTypes.EmodjiName.MONEY_STACK}
+            total={(user?.referrals?.length ?? 0) * 150}
+            style={{ flexBasis: "50%" }}
+          />
         </Stack>
       </Stack>
       <Stack direction="column" gap={8}>

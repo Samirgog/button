@@ -1,12 +1,12 @@
 import React from "react";
 
-import { useBalance } from "../model";
-
 import { Stack, Typography } from "@/shared/ui";
 
-export const Balance: React.FC = () => {
-  const { balance } = useBalance();
+type Props = {
+  balance: number;
+};
 
+export const Balance: React.FC<Props> = ({ balance }) => {
   return (
     <Stack gap={16} align="center" justify="center">
       <img width={48} height={48} src={"/button/loaf_coin.png"} alt={"coin"} />
