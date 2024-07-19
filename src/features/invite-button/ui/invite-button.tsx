@@ -35,7 +35,13 @@ export const InviteButton: React.FC = () => {
   };
 
   return (
-    <Button type="gradient" size="md" onClick={handleClick} disabled={isSharing}>
+    <Button
+      type="gradient"
+      size="md"
+      onClick={handleClick}
+      disabled={isSharing}
+      style={{ width: "100%" }}
+    >
       <Stack gap={8} justify="center">
         <Typography type="title" weight="bold">
           Invite a friend

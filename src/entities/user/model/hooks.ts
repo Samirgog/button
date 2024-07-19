@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { useShallow } from "zustand/react/shallow";
+
+import { useStoreUser } from "./store";
 import { User } from "./types";
-import { STORAGE_KEY_USER } from "./consts";
 
 // TODO: Все тут переделать
 const mockUser: User = {
@@ -20,6 +22,7 @@ const getUser = (initData: string, refId: number): Promise<User> => {
 };
 
 export function useAuth() {
+  const [setUser] = useStoreUser(useShallow((state) => [state.setUser]));
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -37,7 +40,8 @@ export function useAuth() {
         const user = await authenticate();
 
         if (user) {
-          sessionStorage.setItem(STORAGE_KEY_USER, JSON.stringify(user));
+          setUser(user);
+
           setIsAuthenticated(true);
         }
       } catch (error) {
@@ -48,13 +52,13 @@ export function useAuth() {
     };
 
     initAuth();
-  }, []);
+  }, [setUser]);
 
   return { isLoading, isAuthenticated };
 }
 
 export function useUser() {
-  const userFromStorage = sessionStorage.getItem(STORAGE_KEY_USER) ?? "";
+  const [user] = useStoreUser(useShallow((state) => [state.user, state.setUser]));
 
-  return JSON.parse(userFromStorage) as User;
+  return user;
 }
