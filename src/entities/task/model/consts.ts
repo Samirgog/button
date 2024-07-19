@@ -2,6 +2,8 @@ import { TaskType } from "./types";
 
 import { EmodjiName } from "@/shared/ui/emodji/types";
 
+export const STORAGE_KEY_TASKS = "TASKS";
+
 export const MAP_TASK_TYPES: Record<TaskType, string> = {
   [TaskType.VIDEO]: "watch the video",
   [TaskType.SUBSCRIBE]: "subscribe to the channel",

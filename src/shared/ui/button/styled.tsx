@@ -11,12 +11,11 @@ export const ButtonStyled = styled.button<{
   align-items: center;
   justify-content: center;
   border-radius: 24px;
-  color: #fff;
+  color: #ffffff;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 500;
   border: none;
-  width: 100%;
 
   ${({ $disabled }) =>
     $disabled &&
@@ -41,15 +40,22 @@ export const ButtonStyled = styled.button<{
   }}
 
   ${({ $size }) => {
+    if ($size === "sm") {
+      return css`
+        font-size: 16px;
+        padding: 8px 12px;
+      `;
+    }
+
     if ($size === "md") {
       return css`
-        padding: 10px;
+        padding: 10px 16px;
       `;
     }
 
     if ($size === "xl") {
       return css`
-        padding: 16px;
+        padding: 16px 24px;
       `;
     }
 

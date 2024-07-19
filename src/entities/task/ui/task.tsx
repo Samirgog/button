@@ -3,7 +3,8 @@ import React from "react";
 import { TaskItem, useTask } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
-import { Card, Emodji, Stack, Typography } from "@/shared/ui";
+import { ButtonsWrapper } from "@/entities/task/ui/styled";
+import { Button, Card, Emodji, emodjiTypes, Link, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
@@ -13,12 +14,13 @@ type Props = {
 
 export const Task: React.FC<Props> = ({ task, showStats = false }) => {
   const { title, reward, url, type, completed, total, remaining } = task ?? {};
-  const { getHandlers } = useTask(url);
+  const { getHandlers, isInProgressTask, checkTask } = useTask(task);
+  const isInProgress = isInProgressTask(task.id);
 
   return (
     <Card size="md" {...getHandlers()}>
       <Stack gap={8} justify="space-between" align="center">
-        <Stack gap={12} align="center" style={{ opacity: completed ? 0.3 : 1 }}>
+        <Stack gap={12} align="center" style={{ opacity: isInProgress ? 0.3 : 1 }}>
           <AvatarCircle>
             <Emodji emodjiName={MAP_TASK_EMODJI[type]} size={24} />
           </AvatarCircle>
@@ -33,26 +35,27 @@ export const Task: React.FC<Props> = ({ task, showStats = false }) => {
               <Typography
                 type="mini"
                 color="warning"
-              >{`${completed ? "" : "+"}${reward}`}</Typography>
+              >{`${isInProgress ? "" : "+"}${reward}`}</Typography>
               <img width={16} height={16} src={"/button/loaf_coin.png"} alt={"coin"} />
             </Stack>
           </Stack>
         </Stack>
-        {/* <Emodji
-          emodjiName={
-            completed ? emodjiTypes.EmodjiName.SUCCESS_CHECK : emodjiTypes.EmodjiName.ARROW_RIGHT
-          }
-        /> */}
-        {showStats && (
-          <Stack direction="column" gap={4}>
-            <Typography type="micro">{total}</Typography>
-            <hr />
-            <Typography type="micro" color="link">
-              {total - remaining}
-            </Typography>
-          </Stack>
-        )}
+        {/*  <Stack direction="column" gap={4}>*/}
+        {/*    <Typography type="micro">{total}</Typography>*/}
+        {/*    <hr />*/}
+        {/*    <Typography type="micro" color="link">*/}
+        {/*      {total - remaining}*/}
+        {/*    </Typography>*/}
+        {/*  </Stack>*/}
       </Stack>
+      {isInProgress && (
+        <ButtonsWrapper align="center" justify="flex-end" gap={16}>
+          <Button type="gradient" size="sm">
+            Check
+          </Button>
+          <Link {...getHandlers()}>Execute</Link>
+        </ButtonsWrapper>
+      )}
     </Card>
   );
 };

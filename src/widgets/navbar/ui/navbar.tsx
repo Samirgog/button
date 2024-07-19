@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   const { pathname } = useLocation();
 
   const getActiveTab = (id: string) => {
-    return pathname.includes(id) || (id === "portfolio" && pathname === "/");
+    return pathname.includes(id) || (id === "portfolio" && pathname === "/button/");
   };
 
   return (

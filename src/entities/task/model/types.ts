@@ -16,3 +16,8 @@ export type TaskItem = {
   emodji?: string;
   completed?: boolean;
 };
+
+export type StorageTask = {
+  id: number;
+  timestamp: Date;
+};

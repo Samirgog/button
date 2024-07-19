@@ -6,7 +6,7 @@ const mock: { items: TaskItem[] } = {
       id: 1,
       title: "Заголовок какого-то видоса",
       reward: 50,
-      url: "https://www.youtube.com/watch?v=daWCu1FqDaE",
+      url: "https://t.me/notcoin",
       type: TaskType.VIDEO,
       completed: false,
       total: 1000,
