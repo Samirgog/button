@@ -4,7 +4,7 @@ import { TaskItem, useTask, useTimer } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper } from "@/entities/task/ui/styled";
-import { Button, Card, Emodji, emodjiTypes, Link, Stack, Typography } from "@/shared/ui";
+import { Button, Card, Emodji, Link, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
@@ -12,8 +12,8 @@ type Props = {
   showStats?: boolean;
 };
 
-export const Task: React.FC<Props> = ({ task, showStats = false }) => {
-  const { title, reward, type, completed, total, remaining } = task ?? {};
+export const Task: React.FC<Props> = ({ task }) => {
+  const { title, reward, type } = task ?? {};
   const { getHandlers, inProgress, checkTask } = useTask(task);
   const { seconds, setSeconds } = useTimer();
 
