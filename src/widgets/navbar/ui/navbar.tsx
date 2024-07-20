@@ -2,15 +2,24 @@ import React from "react";
 
 import { useLocation } from "react-router-dom";
 
-import { optionsNavbar } from "./consts";
+import { optionsNavbarCreator, optionsNavbarDefault } from "./consts";
 import { NavbarItemWrapperStyled, NavbarWrapperStyled } from "./styled";
 
 import { Emodji, Typography } from "@/shared/ui";
 
-export const Navbar: React.FC = () => {
+type Props = {
+  mode?: "default" | "creator";
+};
+
+export const Navbar: React.FC<Props> = ({ mode = "default" }) => {
   const { pathname } = useLocation();
+  const optionsNavbar = mode === "creator" ? optionsNavbarCreator : optionsNavbarDefault;
 
   const getActiveTab = (id: string) => {
+    if (mode === "creator") {
+      return pathname.includes(id) || (id === "create" && pathname === "/button/");
+    }
+
     return pathname.includes(id) || (id === "portfolio" && pathname === "/button/");
   };
 

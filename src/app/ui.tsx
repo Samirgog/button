@@ -11,7 +11,9 @@ import {
 
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
+import { CreateTasks } from "@/pages/create-tasks";
 import { Friends } from "@/pages/friends";
+import { MyTasks } from "@/pages/my-tasks";
 import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
@@ -19,7 +21,7 @@ import { Navbar } from "@/widgets/navbar";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
 
-const router = createBrowserRouter(
+const routerDefault = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path="/button/"
@@ -38,13 +40,36 @@ const router = createBrowserRouter(
   )
 );
 
+const routerCreator = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/button/"
+      element={
+        <Layout>
+          <Outlet />
+          <Navbar mode="creator" />
+        </Layout>
+      }
+    >
+      <Route index element={<CreateTasks />} />
+      <Route path="/button/create" element={<CreateTasks />} />
+      <Route path="/button/my-tasks" element={<MyTasks />} />
+    </Route>
+  )
+);
+
+const typeAccount = "creator";
 export const App: React.FC = () => {
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
 
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        {isLoadingAuth && !isAuthenticated ? <Splash /> : <RouterProvider router={router} />}
+        {isLoadingAuth && !isAuthenticated ? (
+          <Splash />
+        ) : (
+          <RouterProvider router={typeAccount === "creator" ? routerCreator : routerDefault} />
+        )}
       </TonConnectUIProvider>
     </React.StrictMode>
   );

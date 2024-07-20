@@ -1,7 +1,16 @@
 import React from "react";
 
-import { InputStyled } from "./styled";
+import { InputLabelStyled, InputStyled, InputWrapper } from "./styled";
 
-export const Input: React.FC<React.HTMLAttributes<HTMLInputElement>> = ({ ...htmlAttributes }) => {
-  return <InputStyled {...htmlAttributes} />;
+type Props = {
+  label?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
+export const Input: React.FC<Props> = ({ label, ...htmlAttributes }) => {
+  return (
+    <InputWrapper>
+      <InputLabelStyled>{label}</InputLabelStyled>
+      <InputStyled {...htmlAttributes} />
+    </InputWrapper>
+  );
 };

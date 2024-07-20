@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const InputLabelStyled = styled.label`
+  font-size: 14px;
+  color: #bfbfbf;
+`;
+
 export const InputStyled = styled.input`
   background-image: linear-gradient(#ff4e2b, #ff4e2b), linear-gradient(#bfbfbf, #bfbfbf);
   border: 0 none;
