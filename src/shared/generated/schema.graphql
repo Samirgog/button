@@ -1,0 +1,1162 @@
+input AddCompletedTasksToTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input AddCompletedTasksToUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input AddCreatedTasksToUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input AddReferralsToUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input AuthInput {
+  """Данные инициализации от Телеграма"""
+  initData: String!
+
+  """ID пригласившего пользователя"""
+  referralParentId: Float
+}
+
+input BooleanFieldComparison {
+  is: Boolean
+  isNot: Boolean
+}
+
+"""Выполненные задания"""
+type CompletedTask {
+  createdAt: DateTime!
+  id: Int!
+
+  """Задание"""
+  task: Task
+
+  """ID задания"""
+  taskId: Float
+  updatedAt: DateTime!
+
+  """Пользователь"""
+  user: User
+
+  """ID пользователя"""
+  userId: Float
+}
+
+type CompletedTaskConnection {
+  """Array of nodes."""
+  nodes: [CompletedTask!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+input CompletedTaskDeleteFilter {
+  and: [CompletedTaskDeleteFilter!]
+  id: IntFieldComparison
+  or: [CompletedTaskDeleteFilter!]
+  taskId: NumberFieldComparison
+  userId: NumberFieldComparison
+}
+
+type CompletedTaskDeleteResponse {
+  createdAt: DateTime
+  id: Int
+
+  """ID задания"""
+  taskId: Float
+  updatedAt: DateTime
+
+  """ID пользователя"""
+  userId: Float
+}
+
+type CompletedTaskEntity {
+  createdAt: DateTime!
+  id: Int!
+  task: TaskEntity!
+  taskId: Float
+  updatedAt: DateTime!
+  user: UserEntity!
+  userId: Float
+}
+
+input CompletedTaskFilter {
+  and: [CompletedTaskFilter!]
+  id: IntFieldComparison
+  or: [CompletedTaskFilter!]
+  task: CompletedTaskFilterTaskFilter
+  taskId: NumberFieldComparison
+  user: CompletedTaskFilterUserFilter
+  userId: NumberFieldComparison
+}
+
+input CompletedTaskFilterTaskFilter {
+  and: [CompletedTaskFilterTaskFilter!]
+  creatorId: NumberFieldComparison
+  disabled: BooleanFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [CompletedTaskFilterTaskFilter!]
+  remaining: NumberFieldComparison
+  reward: StringFieldComparison
+  total: NumberFieldComparison
+  type: StringFieldComparison
+  url: StringFieldComparison
+}
+
+input CompletedTaskFilterUserFilter {
+  and: [CompletedTaskFilterUserFilter!]
+  balance: NumberFieldComparison
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [CompletedTaskFilterUserFilter!]
+  referralParentId: NumberFieldComparison
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+input CompletedTaskSort {
+  direction: SortDirection!
+  field: CompletedTaskSortFields!
+  nulls: SortNulls
+}
+
+enum CompletedTaskSortFields {
+  id
+  taskId
+  userId
+}
+
+input CompletedTaskUpdateFilter {
+  and: [CompletedTaskUpdateFilter!]
+  id: IntFieldComparison
+  or: [CompletedTaskUpdateFilter!]
+  taskId: NumberFieldComparison
+  userId: NumberFieldComparison
+}
+
+input CreateCompletedTaskInput {
+  createdAt: DateTime
+
+  """ID задания"""
+  taskId: Float!
+  updatedAt: DateTime
+
+  """ID пользователя"""
+  userId: Float!
+}
+
+input CreateManyCompletedTasksInput {
+  """Array of records to create"""
+  completedTasks: [CreateCompletedTaskInput!]!
+}
+
+input CreateManyTasksInput {
+  """Array of records to create"""
+  tasks: [CreateTaskInput!]!
+}
+
+input CreateManyUsersInput {
+  """Array of records to create"""
+  users: [CreateUserInput!]!
+}
+
+input CreateOneCompletedTaskInput {
+  """The record to create"""
+  completedTask: CreateCompletedTaskInput!
+}
+
+input CreateOneTaskInput {
+  """The record to create"""
+  task: CreateTaskInput!
+}
+
+input CreateOneUserInput {
+  """The record to create"""
+  user: CreateUserInput!
+}
+
+input CreateTaskInput {
+  createdAt: DateTime
+
+  """ID создателя задания"""
+  creatorId: Float!
+
+  """Флаг активности"""
+  disabled: Boolean
+
+  """Название"""
+  name: String!
+
+  """Оставшееся количество"""
+  remaining: Float
+
+  """Вознаграждение"""
+  reward: Float!
+
+  """Общее количество"""
+  total: Float!
+
+  """Тип задания"""
+  type: TaskTypesEnum!
+  updatedAt: DateTime
+
+  """Ссылка на задание"""
+  url: String!
+}
+
+input CreateUserInput {
+  """Баланс"""
+  balance: Float
+  createdAt: DateTime
+
+  """ID созданных заданий"""
+  createdTasks: [Int!]
+
+  """Заработано за все время"""
+  earned: Float
+
+  """Эл. почта пользователя"""
+  email: String
+
+  """Имя пользователя"""
+  name: String!
+
+  """ID пригласившего пользователя"""
+  referralParentId: Float
+
+  """Роль пользователя"""
+  role: RolesEnum
+  updatedAt: DateTime
+
+  """Никнейм пользователя в телеграме"""
+  username: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteManyCompletedTasksInput {
+  """Filter to find records to delete"""
+  filter: CompletedTaskDeleteFilter!
+}
+
+type DeleteManyResponse {
+  """The number of records deleted."""
+  deletedCount: Int!
+}
+
+input DeleteManyTasksInput {
+  """Filter to find records to delete"""
+  filter: TaskDeleteFilter!
+}
+
+input DeleteManyUsersInput {
+  """Filter to find records to delete"""
+  filter: UserDeleteFilter!
+}
+
+input DeleteOneCompletedTaskInput {
+  """The id of the record to delete."""
+  id: Int!
+}
+
+input DeleteOneTaskInput {
+  """The id of the record to delete."""
+  id: Int!
+}
+
+input DeleteOneUserInput {
+  """The id of the record to delete."""
+  id: Int!
+}
+
+input IntFieldComparison {
+  between: IntFieldComparisonBetween
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: Boolean
+  isNot: Boolean
+  lt: Int
+  lte: Int
+  neq: Int
+  notBetween: IntFieldComparisonBetween
+  notIn: [Int!]
+}
+
+input IntFieldComparisonBetween {
+  lower: Int!
+  upper: Int!
+}
+
+input LoginAdminInput {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  access_token: String!
+}
+
+type Mutation {
+  activateTask(id: Int!): Task!
+  addCompletedTasksToTask(input: AddCompletedTasksToTaskInput!): Task!
+  addCompletedTasksToUser(input: AddCompletedTasksToUserInput!): User!
+  addCreatedTasksToUser(input: AddCreatedTasksToUserInput!): User!
+  addReferralsToUser(input: AddReferralsToUserInput!): User!
+  auth(input: AuthInput!): User!
+  completeTask(id: Int!, userId: Int!): Task!
+  createManyCompletedTasks(input: CreateManyCompletedTasksInput!): [CompletedTask!]!
+  createManyTasks(input: CreateManyTasksInput!): [Task!]!
+  createManyUsers(input: CreateManyUsersInput!): [User!]!
+  createOneCompletedTask(input: CreateOneCompletedTaskInput!): CompletedTask!
+  createOneTask(input: CreateOneTaskInput!): Task!
+  createOneUser(input: CreateOneUserInput!): User!
+  createTask(input: CreateTaskInput!): Task!
+  deleteManyCompletedTasks(input: DeleteManyCompletedTasksInput!): DeleteManyResponse!
+  deleteManyTasks(input: DeleteManyTasksInput!): DeleteManyResponse!
+  deleteManyUsers(input: DeleteManyUsersInput!): DeleteManyResponse!
+  deleteOneCompletedTask(input: DeleteOneCompletedTaskInput!): CompletedTaskDeleteResponse!
+  deleteOneTask(input: DeleteOneTaskInput!): TaskDeleteResponse!
+  deleteOneUser(input: DeleteOneUserInput!): UserDeleteResponse!
+  loginAdmin(input: LoginAdminInput!): LoginResponse!
+  removeCompletedTasksFromTask(input: RemoveCompletedTasksFromTaskInput!): Task!
+  removeCompletedTasksFromUser(input: RemoveCompletedTasksFromUserInput!): User!
+  removeCreatedTasksFromUser(input: RemoveCreatedTasksFromUserInput!): User!
+  removeCreatorFromTask(input: RemoveCreatorFromTaskInput!): Task!
+  removeReferralParentFromUser(input: RemoveReferralParentFromUserInput!): User!
+  removeReferralsFromUser(input: RemoveReferralsFromUserInput!): User!
+  removeTaskFromCompletedTask(input: RemoveTaskFromCompletedTaskInput!): CompletedTask!
+  removeUserFromCompletedTask(input: RemoveUserFromCompletedTaskInput!): CompletedTask!
+  setCompletedTasksOnTask(input: SetCompletedTasksOnTaskInput!): Task!
+  setCompletedTasksOnUser(input: SetCompletedTasksOnUserInput!): User!
+  setCreatedTasksOnUser(input: SetCreatedTasksOnUserInput!): User!
+  setCreatorOnTask(input: SetCreatorOnTaskInput!): Task!
+  setReferralParentOnUser(input: SetReferralParentOnUserInput!): User!
+  setReferralsOnUser(input: SetReferralsOnUserInput!): User!
+  setTaskOnCompletedTask(input: SetTaskOnCompletedTaskInput!): CompletedTask!
+  setUserOnCompletedTask(input: SetUserOnCompletedTaskInput!): CompletedTask!
+  updateManyCompletedTasks(input: UpdateManyCompletedTasksInput!): UpdateManyResponse!
+  updateManyTasks(input: UpdateManyTasksInput!): UpdateManyResponse!
+  updateManyUsers(input: UpdateManyUsersInput!): UpdateManyResponse!
+  updateOneCompletedTask(input: UpdateOneCompletedTaskInput!): CompletedTask!
+  updateOneTask(input: UpdateOneTaskInput!): Task!
+  updateOneUser(input: UpdateOneUserInput!): User!
+}
+
+input NumberFieldComparison {
+  between: NumberFieldComparisonBetween
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: Boolean
+  isNot: Boolean
+  lt: Float
+  lte: Float
+  neq: Float
+  notBetween: NumberFieldComparisonBetween
+  notIn: [Float!]
+}
+
+input NumberFieldComparisonBetween {
+  lower: Float!
+  upper: Float!
+}
+
+type OffsetPageInfo {
+  """true if paging forward and there are more records."""
+  hasNextPage: Boolean
+
+  """true if paging backwards and there are more records."""
+  hasPreviousPage: Boolean
+}
+
+input OffsetPaging {
+  """Limit the number of records returned"""
+  limit: Int
+
+  """Offset to start returning records from"""
+  offset: Int
+}
+
+type Query {
+  completedTask(
+    """The id of the record to find."""
+    id: Int!
+  ): CompletedTask!
+  completedTasks(
+    """Specify to filter the records returned."""
+    filter: CompletedTaskFilter! = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging! = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [CompletedTaskSort!]! = [{direction: ASC, field: id}]
+  ): CompletedTaskConnection!
+  getHello: getHello!
+  incompleteTasks(userId: Int!): [Task!]!
+  me: User!
+  task(
+    """The id of the record to find."""
+    id: Int!
+  ): Task!
+  tasks(
+    """Specify to filter the records returned."""
+    filter: TaskFilter! = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging! = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [TaskSort!]! = [{direction: ASC, field: id}]
+  ): TaskConnection!
+  user(
+    """The id of the record to find."""
+    id: Int!
+  ): User!
+  users(
+    """Specify to filter the records returned."""
+    filter: UserFilter! = {}
+
+    """Limit or page results."""
+    paging: OffsetPaging! = {limit: 10}
+
+    """Specify to sort results."""
+    sorting: [UserSort!]! = [{direction: ASC, field: id}]
+  ): UserConnection!
+}
+
+input RemoveCompletedTasksFromTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input RemoveCompletedTasksFromUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input RemoveCreatedTasksFromUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input RemoveCreatorFromTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input RemoveReferralParentFromUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input RemoveReferralsFromUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input RemoveTaskFromCompletedTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input RemoveUserFromCompletedTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+enum RolesEnum {
+  admin
+  user
+}
+
+input SetCompletedTasksOnTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input SetCompletedTasksOnUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input SetCreatedTasksOnUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input SetCreatorOnTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input SetReferralParentOnUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input SetReferralsOnUserInput {
+  """The id of the record."""
+  id: Int!
+
+  """The ids of the relations."""
+  relationIds: [Int!]!
+}
+
+input SetTaskOnCompletedTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+input SetUserOnCompletedTaskInput {
+  """The id of the record."""
+  id: Int!
+
+  """The id of relation."""
+  relationId: Int!
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+input StringFieldComparison {
+  eq: String
+  gt: String
+  gte: String
+  iLike: String
+  in: [String!]
+  is: Boolean
+  isNot: Boolean
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  notILike: String
+  notIn: [String!]
+  notLike: String
+}
+
+"""Задания"""
+type Task {
+  """Выполненные задания"""
+  completedTasks(
+    """Specify to filter the records returned."""
+    filter: CompletedTaskFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [CompletedTaskSort!]! = [{direction: ASC, field: id}]
+  ): [CompletedTask!]
+  createdAt: DateTime!
+
+  """Создатель задания"""
+  creator: User
+
+  """ID создателя задания"""
+  creatorId: Float
+
+  """Флаг активности"""
+  disabled: Boolean
+  id: Int!
+
+  """Название"""
+  name: String
+
+  """Оставшееся количество"""
+  remaining: Float
+
+  """Вознаграждение"""
+  reward: String
+
+  """Общее количество"""
+  total: Float
+
+  """Тип задания"""
+  type: String
+  updatedAt: DateTime!
+
+  """Ссылка на задание"""
+  url: String
+}
+
+type TaskConnection {
+  """Array of nodes."""
+  nodes: [Task!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+input TaskDeleteFilter {
+  and: [TaskDeleteFilter!]
+  creatorId: NumberFieldComparison
+  disabled: BooleanFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [TaskDeleteFilter!]
+  remaining: NumberFieldComparison
+  reward: StringFieldComparison
+  total: NumberFieldComparison
+  type: StringFieldComparison
+  url: StringFieldComparison
+}
+
+type TaskDeleteResponse {
+  createdAt: DateTime
+
+  """ID создателя задания"""
+  creatorId: Float
+
+  """Флаг активности"""
+  disabled: Boolean
+  id: Int
+
+  """Название"""
+  name: String
+
+  """Оставшееся количество"""
+  remaining: Float
+
+  """Вознаграждение"""
+  reward: String
+
+  """Общее количество"""
+  total: Float
+
+  """Тип задания"""
+  type: String
+  updatedAt: DateTime
+
+  """Ссылка на задание"""
+  url: String
+}
+
+type TaskEntity {
+  completedTasks: [CompletedTaskEntity!]
+  createdAt: DateTime!
+  creator: UserEntity
+  creatorId: Float
+  disabled: Boolean!
+  id: Int!
+  name: String!
+  remaining: Float
+  reward: Float
+  total: Float
+  type: String!
+  updatedAt: DateTime!
+  url: String!
+}
+
+input TaskFilter {
+  and: [TaskFilter!]
+  completedTasks: TaskFilterCompletedTaskFilter
+  creator: TaskFilterUserFilter
+  creatorId: NumberFieldComparison
+  disabled: BooleanFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [TaskFilter!]
+  remaining: NumberFieldComparison
+  reward: StringFieldComparison
+  total: NumberFieldComparison
+  type: StringFieldComparison
+  url: StringFieldComparison
+}
+
+input TaskFilterCompletedTaskFilter {
+  and: [TaskFilterCompletedTaskFilter!]
+  id: IntFieldComparison
+  or: [TaskFilterCompletedTaskFilter!]
+  taskId: NumberFieldComparison
+  userId: NumberFieldComparison
+}
+
+input TaskFilterUserFilter {
+  and: [TaskFilterUserFilter!]
+  balance: NumberFieldComparison
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [TaskFilterUserFilter!]
+  referralParentId: NumberFieldComparison
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+input TaskSort {
+  direction: SortDirection!
+  field: TaskSortFields!
+  nulls: SortNulls
+}
+
+enum TaskSortFields {
+  creatorId
+  disabled
+  id
+  name
+  remaining
+  reward
+  total
+  type
+  url
+}
+
+enum TaskTypesEnum {
+  join
+  subscribe
+  video
+}
+
+input TaskUpdateFilter {
+  and: [TaskUpdateFilter!]
+  creatorId: NumberFieldComparison
+  disabled: BooleanFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [TaskUpdateFilter!]
+  remaining: NumberFieldComparison
+  reward: StringFieldComparison
+  total: NumberFieldComparison
+  type: StringFieldComparison
+  url: StringFieldComparison
+}
+
+input UpdateCompletedTaskInput {
+  createdAt: DateTime
+
+  """ID задания"""
+  taskId: Float
+  updatedAt: DateTime
+
+  """ID пользователя"""
+  userId: Float
+}
+
+input UpdateManyCompletedTasksInput {
+  """Filter used to find fields to update"""
+  filter: CompletedTaskUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateCompletedTaskInput!
+}
+
+type UpdateManyResponse {
+  """The number of records updated."""
+  updatedCount: Int!
+}
+
+input UpdateManyTasksInput {
+  """Filter used to find fields to update"""
+  filter: TaskUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateTaskInput!
+}
+
+input UpdateManyUsersInput {
+  """Filter used to find fields to update"""
+  filter: UserUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateUserInput!
+}
+
+input UpdateOneCompletedTaskInput {
+  """The id of the record to update"""
+  id: Int!
+
+  """The update to apply."""
+  update: UpdateCompletedTaskInput!
+}
+
+input UpdateOneTaskInput {
+  """The id of the record to update"""
+  id: Int!
+
+  """The update to apply."""
+  update: UpdateTaskInput!
+}
+
+input UpdateOneUserInput {
+  """The id of the record to update"""
+  id: Int!
+
+  """The update to apply."""
+  update: UpdateUserInput!
+}
+
+input UpdateTaskInput {
+  createdAt: DateTime
+
+  """ID создателя задания"""
+  creatorId: Float
+
+  """Флаг активности"""
+  disabled: Boolean
+
+  """Название"""
+  name: String
+
+  """Оставшееся количество"""
+  remaining: Float
+
+  """Вознаграждение"""
+  reward: Float
+
+  """Общее количество"""
+  total: Float
+
+  """Тип задания"""
+  type: TaskTypesEnum
+  updatedAt: DateTime
+
+  """Ссылка на задание"""
+  url: String
+}
+
+input UpdateUserInput {
+  """Баланс"""
+  balance: Float
+  createdAt: DateTime
+
+  """ID созданных заданий"""
+  createdTasks: [Int!]
+
+  """Заработано за все время"""
+  earned: Float
+
+  """Эл. почта пользователя"""
+  email: String
+
+  """Имя пользователя"""
+  name: String
+
+  """ID пригласившего пользователя"""
+  referralParentId: Float
+
+  """Роль пользователя"""
+  role: RolesEnum
+  updatedAt: DateTime
+
+  """Никнейм пользователя в телеграме"""
+  username: String
+}
+
+"""Пользователь"""
+type User {
+  """Баланс"""
+  balance: Float
+
+  """Выполненные задания"""
+  completedTasks(
+    """Specify to filter the records returned."""
+    filter: CompletedTaskFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [CompletedTaskSort!]! = [{direction: ASC, field: id}]
+  ): [CompletedTask!]
+  createdAt: DateTime!
+
+  """Созданные задания"""
+  createdTasks(
+    """Specify to filter the records returned."""
+    filter: TaskFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [TaskSort!]! = [{direction: ASC, field: id}]
+  ): [Task!]
+
+  """Заработано за все время"""
+  earned: Float
+
+  """Эл. почта пользователя"""
+  email: String
+  id: Int!
+
+  """Имя пользователя"""
+  name: String
+
+  """Пригласивший пользователь"""
+  referralParent: User
+
+  """ID пригласившего пользователя"""
+  referralParentId: Float
+
+  """Приглашенные пользователи"""
+  referrals(
+    """Specify to filter the records returned."""
+    filter: UserFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [UserSort!]! = [{direction: ASC, field: id}]
+  ): [User!]
+
+  """Роль пользователя"""
+  role: String!
+
+  """ID Телеграма"""
+  telegramId: Float
+  updatedAt: DateTime!
+
+  """Никнейм пользователя в телеграме"""
+  username: String
+}
+
+type UserConnection {
+  """Array of nodes."""
+  nodes: [User!]!
+
+  """Paging information"""
+  pageInfo: OffsetPageInfo!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+input UserDeleteFilter {
+  and: [UserDeleteFilter!]
+  balance: NumberFieldComparison
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [UserDeleteFilter!]
+  referralParentId: NumberFieldComparison
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+type UserDeleteResponse {
+  """Баланс"""
+  balance: Float
+  createdAt: DateTime
+
+  """Заработано за все время"""
+  earned: Float
+
+  """Эл. почта пользователя"""
+  email: String
+  id: Int
+
+  """Имя пользователя"""
+  name: String
+
+  """ID пригласившего пользователя"""
+  referralParentId: Float
+
+  """Роль пользователя"""
+  role: String
+
+  """ID Телеграма"""
+  telegramId: Float
+  updatedAt: DateTime
+
+  """Никнейм пользователя в телеграме"""
+  username: String
+}
+
+type UserEntity {
+  balance: Float
+  completedTasks: [CompletedTaskEntity!]
+  createdAt: DateTime!
+  createdTasks: [TaskEntity!]
+  earned: Float
+  email: String
+  id: Int!
+  name: String!
+  password: String!
+  referralParent: UserEntity
+  referralParentId: Float
+  referrals: [UserEntity!]
+  role: String!
+  telegramId: Float
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserFilter {
+  and: [UserFilter!]
+  balance: NumberFieldComparison
+  completedTasks: UserFilterCompletedTaskFilter
+  createdTasks: UserFilterTaskFilter
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [UserFilter!]
+  referralParent: UserFilterUserFilter
+  referralParentId: NumberFieldComparison
+  referrals: UserFilterUserFilter
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+input UserFilterCompletedTaskFilter {
+  and: [UserFilterCompletedTaskFilter!]
+  id: IntFieldComparison
+  or: [UserFilterCompletedTaskFilter!]
+  taskId: NumberFieldComparison
+  userId: NumberFieldComparison
+}
+
+input UserFilterTaskFilter {
+  and: [UserFilterTaskFilter!]
+  creatorId: NumberFieldComparison
+  disabled: BooleanFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [UserFilterTaskFilter!]
+  remaining: NumberFieldComparison
+  reward: StringFieldComparison
+  total: NumberFieldComparison
+  type: StringFieldComparison
+  url: StringFieldComparison
+}
+
+input UserFilterUserFilter {
+  and: [UserFilterUserFilter!]
+  balance: NumberFieldComparison
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [UserFilterUserFilter!]
+  referralParentId: NumberFieldComparison
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+input UserSort {
+  direction: SortDirection!
+  field: UserSortFields!
+  nulls: SortNulls
+}
+
+enum UserSortFields {
+  balance
+  earned
+  email
+  id
+  name
+  referralParentId
+  role
+  telegramId
+  username
+}
+
+input UserUpdateFilter {
+  and: [UserUpdateFilter!]
+  balance: NumberFieldComparison
+  earned: NumberFieldComparison
+  email: StringFieldComparison
+  id: IntFieldComparison
+  name: StringFieldComparison
+  or: [UserUpdateFilter!]
+  referralParentId: NumberFieldComparison
+  role: StringFieldComparison
+  telegramId: NumberFieldComparison
+  username: StringFieldComparison
+}
+
+"""Базовый тестовый запрос"""
+type getHello {
+  """Offset текущей timezone"""
+  offset: Int!
+
+  """Статус backend (при успешном запросе отдаст - online)"""
+  status: String!
+
+  """Timezone в настройках backend"""
+  tz: String!
+}

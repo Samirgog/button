@@ -3,6 +3,10 @@ import path from "path";
 import { defineConfig } from "vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
 
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), nodePolyfills()],

@@ -25,7 +25,8 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["*"]
-    }
+    },
+    "types": ["vite/client"]
   },
   "include": ["vite.config.ts", "src"],
   "exclude": ["node_modules", "public/**", "build/**"]

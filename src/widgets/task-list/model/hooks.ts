@@ -1,4 +1,6 @@
 import { TaskItem, TaskType } from "@/entities/task/model";
+import { TSortDirection, TTaskSortFields, useTasksQuery } from "@/shared/generated";
+import { gqlClient } from "@/shared/providers/GraphqlClient";
 
 const mock: { items: TaskItem[] } = {
   items: [
@@ -67,6 +69,13 @@ const mock: { items: TaskItem[] } = {
 
 export function useTaskList(shouldGetCurrentTasks = false) {
   console.log(shouldGetCurrentTasks);
+  const { data } = useTasksQuery(gqlClient, {
+    sorting: { field: TTaskSortFields.Id, direction: TSortDirection.Desc },
+    paging: { limit: 15, offset: 0 },
+    filter: {}
+  });
+
+  console.log("tasks", data?.tasks.nodes);
   // TODO: реализация запроса списка задач
   // shouldGetCurrentTasks ? request created tasks : request all tasks
   return mock;
