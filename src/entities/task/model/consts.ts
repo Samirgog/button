@@ -1,17 +1,17 @@
-import { TaskType } from "./types";
+import { TTaskTypesEnum } from "@/shared/generated";
 
 import { EmodjiName } from "@/shared/ui/emodji/types";
 
 export const STORAGE_KEY_TASKS = "TASKS";
 
-export const MAP_TASK_TYPES: Record<TaskType, string> = {
-  [TaskType.VIDEO]: "watch the video",
-  [TaskType.SUBSCRIBE]: "subscribe to the channel",
-  [TaskType.TELEGRAM]: "join the group"
+export const MAP_TASK_TYPES: Record<TTaskTypesEnum, string> = {
+  [TTaskTypesEnum.Video]: "watch the video",
+  [TTaskTypesEnum.Subscribe]: "subscribe to the channel",
+  [TTaskTypesEnum.Join]: "join the group"
 };
 
-export const MAP_TASK_EMODJI: Record<TaskType, EmodjiName> = {
-  [TaskType.VIDEO]: EmodjiName.EYES,
-  [TaskType.SUBSCRIBE]: EmodjiName.SELFIE,
-  [TaskType.TELEGRAM]: EmodjiName.SPEECH_BALLOON
+export const MAP_TASK_EMODJI: Record<TTaskTypesEnum, EmodjiName> = {
+  [TTaskTypesEnum.Video]: EmodjiName.EYES,
+  [TTaskTypesEnum.Subscribe]: EmodjiName.SELFIE,
+  [TTaskTypesEnum.Join]: EmodjiName.SPEECH_BALLOON
 };

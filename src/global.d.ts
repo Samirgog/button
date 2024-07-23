@@ -1,5 +1,6 @@
 interface WebApp {
   initData?: string;
+  platform?: string;
 }
 
 interface Telegram {

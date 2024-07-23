@@ -20,3 +20,13 @@ gql`
     }
   }
 `;
+
+gql`
+  mutation CompleteTask($completeTaskId: Int!, $userId: Int!) {
+    completeTask(id: $completeTaskId, userId: $userId) {
+      id
+      remaining
+      reward
+    }
+  }
+`;

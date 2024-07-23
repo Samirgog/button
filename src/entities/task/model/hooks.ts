@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 
 import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
-import { StorageTask, TaskItem } from "@/entities/task/model/types";
+import { StorageTask } from "@/entities/task/model/types";
+import { TTask, useCompleteTaskMutation } from "@/shared/generated";
+import { gqlClient } from "@/shared/providers/GraphqlClient";
+import { useUser } from "@/entities/user/model";
 
-export function useTask(task: TaskItem) {
+export function useTask(task: TTask, onComplete?: () => void) {
+  const user = useUser();
+  const { mutateAsync: completeTask, isLoading: isLoadingComplete } = useCompleteTaskMutation(
+    gqlClient,
+    {
+      onSuccess: onComplete
+    }
+  );
   const [inProgress, setInProgress] = useState(() => {
     const currentTasks: StorageTask[] = JSON.parse(localStorage.getItem(STORAGE_KEY_TASKS) ?? "[]");
 
@@ -32,7 +42,7 @@ export function useTask(task: TaskItem) {
   const checkTask = (id: number) => {
     const currentTask = getStorageTask(id);
 
-    if (!currentTask) {
+    if (!currentTask || !user) {
       return;
     }
 
@@ -47,6 +57,7 @@ export function useTask(task: TaskItem) {
 
       localStorage.setItem(STORAGE_KEY_TASKS, JSON.stringify(newTasks));
       setInProgress(false);
+      completeTask({ userId: Number(user.id), completeTaskId: Number(currentTask.id) });
 
       return true;
     }
@@ -56,7 +67,7 @@ export function useTask(task: TaskItem) {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    window.open(task.url, "_blank");
+    window.open(task.url ?? "", "_blank");
     setStorageTask(task.id);
     setInProgress(true);
   };
@@ -70,7 +81,8 @@ export function useTask(task: TaskItem) {
     setStorageTask,
     getStorageTask,
     checkTask,
-    inProgress
+    inProgress,
+    isLoadingComplete
   };
 }
 

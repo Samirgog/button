@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { taskModel } from "@/entities/task";
 import { Button, Select, selectModel, Stack } from "@/shared/ui";
 import { Input } from "@/shared/ui/input";
+import { TTaskTypesEnum } from "@/shared/generated";
 
 const optionsSelectType: selectModel.OptionSelect[] = [
-  { label: "Watch video", value: taskModel.TaskType.VIDEO },
-  { label: "Subscribe channel", value: taskModel.TaskType.SUBSCRIBE },
-  { label: "Join telegram chat", value: taskModel.TaskType.TELEGRAM }
+  { label: "Watch video", value: TTaskTypesEnum.Video },
+  { label: "Subscribe channel", value: TTaskTypesEnum.Subscribe },
+  { label: "Join telegram chat", value: TTaskTypesEnum.Join }
 ];
 
 export const CreateTasks: React.FC = () => {

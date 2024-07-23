@@ -1341,6 +1341,34 @@ useTasksQuery.getKey = (variables: TTasksQueryVariables) => ['Tasks', variables]
 
 useTasksQuery.fetcher = (client: GraphQLClient, variables: TTasksQueryVariables, headers?: RequestInit['headers']) => fetcher<TTasksQuery, TTasksQueryVariables>(client, TasksDocument, variables, headers);
 
+export const CompleteTaskDocument = /*#__PURE__*/ `
+    mutation CompleteTask($completeTaskId: Int!, $userId: Int!) {
+  completeTask(id: $completeTaskId, userId: $userId) {
+    id
+    remaining
+    reward
+  }
+}
+    `;
+
+export const useCompleteTaskMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<TCompleteTaskMutation, TError, TCompleteTaskMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) => {
+    
+    return useMutation<TCompleteTaskMutation, TError, TCompleteTaskMutationVariables, TContext>(
+      ['CompleteTask'],
+      (variables?: TCompleteTaskMutationVariables) => fetcher<TCompleteTaskMutation, TCompleteTaskMutationVariables>(client, CompleteTaskDocument, variables, headers)(),
+      options
+    )};
+
+
+useCompleteTaskMutation.fetcher = (client: GraphQLClient, variables: TCompleteTaskMutationVariables, headers?: RequestInit['headers']) => fetcher<TCompleteTaskMutation, TCompleteTaskMutationVariables>(client, CompleteTaskDocument, variables, headers);
+
 export const AuthDocument = /*#__PURE__*/ `
     mutation Auth($input: AuthInput!) {
   auth(input: $input) {
@@ -1388,6 +1416,14 @@ export type TTasksQueryVariables = Exact<{
 
 
 export type TTasksQuery = { tasks: { totalCount: number, pageInfo: { hasNextPage?: boolean | null, hasPreviousPage?: boolean | null }, nodes: Array<{ id: number, name?: string | null, remaining?: number | null, reward?: string | null, total?: number | null, type?: string | null, url?: string | null }> } };
+
+export type TCompleteTaskMutationVariables = Exact<{
+  completeTaskId: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
+}>;
+
+
+export type TCompleteTaskMutation = { completeTask: { id: number, remaining?: number | null, reward?: string | null } };
 
 export type TAuthMutationVariables = Exact<{
   input: TAuthInput;
