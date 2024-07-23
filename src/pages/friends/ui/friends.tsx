@@ -8,13 +8,14 @@ export const Friends: React.FC = () => {
   const user = userModel.useUser();
 
   return (
-    <Stack direction="column" gap={24}>
+    <Stack direction="column" gap={20}>
       <InviteButton />
-      <Stack direction="column" gap={8}>
+
+      <Stack direction="column" gap={10}>
         <Typography type="title" weight="medium">
           Statistics
         </Typography>
-        <Stack gap={16}>
+        <Stack gap={12}>
           <CardStats
             title="Friends"
             emodjiName={emodjiTypes.EmodjiName.WEED_GESTURE}
@@ -29,7 +30,8 @@ export const Friends: React.FC = () => {
           />
         </Stack>
       </Stack>
-      <Stack direction="column" gap={8}>
+
+      <Stack direction="column" gap={10}>
         <Typography type="title" weight="medium">
           Invite friends and get Bonus
         </Typography>

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
 import { StorageTask } from "@/entities/task/model/types";
+import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
-import { useUser } from "@/entities/user/model";
 
 export function useTask(task: TTask, onComplete?: () => void) {
   const user = useUser();

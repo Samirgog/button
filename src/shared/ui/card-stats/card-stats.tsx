@@ -12,12 +12,12 @@ type Props = {
 export const CardStats: React.FC<Props> = ({ emodjiName, title, total, ...htmlAttributes }) => {
   return (
     <Card size="sm" {...htmlAttributes}>
-      <Stack direction="column" gap={16}>
-        <Stack gap={10} align="center">
-          <Emodji emodjiName={emodjiName} size={28} />
+      <Stack direction="column" gap={8}>
+        <Stack gap={8} align="center">
+          <Emodji emodjiName={emodjiName} size={20} />
           <Typography type="text">{title}</Typography>
         </Stack>
-        <Stack gap={10} align="center">
+        <Stack gap={8} align="center">
           <Typography type="text" weight="medium" color="warning">
             {total}
           </Typography>

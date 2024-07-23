@@ -3,8 +3,8 @@ import React from "react";
 import { useTaskList } from "../model";
 
 import { Task } from "@/entities/task";
-import { Stack } from "@/shared/ui";
 import { TTask } from "@/shared/generated";
+import { Stack } from "@/shared/ui";
 
 type Props = {
   shouldGetCurrentTasks?: boolean;

@@ -42,7 +42,7 @@ export const InviteButton: React.FC = () => {
       disabled={isSharing}
       style={{ width: "100%" }}
     >
-      <Stack gap={8} justify="center">
+      <Stack gap={8} justify="center" align="center">
         <Typography type="title" weight="bold">
           Invite a friend
         </Typography>

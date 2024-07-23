@@ -18,7 +18,8 @@
     "prettier:fix": "prettier src/ --write",
     "check-types": "tsc",
     "pre-commit": "npm run lint-staged",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "format": "npm run lint:es:fix && npm run prettier:fix"
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.0.0",
@@ -57,6 +58,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.17.0",
     "@vitejs/plugin-react": "^3.0.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",

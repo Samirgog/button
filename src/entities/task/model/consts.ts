@@ -1,5 +1,4 @@
 import { TTaskTypesEnum } from "@/shared/generated";
-
 import { EmodjiName } from "@/shared/ui/emodji/types";
 
 export const STORAGE_KEY_TASKS = "TASKS";

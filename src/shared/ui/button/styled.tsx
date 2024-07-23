@@ -55,7 +55,7 @@ export const ButtonStyled = styled.button<{
 
     if ($size === "xl") {
       return css`
-        padding: 16px 24px;
+        padding: 14px 20px;
       `;
     }
 

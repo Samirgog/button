@@ -1,6 +1,9 @@
 import React from "react";
+
 import QRCode from "qrcode.react";
+
 import { MobileOnlyQRStyled } from "./styled";
+
 import { Typography } from "@/shared/ui";
 
 export const MobileOnlyQR: React.FC = () => {

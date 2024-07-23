@@ -11,6 +11,7 @@ import {
 
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
+import { MobileOnlyQR } from "@/features/mobile-only-qr";
 import { CreateTasks } from "@/pages/create-tasks";
 import { Friends } from "@/pages/friends";
 import { MyTasks } from "@/pages/my-tasks";
@@ -18,7 +19,6 @@ import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
-import { MobileOnlyQR } from "@/features/mobile-only-qr";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
 
@@ -69,16 +69,17 @@ export const App: React.FC = () => {
     setIsMobile(window.Telegram?.WebApp?.platform === "mobile");
   }, [window.Telegram?.WebApp?.platform]);
 
-  if (!isMobile) {
-    return <MobileOnlyQR />;
-  }
+  // if (!isMobile) {
+  //   return <MobileOnlyQR />;
+  // }
 
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        isMobile {isMobile}
-        platform {window.Telegram?.WebApp?.platform}
-        {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+        {/*isMobile {isMobile}*/}
+        {/*platform {window.Telegram?.WebApp?.platform}*/}
+        {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
+        <RouterProvider router={routerDefault} />
       </TonConnectUIProvider>
     </React.StrictMode>
   );

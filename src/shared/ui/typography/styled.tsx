@@ -9,42 +9,43 @@ export const TypographyStyled = styled.span<{
   $lineClamp?: number;
 }>`
   font-family: "Roboto", sans-serif;
+  letter-spacing: 0.3px;
   font-weight: ${({ $weight }) => $weight};
 
   ${({ $type }) => {
     if ($type === "mega") {
       return css`
-        font-size: 32px;
+        font-size: 24px;
       `;
     }
 
     if ($type === "title") {
       return css`
-        font-size: 24px;
+        font-size: 18px;
       `;
     }
 
     if ($type === "text") {
       return css`
-        font-size: 20px;
+        font-size: 16px;
       `;
     }
 
     if ($type === "note") {
       return css`
-        font-size: 16px;
+        font-size: 14px;
       `;
     }
 
     if ($type === "mini") {
       return css`
-        font-size: 14px;
+        font-size: 12px;
       `;
     }
 
     if ($type === "micro") {
       return css`
-        font-size: 12px;
+        font-size: 10px;
       `;
     }
 

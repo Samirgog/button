@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 
 import { useStoreUser } from "./store";
+
 import { TUser, useAuthMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 

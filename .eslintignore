@@ -6,3 +6,5 @@
 **/src-old
 *.d.ts
 **/generated/**
+codegen.ts
+src/**/queries.ts

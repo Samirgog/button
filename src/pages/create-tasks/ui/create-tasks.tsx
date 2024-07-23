@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
+import { TTaskTypesEnum } from "@/shared/generated";
 import { Button, Select, selectModel, Stack } from "@/shared/ui";
 import { Input } from "@/shared/ui/input";
-import { TTaskTypesEnum } from "@/shared/generated";
 
 const optionsSelectType: selectModel.OptionSelect[] = [
   { label: "Watch video", value: TTaskTypesEnum.Video },

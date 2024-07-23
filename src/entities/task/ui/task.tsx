@@ -4,9 +4,9 @@ import { useTask, useTimer } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper } from "@/entities/task/ui/styled";
+import { TTask, TTaskTypesEnum } from "@/shared/generated";
 import { Button, Card, Emodji, Link, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
-import { TTask, TTaskTypesEnum } from "@/shared/generated";
 
 type Props = {
   task: TTask;
