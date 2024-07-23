@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request';
 import { RequestInit } from 'graphql-request/dist/types.dom';
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1341,6 +1341,45 @@ useTasksQuery.getKey = (variables: TTasksQueryVariables) => ['Tasks', variables]
 
 useTasksQuery.fetcher = (client: GraphQLClient, variables: TTasksQueryVariables, headers?: RequestInit['headers']) => fetcher<TTasksQuery, TTasksQueryVariables>(client, TasksDocument, variables, headers);
 
+export const AuthDocument = /*#__PURE__*/ `
+    mutation Auth($input: AuthInput!) {
+  auth(input: $input) {
+    id
+    name
+    earned
+    balance
+    completedTasks {
+      id
+      task {
+        name
+      }
+    }
+    referrals {
+      id
+      name
+    }
+  }
+}
+    `;
+
+export const useAuthMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<TAuthMutation, TError, TAuthMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) => {
+    
+    return useMutation<TAuthMutation, TError, TAuthMutationVariables, TContext>(
+      ['Auth'],
+      (variables?: TAuthMutationVariables) => fetcher<TAuthMutation, TAuthMutationVariables>(client, AuthDocument, variables, headers)(),
+      options
+    )};
+
+
+useAuthMutation.fetcher = (client: GraphQLClient, variables: TAuthMutationVariables, headers?: RequestInit['headers']) => fetcher<TAuthMutation, TAuthMutationVariables>(client, AuthDocument, variables, headers);
+
 export type TTasksQueryVariables = Exact<{
   paging: TOffsetPaging;
   filter: TTaskFilter;
@@ -1349,3 +1388,10 @@ export type TTasksQueryVariables = Exact<{
 
 
 export type TTasksQuery = { tasks: { totalCount: number, pageInfo: { hasNextPage?: boolean | null, hasPreviousPage?: boolean | null }, nodes: Array<{ id: number, name?: string | null, remaining?: number | null, reward?: string | null, total?: number | null, type?: string | null, url?: string | null }> } };
+
+export type TAuthMutationVariables = Exact<{
+  input: TAuthInput;
+}>;
+
+
+export type TAuthMutation = { auth: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, task?: { name?: string | null } | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };

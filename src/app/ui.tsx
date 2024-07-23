@@ -18,12 +18,8 @@ import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
-import { getQueryClient } from "@/shared/providers/QueryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
-
-const queryClient = getQueryClient();
 
 const routerDefault = createBrowserRouter(
   createRoutesFromElements(
@@ -62,21 +58,16 @@ const routerCreator = createBrowserRouter(
   )
 );
 
-const typeAccount = "creator";
+const typeAccount = "default";
 export const App: React.FC = () => {
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
+  const showSplash = isLoadingAuth || !isAuthenticated;
 
   return (
     <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <TonConnectUIProvider manifestUrl={manifestUrl}>
-          {isLoadingAuth && !isAuthenticated ? (
-            <Splash />
-          ) : (
-            <RouterProvider router={typeAccount === "creator" ? routerCreator : routerDefault} />
-          )}
-        </TonConnectUIProvider>
-      </QueryClientProvider>
+      <TonConnectUIProvider manifestUrl={manifestUrl}>
+        {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+      </TonConnectUIProvider>
     </React.StrictMode>
   );
 };

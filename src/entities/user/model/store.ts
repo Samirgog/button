@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-import { User } from "./types";
+import { TUser } from "@/shared/generated";
 
 type StateUser = {
-  user: User | null;
-  setUser: (user: User) => void;
+  user: TUser | null;
+  setUser: (user: TUser) => void;
 };
 
 export const useStoreUser = create<StateUser>((set) => ({
