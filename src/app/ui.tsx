@@ -61,16 +61,13 @@ const routerCreator = createBrowserRouter(
 
 const typeAccount = "default";
 export const App: React.FC = () => {
-  const [isMobile] = useState(() => window.Telegram?.WebApp?.platform === "mobile");
+  const [isMobile, setIsMobile] = useState(() => window.Telegram?.WebApp?.platform === "mobile");
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
-  console.log("isMobile", isMobile);
-
   useEffect(() => {
-    console.log("Telegram", window.Telegram);
-    console.log("platform", window.Telegram?.WebApp?.platform);
-  }, []);
+    setIsMobile(window.Telegram?.WebApp?.platform === "mobile");
+  }, [window.Telegram?.WebApp?.platform]);
 
   if (!isMobile) {
     return <MobileOnlyQR />;
@@ -79,6 +76,8 @@ export const App: React.FC = () => {
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
+        isMobile {isMobile}
+        platform {window.Telegram?.WebApp?.platform}
         {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
       </TonConnectUIProvider>
     </React.StrictMode>
