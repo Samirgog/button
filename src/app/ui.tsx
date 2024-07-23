@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import {
@@ -64,6 +64,13 @@ export const App: React.FC = () => {
   const [isMobile] = useState(() => window.Telegram?.WebApp?.platform === "mobile");
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
+
+  console.log("isMobile", isMobile);
+
+  useEffect(() => {
+    console.log("Telegram", window.Telegram);
+    console.log("platform", window.Telegram?.WebApp?.platform);
+  }, []);
 
   if (!isMobile) {
     return <MobileOnlyQR />;
