@@ -7,18 +7,6 @@ import { useStoreUser } from "./store";
 import { TUser, useAuthMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 
-// const mock = {
-//   id: 1,
-//   name: "Самир Гафаров",
-//   earned: 0,
-//   balance: 0,
-//   completedTasks: [],
-//   referrals: [],
-//   createdAt: "2024-07-23T10:09:31.861Z",
-//   updatedAt: "2024-07-23T10:09:31.861Z",
-//   role: "user"
-// };
-
 export function useAuth() {
   const [setUser] = useStoreUser(useShallow((state) => [state.setUser]));
   const [isAuthenticated, setIsAuthenticated] = useState(false);

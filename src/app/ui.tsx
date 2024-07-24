@@ -11,12 +11,12 @@ import {
 
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
-import { MobileOnlyQR } from "@/features/mobile-only-qr";
+// import { MobileOnlyQR } from "@/features/mobile-only-qr";
 import { CreateTasks } from "@/pages/create-tasks";
 import { Friends } from "@/pages/friends";
 import { MyTasks } from "@/pages/my-tasks";
 import { Portfolio } from "@/pages/portfolio";
-import { Splash } from "@/pages/splash";
+// import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
 
@@ -61,7 +61,7 @@ const routerCreator = createBrowserRouter(
 
 const typeAccount = "default";
 export const App: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(() => window.Telegram?.WebApp?.platform === "mobile");
+  const [isMobile, setIsMobile] = useState(window.Telegram?.WebApp?.platform === "mobile");
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
@@ -76,8 +76,10 @@ export const App: React.FC = () => {
   return (
     <React.StrictMode>
       <TonConnectUIProvider manifestUrl={manifestUrl}>
-        {/*isMobile {isMobile}*/}
-        {/*platform {window.Telegram?.WebApp?.platform}*/}
+        <div style={{ display: "flex", flexDirection: "column", color: "#fff" }}>
+          <span>isMobile: {isMobile ? "true" : "false"}</span>
+          <span>platform: {window.Telegram?.WebApp?.platform}</span>
+        </div>
         {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
         <RouterProvider router={routerDefault} />
       </TonConnectUIProvider>
