@@ -5,6 +5,7 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { Balance } from "@/entities/balance";
 import { userModel } from "@/entities/user";
 import { ConvertButton } from "@/features/convert-button";
+import { GoldenRainCard } from "@/features/golden-rain-card";
 import { emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { CardStats } from "@/shared/ui/card-stats";
 
@@ -29,12 +30,7 @@ export const Portfolio: React.FC = () => {
           Daily games
         </Typography>
         <Stack gap={12} style={{ width: "100%" }}>
-          <CardStats
-            title="Completed"
-            emodjiName={emodjiTypes.EmodjiName.SUCCESS_CHECK}
-            total={user?.completedTasks?.length ?? 0}
-            style={{ flexBasis: "50%" }}
-          />
+          <GoldenRainCard style={{ flexBasis: "50%" }} />
         </Stack>
       </Stack>
 

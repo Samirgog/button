@@ -14,6 +14,7 @@ import { userModel } from "@/entities/user";
 import { MobileOnlyQR } from "@/features/mobile-only-qr";
 import { CreateTasks } from "@/pages/create-tasks";
 import { Friends } from "@/pages/friends";
+import { GoldenRain } from "@/pages/golden-rain";
 import { MyTasks } from "@/pages/my-tasks";
 import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
@@ -37,6 +38,7 @@ const routerDefault = createBrowserRouter(
       <Route path="/button/portfolio" element={<Portfolio />} />
       <Route path="/button/friends" element={<Friends />} />
       <Route path="/button/tasks" element={<Tasks />} />
+      <Route path="/button/golden-rain" element={<GoldenRain />} />
     </Route>
   )
 );

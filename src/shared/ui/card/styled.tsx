@@ -12,7 +12,7 @@ export const CardStyled = styled.div<{ $size: SizeCard }>`
   ${({ $size }) => {
     if ($size === "sm") {
       return css`
-        min-height: 70px;
+        min-height: 78px;
         min-width: 160px;
       `;
     }

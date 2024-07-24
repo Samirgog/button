@@ -15,6 +15,9 @@ export const Navbar: React.FC<Props> = ({ mode = "default" }) => {
   const { pathname } = useLocation();
   const optionsNavbar = mode === "creator" ? optionsNavbarCreator : optionsNavbarDefault;
 
+  const excludedPaths = ["golden-rain"];
+  const isHidden = excludedPaths.filter((path) => pathname.includes(path)).length !== 0;
+
   const getActiveTab = (id: string) => {
     if (mode === "creator") {
       return pathname.includes(id) || (id === "create" && pathname === "/button/");
@@ -22,6 +25,10 @@ export const Navbar: React.FC<Props> = ({ mode = "default" }) => {
 
     return pathname.includes(id) || (id === "portfolio" && pathname === "/button/");
   };
+
+  if (isHidden) {
+    return null;
+  }
 
   return (
     <NavbarWrapperStyled>
