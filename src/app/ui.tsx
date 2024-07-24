@@ -73,10 +73,6 @@ export const App: React.FC = () => {
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
-      <div style={{ display: "flex", flexDirection: "column", color: "#fff" }}>
-        <span>isMobile: {isMobile ? "true" : "false"}</span>
-        <span>platform: {platform}</span>
-      </div>
       {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
     </TonConnectUIProvider>
   );
