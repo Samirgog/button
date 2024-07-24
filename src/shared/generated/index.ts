@@ -1387,10 +1387,10 @@ useCompleteTaskMutation.fetcher = (client: GraphQLClient, variables: TCompleteTa
 export const AuthDocument = /*#__PURE__*/ `
     mutation Auth($input: AuthInput!) {
   auth(input: $input) {
-    ...userFields
+    id
   }
 }
-    ${UserFieldsFragmentDoc}`;
+    `;
 
 export const useAuthMutation = <
       TError = unknown,
@@ -1463,7 +1463,7 @@ export type TAuthMutationVariables = Exact<{
 }>;
 
 
-export type TAuthMutation = { auth: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+export type TAuthMutation = { auth: { id: number } };
 
 export type TUserQueryVariables = Exact<{
   userId: Scalars['Int']['input'];

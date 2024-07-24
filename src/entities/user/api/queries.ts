@@ -18,11 +18,9 @@ export const UserFragment = gql`
 `;
 
 gql`
-  ${UserFragment}
-
   mutation Auth($input: AuthInput!) {
     auth(input: $input) {
-      ...userFields
+      id
     }
   }
 `;
