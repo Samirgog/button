@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import {
@@ -11,12 +11,12 @@ import {
 
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
-// import { MobileOnlyQR } from "@/features/mobile-only-qr";
+import { MobileOnlyQR } from "@/features/mobile-only-qr";
 import { CreateTasks } from "@/pages/create-tasks";
 import { Friends } from "@/pages/friends";
 import { MyTasks } from "@/pages/my-tasks";
 import { Portfolio } from "@/pages/portfolio";
-// import { Splash } from "@/pages/splash";
+import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
 
@@ -62,21 +62,14 @@ const routerCreator = createBrowserRouter(
 const typeAccount = "default";
 export const App: React.FC = () => {
   const platform = window.Telegram?.WebApp?.platform;
-  const isMobile = platform !== "unknown" && platform !== "web" && platform !== "desktop";
-  console.log("platform", platform);
+  const isMobile = platform === "android" || platform === "ios";
 
-  // const [isMobile, setIsMobile] = useState(window.Telegram?.WebApp?.platform === "mobile");
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
-  // useEffect(() => {
-  // eslint-disable-next-line no-secrets/no-secrets
-  //   setIsMobile(window.Telegram?.WebApp?.platform === "mobile");
-  // }, [window.Telegram?.WebApp?.platform]);
-
-  // if (!isMobile) {
-  //   return <MobileOnlyQR />;
-  // }
+  if (!isMobile) {
+    return <MobileOnlyQR />;
+  }
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
@@ -84,8 +77,7 @@ export const App: React.FC = () => {
         <span>isMobile: {isMobile ? "true" : "false"}</span>
         <span>platform: {platform}</span>
       </div>
-      {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
-      <RouterProvider router={routerDefault} />
+      {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
     </TonConnectUIProvider>
   );
 };
