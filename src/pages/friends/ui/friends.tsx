@@ -36,7 +36,7 @@ export const Friends: React.FC = () => {
           Invite friends and get Bonus
         </Typography>
         <Card size="xl">
-          <Stack direction="column" align="center" gap={24}>
+          <Stack direction="column" align="center" gap={16}>
             <Stack align="center" justify="center" gap={12}>
               <img width={48} height={48} src={"/button/loaf_coin.png"} alt={"coin"} />
               <Typography type="mega" weight="semi-bold">

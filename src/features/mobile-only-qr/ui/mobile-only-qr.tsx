@@ -1,16 +1,17 @@
 import React from "react";
 
-import QRCode from "qrcode.react";
-
-import { MobileOnlyQRStyled } from "./styled";
+import { MobileOnlyQRStyled, QRCode } from "./styled";
 
 import { Typography } from "@/shared/ui";
 
 export const MobileOnlyQR: React.FC = () => {
   return (
     <MobileOnlyQRStyled>
-      <Typography type="title">Go to mobile version!</Typography>
-      <QRCode value={window.location.href} size={250} style={{ borderRadius: "14px" }} />
+      <QRCode src="/qr.svg" />
+      <Typography type="text" color="disabled">
+        @nothing_but_ton_bot
+      </Typography>
+      <Typography type="title">Go to the mobile version!</Typography>
     </MobileOnlyQRStyled>
   );
 };

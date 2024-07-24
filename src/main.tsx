@@ -10,7 +10,9 @@ import { getQueryClient } from "@/shared/providers/QueryClient";
 const queryClient = getQueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </React.StrictMode>
 );

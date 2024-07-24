@@ -61,28 +61,31 @@ const routerCreator = createBrowserRouter(
 
 const typeAccount = "default";
 export const App: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.Telegram?.WebApp?.platform === "mobile");
+  const platform = window.Telegram?.WebApp?.platform;
+  const isMobile = platform !== "unknown" && platform !== "web" && platform !== "desktop";
+  console.log("platform", platform);
+
+  // const [isMobile, setIsMobile] = useState(window.Telegram?.WebApp?.platform === "mobile");
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
-  useEffect(() => {
-    setIsMobile(window.Telegram?.WebApp?.platform === "mobile");
-  }, [window.Telegram?.WebApp?.platform]);
+  // useEffect(() => {
+  // eslint-disable-next-line no-secrets/no-secrets
+  //   setIsMobile(window.Telegram?.WebApp?.platform === "mobile");
+  // }, [window.Telegram?.WebApp?.platform]);
 
   // if (!isMobile) {
   //   return <MobileOnlyQR />;
   // }
 
   return (
-    <React.StrictMode>
-      <TonConnectUIProvider manifestUrl={manifestUrl}>
-        <div style={{ display: "flex", flexDirection: "column", color: "#fff" }}>
-          <span>isMobile: {isMobile ? "true" : "false"}</span>
-          <span>platform: {window.Telegram?.WebApp?.platform}</span>
-        </div>
-        {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
-        <RouterProvider router={routerDefault} />
-      </TonConnectUIProvider>
-    </React.StrictMode>
+    <TonConnectUIProvider manifestUrl={manifestUrl}>
+      <div style={{ display: "flex", flexDirection: "column", color: "#fff" }}>
+        <span>isMobile: {isMobile ? "true" : "false"}</span>
+        <span>platform: {platform}</span>
+      </div>
+      {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
+      <RouterProvider router={routerDefault} />
+    </TonConnectUIProvider>
   );
 };
