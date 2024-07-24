@@ -11,19 +11,12 @@ type Props = {
 };
 
 export const TaskList: React.FC<Props> = ({ shouldGetCurrentTasks = false }) => {
-  const { tasks = [], refetch } = useTaskList(shouldGetCurrentTasks);
+  const { tasks = [] } = useTaskList(shouldGetCurrentTasks);
 
   return (
     <Stack direction="column" gap={12}>
       {tasks.map((task) => {
-        return (
-          <Task
-            key={task.id}
-            task={task as TTask}
-            showStats={shouldGetCurrentTasks}
-            onComplete={refetch}
-          />
-        );
+        return <Task key={task.id} task={task as TTask} showStats={shouldGetCurrentTasks} />;
       })}
     </Stack>
   );

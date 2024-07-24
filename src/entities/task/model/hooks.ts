@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
 import { StorageTask } from "@/entities/task/model/types";
 import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 
-export function useTask(task: TTask, onComplete?: () => void) {
+export function useTask(task: TTask) {
+  const queryClient = useQueryClient();
   const user = useUser();
   const { mutateAsync: completeTask, isLoading: isLoadingComplete } = useCompleteTaskMutation(
     gqlClient,
     {
-      onSuccess: onComplete
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+      }
     }
   );
   const [inProgress, setInProgress] = useState(() => {

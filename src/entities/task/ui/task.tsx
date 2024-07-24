@@ -11,12 +11,11 @@ import { AvatarCircle } from "@/shared/ui/avatar-circle";
 type Props = {
   task: TTask;
   showStats?: boolean;
-  onComplete?: () => void;
 };
 
-export const Task: React.FC<Props> = ({ task, onComplete }) => {
+export const Task: React.FC<Props> = ({ task }) => {
   const { name, reward, type } = task ?? {};
-  const { getHandlers, inProgress, checkTask, isLoadingComplete } = useTask(task, onComplete);
+  const { getHandlers, inProgress, checkTask, isLoadingComplete } = useTask(task);
   const { seconds, setSeconds } = useTimer();
 
   const handleCheckTask = (event: React.MouseEvent<HTMLElement>) => {
