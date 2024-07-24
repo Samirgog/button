@@ -8,14 +8,17 @@ import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 
+const LIMIT_MINUTES = 1;
+
 export function useTask(task: TTask) {
   const queryClient = useQueryClient();
   const user = useUser();
   const { mutateAsync: completeTask, isLoading: isLoadingComplete } = useCompleteTaskMutation(
     gqlClient,
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: ["User"] });
+        await queryClient.invalidateQueries({ queryKey: ["Tasks"] });
       }
     }
   );
@@ -52,7 +55,7 @@ export function useTask(task: TTask) {
     }
 
     const seconds = (new Date().getTime() - new Date(currentTask.timestamp).getTime()) / 1000;
-    const limit = 5 * 60;
+    const limit = LIMIT_MINUTES * 60;
 
     if (seconds > limit) {
       const currentTasks: StorageTask[] = JSON.parse(

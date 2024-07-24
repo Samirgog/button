@@ -1,22 +1,38 @@
 import { gql } from "graphql-request";
 
-gql`
-  mutation Auth($input: AuthInput!) {
-    auth(input: $input) {
+export const UserFragment = gql`
+  fragment userFields on User {
+    id
+    name
+    earned
+    balance
+    completedTasks {
+      id
+      taskId
+    }
+    referrals {
       id
       name
-      earned
-      balance
-      completedTasks {
-        id
-        task {
-          name
-        }
-      }
-      referrals {
-        id
-        name
-      }
+    }
+  }
+`;
+
+gql`
+  ${UserFragment}
+
+  mutation Auth($input: AuthInput!) {
+    auth(input: $input) {
+      ...userFields
+    }
+  }
+`;
+
+gql`
+  ${UserFragment}
+
+  query User($userId: Int!) {
+    user(id: $userId) {
+      ...userFields
     }
   }
 `;

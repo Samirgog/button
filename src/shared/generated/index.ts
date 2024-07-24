@@ -1298,7 +1298,22 @@ export type TGetHello = {
 };
 
 
-
+export const UserFieldsFragmentDoc = /*#__PURE__*/ `
+    fragment userFields on User {
+  id
+  name
+  earned
+  balance
+  completedTasks {
+    id
+    taskId
+  }
+  referrals {
+    id
+    name
+  }
+}
+    `;
 export const TasksDocument = /*#__PURE__*/ `
     query Tasks($paging: OffsetPaging!, $filter: TaskFilter!, $sorting: [TaskSort!]!) {
   tasks(paging: $paging, filter: $filter, sorting: $sorting) {
@@ -1372,23 +1387,10 @@ useCompleteTaskMutation.fetcher = (client: GraphQLClient, variables: TCompleteTa
 export const AuthDocument = /*#__PURE__*/ `
     mutation Auth($input: AuthInput!) {
   auth(input: $input) {
-    id
-    name
-    earned
-    balance
-    completedTasks {
-      id
-      task {
-        name
-      }
-    }
-    referrals {
-      id
-      name
-    }
+    ...userFields
   }
 }
-    `;
+    ${UserFieldsFragmentDoc}`;
 
 export const useAuthMutation = <
       TError = unknown,
@@ -1408,6 +1410,35 @@ export const useAuthMutation = <
 
 useAuthMutation.fetcher = (client: GraphQLClient, variables: TAuthMutationVariables, headers?: RequestInit['headers']) => fetcher<TAuthMutation, TAuthMutationVariables>(client, AuthDocument, variables, headers);
 
+export const UserDocument = /*#__PURE__*/ `
+    query User($userId: Int!) {
+  user(id: $userId) {
+    ...userFields
+  }
+}
+    ${UserFieldsFragmentDoc}`;
+
+export const useUserQuery = <
+      TData = TUserQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: TUserQueryVariables,
+      options?: UseQueryOptions<TUserQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) => {
+    
+    return useQuery<TUserQuery, TError, TData>(
+      ['User', variables],
+      fetcher<TUserQuery, TUserQueryVariables>(client, UserDocument, variables, headers),
+      options
+    )};
+
+useUserQuery.getKey = (variables: TUserQueryVariables) => ['User', variables];
+
+
+useUserQuery.fetcher = (client: GraphQLClient, variables: TUserQueryVariables, headers?: RequestInit['headers']) => fetcher<TUserQuery, TUserQueryVariables>(client, UserDocument, variables, headers);
+
 export type TTasksQueryVariables = Exact<{
   paging: TOffsetPaging;
   filter: TTaskFilter;
@@ -1425,9 +1456,18 @@ export type TCompleteTaskMutationVariables = Exact<{
 
 export type TCompleteTaskMutation = { completeTask: { id: number, remaining?: number | null, reward?: string | null } };
 
+export type TUserFieldsFragment = { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
+
 export type TAuthMutationVariables = Exact<{
   input: TAuthInput;
 }>;
 
 
-export type TAuthMutation = { auth: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, task?: { name?: string | null } | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+export type TAuthMutation = { auth: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+
+export type TUserQueryVariables = Exact<{
+  userId: Scalars['Int']['input'];
+}>;
+
+
+export type TUserQuery = { user: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };

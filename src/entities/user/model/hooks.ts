@@ -4,17 +4,24 @@ import { useShallow } from "zustand/react/shallow";
 
 import { useStoreUser } from "./store";
 
-import { TUser, useAuthMutation } from "@/shared/generated";
+import { TUser, useAuthMutation, useUserQuery } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 
 export function useAuth() {
   const [setUser] = useStoreUser(useShallow((state) => [state.setUser]));
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState<number | null>(null);
+
+  const { data: { user } = {} } = useUserQuery(
+    gqlClient,
+    { userId: Number(userId) },
+    { enabled: Boolean(userId) }
+  );
 
   const { mutateAsync: authUser, isLoading } = useAuthMutation(gqlClient, {
     onSuccess: (data) => {
       if (data.auth) {
-        setUser(data.auth as TUser);
+        setUserId(data.auth.id);
         setIsAuthenticated(true);
       }
     }
@@ -32,7 +39,13 @@ export function useAuth() {
 
   useEffect(() => {
     authenticate();
-  }, [setUser]);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setUser(user as TUser);
+    }
+  }, [setUser, user]);
 
   return { isLoading, isAuthenticated };
 }
