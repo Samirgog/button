@@ -25,15 +25,7 @@ const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json"
 
 const routerDefault = createBrowserRouter(
   createRoutesFromElements(
-    <Route
-      path="/button/"
-      element={
-        <Layout>
-          <Outlet />
-          <Navbar />
-        </Layout>
-      }
-    >
+    <Route path="/button/">
       <Route index element={<Portfolio />} />
       <Route path="/button/portfolio" element={<Portfolio />} />
       <Route path="/button/friends" element={<Friends />} />

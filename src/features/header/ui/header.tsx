@@ -2,7 +2,7 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { BackButton, Pusher } from "@/features/golden-rain-card/ui/styled";
+import { BackButton, Pusher } from "@/features/header/ui/styled";
 import { Stack, Typography } from "@/shared/ui";
 
 type Props = {
