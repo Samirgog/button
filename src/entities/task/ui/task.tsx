@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useTask, useTimer } from "../model";
+import { useTask } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper } from "@/entities/task/ui/styled";
@@ -14,14 +14,15 @@ type Props = {
 };
 
 export const Task: React.FC<Props> = ({ task }) => {
+  const [moderation, setModeration] = useState(false);
   const { name, reward, type } = task ?? {};
   const { getHandlers, inProgress, checkTask, isLoadingComplete } = useTask(task);
-  const { seconds, setSeconds } = useTimer();
 
-  const handleCheckTask = (event: React.MouseEvent<HTMLElement>) => {
+  const handleCheckTask = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    setSeconds(30);
-    checkTask(task?.id);
+    const checked = await checkTask(task?.id);
+
+    setModeration(!checked);
   };
 
   return (
@@ -61,10 +62,10 @@ export const Task: React.FC<Props> = ({ task }) => {
             type="gradient"
             size="sm"
             onClick={handleCheckTask}
-            disabled={Boolean(seconds) || isLoadingComplete}
+            disabled={moderation || isLoadingComplete}
             style={{ minWidth: "70px" }}
           >
-            {seconds > 0 ? seconds : "Check"}
+            {"Check"}
           </Button>
           <Link {...getHandlers()}>Execute</Link>
         </ButtonsWrapper>
