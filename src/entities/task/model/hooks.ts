@@ -47,7 +47,7 @@ export function useTask(task: TTask) {
     }
   };
 
-  const checkTask = (id: number) => {
+  const checkTask = async (id: number) => {
     const currentTask = getStorageTask(id);
 
     if (!currentTask || !user) {
@@ -65,7 +65,7 @@ export function useTask(task: TTask) {
 
       localStorage.setItem(STORAGE_KEY_TASKS, JSON.stringify(newTasks));
       setInProgress(false);
-      completeTask({ userId: Number(user.id), completeTaskId: Number(currentTask.id) });
+      await completeTask({ userId: Number(user.id), completeTaskId: Number(currentTask.id) });
 
       return true;
     }
