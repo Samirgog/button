@@ -62,9 +62,9 @@ export const App: React.FC = () => {
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
-  if (!isMobile) {
-    return <MobileOnlyQR />;
-  }
+  // if (!isMobile) {
+  //   return <MobileOnlyQR />;
+  // }
 
   useEffect(() => {
     window.Telegram?.WebApp?.expand?.();
@@ -73,7 +73,8 @@ export const App: React.FC = () => {
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
-      {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+      {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
+      <RouterProvider router={routerDefault} />
     </TonConnectUIProvider>
   );
 };

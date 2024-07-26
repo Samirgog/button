@@ -4,21 +4,18 @@ import { getRandomNumber } from "@/features/golden-rain-game/lib/getRandomNumber
 import { Coin } from "@/features/golden-rain-game/ui/coin";
 import { GoldenRainContainerStyled } from "@/features/golden-rain-game/ui/styled";
 
-const TOTAL_COINS = 200;
-const INTERVAL_MS = 150;
-
 type Props = {
+  totalCoins: number;
+  intervalMs: number;
   setScore: Dispatch<SetStateAction<number>>;
-  timerOffset: number;
-  setTimerValue: (value: number) => void;
 };
 
-export const GoldenRainGame: React.FC<Props> = ({ setScore, timerOffset, setTimerValue }) => {
+export const GoldenRainGame: React.FC<Props> = ({ totalCoins, intervalMs, setScore }) => {
   const [items, setItems] = useState<ReactNode[]>([]);
   const indexRef = useRef(0);
 
   useEffect(() => {
-    if (indexRef.current >= TOTAL_COINS) {
+    if (indexRef.current >= totalCoins) {
       return;
     }
 
@@ -28,14 +25,10 @@ export const GoldenRainGame: React.FC<Props> = ({ setScore, timerOffset, setTime
         <Coin key={getRandomNumber(1000, 5000)} setScore={setScore} />
       ]);
       indexRef.current += 1;
-    }, INTERVAL_MS);
+    }, intervalMs);
 
     return () => clearTimeout(timeout);
   }, [items]);
-
-  useEffect(() => {
-    setTimerValue((TOTAL_COINS * INTERVAL_MS) / 1000 + timerOffset);
-  }, [setTimerValue]);
 
   return <GoldenRainContainerStyled>{items}</GoldenRainContainerStyled>;
 };

@@ -46,7 +46,8 @@ export const Coin: React.FC<Props> = ({ setScore }) => {
       <CoinStyled
         src="/button/loaf_coin.png"
         factor={factor}
-        onClick={handleClick}
+        onMouseDown={handleClick}
+        onTouchStart={handleClick}
         style={{ opacity: clicked ? 0 : 1 }}
       />
 
