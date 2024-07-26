@@ -26,7 +26,7 @@
     "paths": {
       "@/*": ["*"]
     },
-    "types": ["vite/client"]
+    "types": ["vite/client", "@types/telegram-web-app"]
   },
   "include": ["vite.config.ts", "src"],
   "exclude": ["node_modules", "public/**", "build/**"]
