@@ -30,9 +30,7 @@ export function useAuth() {
   const authenticate = async () => {
     const queryParams = new URLSearchParams(window.location.search);
     const referralId = queryParams.get("referralId");
-    console.log("referralId from query", referralId);
-    console.log("queryParams", queryParams);
-    console.log("tg obj", window.Telegram);
+
     const { initData = "" } = window.Telegram.WebApp || {};
 
     await authUser({
