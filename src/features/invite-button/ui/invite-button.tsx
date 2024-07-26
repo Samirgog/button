@@ -6,6 +6,9 @@ import { Button, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 const TEXT = "\nHi, friend! Join and earn buttons! Nothing but ton... Do you get it? 🤪🥖";
 
 export const InviteButton: React.FC = () => {
+  const queryParams = new URLSearchParams(window.location.search);
+  const referralId = queryParams.get("referralId");
+
   const user = userModel.useUser();
 
   const URl = `https://t.me/nothing_but_ton_bot/start?referralId=${user?.telegramId}`;
@@ -39,6 +42,20 @@ export const InviteButton: React.FC = () => {
 
   return (
     <Stack direction="column" gap={8}>
+      <span color="white">referralId: {referralId}</span>
+      <span color="white">params: {JSON.stringify(queryParams)}</span>
+      <Button
+        size="md"
+        onClick={() => window.Telegram.WebApp.openTelegramLink(URl)}
+        style={{ width: "100%" }}
+      >
+        <Stack gap={8} justify="center" align="center">
+          <Typography type="title" weight="bold">
+            Invite a friend on click open tg link
+          </Typography>
+          <Emodji emodjiName={emodjiTypes.EmodjiName.FRIEND} size={24} />
+        </Stack>
+      </Button>
       <Button size="md" onClick={handleClick} style={{ width: "100%" }}>
         <Stack gap={8} justify="center" align="center">
           <Typography type="title" weight="bold">
