@@ -61,13 +61,14 @@ export const App: React.FC = () => {
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
 
-  if (!isMobile) {
-    return <MobileOnlyQR />;
-  }
+  // if (!isMobile) {
+  //   return <MobileOnlyQR />;
+  // }
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
-      {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+      {/*{showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}*/}
+      <RouterProvider router={routerDefault} />
     </TonConnectUIProvider>
   );
 };
