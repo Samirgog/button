@@ -1301,6 +1301,7 @@ export type TGetHello = {
 export const UserFieldsFragmentDoc = /*#__PURE__*/ `
     fragment userFields on User {
   id
+  telegramId
   name
   earned
   balance
@@ -1456,7 +1457,7 @@ export type TCompleteTaskMutationVariables = Exact<{
 
 export type TCompleteTaskMutation = { completeTask: { id: number, remaining?: number | null, reward?: string | null } };
 
-export type TUserFieldsFragment = { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
+export type TUserFieldsFragment = { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
 
 export type TAuthMutationVariables = Exact<{
   input: TAuthInput;
@@ -1470,4 +1471,4 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user: { id: number, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+export type TUserQuery = { user: { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };

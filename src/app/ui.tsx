@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import {
@@ -56,7 +56,8 @@ const routerCreator = createBrowserRouter(
 const typeAccount = "default";
 export const App: React.FC = () => {
   const platform = window.Telegram?.WebApp?.platform;
-  const isMobile = platform === "android" || platform === "ios";
+  // const isMobile = platform === "android" || platform === "ios";
+  const isMobile = true;
 
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
@@ -64,6 +65,11 @@ export const App: React.FC = () => {
   // if (!isMobile) {
   //   return <MobileOnlyQR />;
   // }
+
+  useEffect(() => {
+    window.Telegram?.WebApp?.expand?.();
+    window.Telegram?.WebApp?.ready?.();
+  }, []);
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>

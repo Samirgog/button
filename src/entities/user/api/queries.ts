@@ -3,6 +3,7 @@ import { gql } from "graphql-request";
 export const UserFragment = gql`
   fragment userFields on User {
     id
+    telegramId
     name
     earned
     balance
