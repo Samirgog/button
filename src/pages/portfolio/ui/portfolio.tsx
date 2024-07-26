@@ -32,7 +32,7 @@ export const Portfolio: React.FC = () => {
             Daily games
           </Typography>
           <Stack gap={12} style={{ width: "100%" }}>
-            <GoldenRainCard style={{ flexBasis: "50%" }} />
+            <GoldenRainCard style={{ width: 'calc(50% - 6px)' }} />
           </Stack>
         </Stack>
 
