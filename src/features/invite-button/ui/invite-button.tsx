@@ -43,7 +43,6 @@ export const InviteButton: React.FC = () => {
 
   // return (
   //   <Button
-  //     type="gradient"
   //     size="md"
   //     onClick={handleClick}
   //     disabled={isSharing}

@@ -65,6 +65,12 @@ export const TypographyStyled = styled.span<{
       `;
     }
 
+    if ($color === "error") {
+      return css`
+        color: #fa0a0a;
+      `;
+    }
+
     if ($color === "link") {
       return css`
         color: #ff4e2b;
@@ -74,6 +80,12 @@ export const TypographyStyled = styled.span<{
     if ($color === "disabled") {
       return css`
         color: #7f7a75;
+      `;
+    }
+
+    if ($color === "inherit") {
+      return css`
+        color: inherit;
       `;
     }
 

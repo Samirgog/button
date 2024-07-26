@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useTask } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
-import { ButtonsWrapper } from "@/entities/task/ui/styled";
+import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
-import { Button, Card, Emodji, Link, Stack, Typography } from "@/shared/ui";
+import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
@@ -17,6 +17,7 @@ export const Task: React.FC<Props> = ({ task }) => {
   const [moderation, setModeration] = useState(false);
   const { name, reward, type } = task ?? {};
   const { getHandlers, inProgress, checkTask, isLoadingComplete } = useTask(task);
+  const { onClick } = getHandlers();
 
   const handleCheckTask = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -26,9 +27,9 @@ export const Task: React.FC<Props> = ({ task }) => {
   };
 
   return (
-    <Card size="md" {...getHandlers()}>
+    <Card size="md" onClick={!inProgress ? onClick : undefined}>
       <Stack gap={8} justify="space-between" align="center">
-        <Stack gap={12} align="center" style={{ opacity: inProgress ? 0.3 : 1 }}>
+        <Stack gap={12} align="center">
           <AvatarCircle>
             <Emodji emodjiName={MAP_TASK_EMODJI[type as TTaskTypesEnum]} size={24} />
           </AvatarCircle>
@@ -48,26 +49,32 @@ export const Task: React.FC<Props> = ({ task }) => {
             </Stack>
           </Stack>
         </Stack>
-        {/*  <Stack direction="column" gap={4}>*/}
-        {/*    <Typography type="micro">{total}</Typography>*/}
-        {/*    <hr />*/}
-        {/*    <Typography type="micro" color="link">*/}
-        {/*      {total - remaining}*/}
-        {/*    </Typography>*/}
-        {/*  </Stack>*/}
       </Stack>
       {inProgress && (
-        <ButtonsWrapper align="center" justify="flex-end" gap={16}>
-          <Button
-            type="gradient"
-            size="sm"
-            onClick={handleCheckTask}
-            disabled={moderation || isLoadingComplete}
-            style={{ minWidth: "70px" }}
+        <ButtonsWrapper align="center" justify="flex-end" gap={8}>
+          <Stack
+            direction="column"
+            align="flex-end"
+            style={{ position: "relative", width: "fit-content" }}
           >
-            {"Check"}
+            <Button
+              size="sm"
+              onClick={handleCheckTask}
+              disabled={moderation || isLoadingComplete}
+              style={{ width: "70px" }}
+            >
+              Check
+            </Button>
+            {moderation && (
+              <ErrorStyled type="micro" color="error">
+                moderation
+              </ErrorStyled>
+            )}
+          </Stack>
+
+          <Button type="outline" size="sm" onClick={onClick}>
+            Execute
           </Button>
-          <Link {...getHandlers()}>Execute</Link>
         </ButtonsWrapper>
       )}
     </Card>
