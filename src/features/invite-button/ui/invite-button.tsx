@@ -8,7 +8,8 @@ const TEXT = "\nHi, friend! Join and earn buttons! Nothing but ton... Do you get
 export const InviteButton: React.FC = () => {
   const user = userModel.useUser();
 
-  const URl = `https://t.me/nothing_but_ton_bot/start?referralId=${user?.telegramId}`;
+  // const URl = `https://t.me/nothing_but_ton_bot/start?referralId=${user?.telegramId}`;
+  const URl = `https://t.me/nothing_but_ton_bot`;
   const referralLink = `https://t.me/share/url?url=${encodeURI(URl)}&text=${encodeURI(TEXT)}`;
 
   // const handleClick = () => {
