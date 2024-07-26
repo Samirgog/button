@@ -69,7 +69,7 @@ export const CreateTasks: React.FC = () => {
           onChange={handleChangeNumberInput(handleChangeAuditory)}
         />
       </Stack>
-      <Button type="gradient" size="md" disabled={isDisabledButton} onClick={handleClickCreate}>
+      <Button size="md" disabled={isDisabledButton} onClick={handleClickCreate}>
         Create and pay
       </Button>
     </Stack>
