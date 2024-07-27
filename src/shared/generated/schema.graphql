@@ -133,6 +133,7 @@ input CompletedTaskFilterUserFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [CompletedTaskFilterUserFilter!]
   referralParentId: NumberFieldComparison
@@ -259,6 +260,26 @@ input CreateUserInput {
   username: String
 }
 
+input DateFieldComparison {
+  between: DateFieldComparisonBetween
+  eq: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  is: Boolean
+  isNot: Boolean
+  lt: DateTime
+  lte: DateTime
+  neq: DateTime
+  notBetween: DateFieldComparisonBetween
+  notIn: [DateTime!]
+}
+
+input DateFieldComparisonBetween {
+  lower: DateTime!
+  upper: DateTime!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -335,6 +356,7 @@ type Mutation {
   addCreatedTasksToUser(input: AddCreatedTasksToUserInput!): User!
   addReferralsToUser(input: AddReferralsToUserInput!): User!
   auth(input: AuthInput!): User!
+  claimGoldenRain(id: Int!, score: Int!): User!
   completeTask(id: Int!, userId: Int!): Task!
   createManyCompletedTasks(input: CreateManyCompletedTasksInput!): [CompletedTask!]!
   createManyTasks(input: CreateManyTasksInput!): [Task!]!
@@ -763,6 +785,7 @@ input TaskFilterUserFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [TaskFilterUserFilter!]
   referralParentId: NumberFieldComparison
@@ -961,6 +984,11 @@ type User {
   email: String
   id: Int!
 
+  """
+  Время последней игры в "Золотой дождь"
+  """
+  lastPlayedGoldenRain: DateTime
+
   """Имя пользователя"""
   name: String
 
@@ -1007,6 +1035,7 @@ input UserDeleteFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserDeleteFilter!]
   referralParentId: NumberFieldComparison
@@ -1026,6 +1055,11 @@ type UserDeleteResponse {
   """Эл. почта пользователя"""
   email: String
   id: Int
+
+  """
+  Время последней игры в "Золотой дождь"
+  """
+  lastPlayedGoldenRain: DateTime
 
   """Имя пользователя"""
   name: String
@@ -1052,6 +1086,7 @@ type UserEntity {
   earned: Float
   email: String
   id: Int!
+  lastPlayedGoldenRain: DateTime
   name: String!
   password: String!
   referralParent: UserEntity
@@ -1071,6 +1106,7 @@ input UserFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserFilter!]
   referralParent: UserFilterUserFilter
@@ -1109,6 +1145,7 @@ input UserFilterUserFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserFilterUserFilter!]
   referralParentId: NumberFieldComparison
@@ -1128,6 +1165,7 @@ enum UserSortFields {
   earned
   email
   id
+  lastPlayedGoldenRain
   name
   referralParentId
   role
@@ -1141,6 +1179,7 @@ input UserUpdateFilter {
   earned: NumberFieldComparison
   email: StringFieldComparison
   id: IntFieldComparison
+  lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserUpdateFilter!]
   referralParentId: NumberFieldComparison

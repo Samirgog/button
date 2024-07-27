@@ -42,7 +42,6 @@ export function useAuth() {
   };
 
   useEffect(() => {
-    window.Telegram.WebApp.showAlert("Message alert");
     authenticate();
   }, []);
 

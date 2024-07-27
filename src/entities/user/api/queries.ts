@@ -15,6 +15,7 @@ export const UserFragment = gql`
       id
       name
     }
+    lastPlayedGoldenRain
   }
 `;
 
@@ -32,6 +33,14 @@ gql`
   query User($userId: Int!) {
     user(id: $userId) {
       ...userFields
+    }
+  }
+`;
+
+gql`
+  mutation ClaimGoldenRain($claimGoldenRainId: Int!, $score: Int!) {
+    claimGoldenRain(id: $claimGoldenRainId, score: $score) {
+      id
     }
   }
 `;

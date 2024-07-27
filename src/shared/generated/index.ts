@@ -148,6 +148,7 @@ export type TCompletedTaskFilterUserFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TCompletedTaskFilterUserFilter>>;
   referralParentId?: InputMaybe<TNumberFieldComparison>;
@@ -257,6 +258,26 @@ export type TCreateUserInput = {
   username?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type TDateFieldComparison = {
+  between?: InputMaybe<TDateFieldComparisonBetween>;
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  is?: InputMaybe<Scalars['Boolean']['input']>;
+  isNot?: InputMaybe<Scalars['Boolean']['input']>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  neq?: InputMaybe<Scalars['DateTime']['input']>;
+  notBetween?: InputMaybe<TDateFieldComparisonBetween>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+};
+
+export type TDateFieldComparisonBetween = {
+  lower: Scalars['DateTime']['input'];
+  upper: Scalars['DateTime']['input'];
+};
+
 export type TDeleteManyCompletedTasksInput = {
   /** Filter to find records to delete */
   filter: TCompletedTaskDeleteFilter;
@@ -328,6 +349,7 @@ export type TMutation = {
   addCreatedTasksToUser: TUser;
   addReferralsToUser: TUser;
   auth: TUser;
+  claimGoldenRain: TUser;
   completeTask: TTask;
   createManyCompletedTasks: Array<TCompletedTask>;
   createManyTasks: Array<TTask>;
@@ -395,6 +417,12 @@ export type TMutationAddReferralsToUserArgs = {
 
 export type TMutationAuthArgs = {
   input: TAuthInput;
+};
+
+
+export type TMutationClaimGoldenRainArgs = {
+  id: Scalars['Int']['input'];
+  score: Scalars['Int']['input'];
 };
 
 
@@ -941,6 +969,7 @@ export type TTaskFilterUserFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TTaskFilterUserFilter>>;
   referralParentId?: InputMaybe<TNumberFieldComparison>;
@@ -1099,6 +1128,8 @@ export type TUser = {
   /** Эл. почта пользователя */
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
+  /** Время последней игры в "Золотой дождь" */
+  lastPlayedGoldenRain?: Maybe<Scalars['DateTime']['output']>;
   /** Имя пользователя */
   name?: Maybe<Scalars['String']['output']>;
   /** Пригласивший пользователь */
@@ -1152,6 +1183,7 @@ export type TUserDeleteFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserDeleteFilter>>;
   referralParentId?: InputMaybe<TNumberFieldComparison>;
@@ -1169,6 +1201,8 @@ export type TUserDeleteResponse = {
   /** Эл. почта пользователя */
   email?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['Int']['output']>;
+  /** Время последней игры в "Золотой дождь" */
+  lastPlayedGoldenRain?: Maybe<Scalars['DateTime']['output']>;
   /** Имя пользователя */
   name?: Maybe<Scalars['String']['output']>;
   /** ID пригласившего пользователя */
@@ -1190,6 +1224,7 @@ export type TUserEntity = {
   earned?: Maybe<Scalars['Float']['output']>;
   email?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
+  lastPlayedGoldenRain?: Maybe<Scalars['DateTime']['output']>;
   name: Scalars['String']['output'];
   password: Scalars['String']['output'];
   referralParent?: Maybe<TUserEntity>;
@@ -1209,6 +1244,7 @@ export type TUserFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserFilter>>;
   referralParent?: InputMaybe<TUserFilterUserFilter>;
@@ -1247,6 +1283,7 @@ export type TUserFilterUserFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserFilterUserFilter>>;
   referralParentId?: InputMaybe<TNumberFieldComparison>;
@@ -1266,6 +1303,7 @@ export enum TUserSortFields {
   Earned = 'earned',
   Email = 'email',
   Id = 'id',
+  LastPlayedGoldenRain = 'lastPlayedGoldenRain',
   Name = 'name',
   ReferralParentId = 'referralParentId',
   Role = 'role',
@@ -1279,6 +1317,7 @@ export type TUserUpdateFilter = {
   earned?: InputMaybe<TNumberFieldComparison>;
   email?: InputMaybe<TStringFieldComparison>;
   id?: InputMaybe<TIntFieldComparison>;
+  lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserUpdateFilter>>;
   referralParentId?: InputMaybe<TNumberFieldComparison>;
@@ -1313,6 +1352,7 @@ export const UserFieldsFragmentDoc = /*#__PURE__*/ `
     id
     name
   }
+  lastPlayedGoldenRain
 }
     `;
 export const TasksDocument = /*#__PURE__*/ `
@@ -1440,6 +1480,32 @@ useUserQuery.getKey = (variables: TUserQueryVariables) => ['User', variables];
 
 useUserQuery.fetcher = (client: GraphQLClient, variables: TUserQueryVariables, headers?: RequestInit['headers']) => fetcher<TUserQuery, TUserQueryVariables>(client, UserDocument, variables, headers);
 
+export const ClaimGoldenRainDocument = /*#__PURE__*/ `
+    mutation ClaimGoldenRain($claimGoldenRainId: Int!, $score: Int!) {
+  claimGoldenRain(id: $claimGoldenRainId, score: $score) {
+    id
+  }
+}
+    `;
+
+export const useClaimGoldenRainMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<TClaimGoldenRainMutation, TError, TClaimGoldenRainMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) => {
+    
+    return useMutation<TClaimGoldenRainMutation, TError, TClaimGoldenRainMutationVariables, TContext>(
+      ['ClaimGoldenRain'],
+      (variables?: TClaimGoldenRainMutationVariables) => fetcher<TClaimGoldenRainMutation, TClaimGoldenRainMutationVariables>(client, ClaimGoldenRainDocument, variables, headers)(),
+      options
+    )};
+
+
+useClaimGoldenRainMutation.fetcher = (client: GraphQLClient, variables: TClaimGoldenRainMutationVariables, headers?: RequestInit['headers']) => fetcher<TClaimGoldenRainMutation, TClaimGoldenRainMutationVariables>(client, ClaimGoldenRainDocument, variables, headers);
+
 export type TTasksQueryVariables = Exact<{
   paging: TOffsetPaging;
   filter: TTaskFilter;
@@ -1457,7 +1523,7 @@ export type TCompleteTaskMutationVariables = Exact<{
 
 export type TCompleteTaskMutation = { completeTask: { id: number, remaining?: number | null, reward?: string | null } };
 
-export type TUserFieldsFragment = { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
+export type TUserFieldsFragment = { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
 
 export type TAuthMutationVariables = Exact<{
   input: TAuthInput;
@@ -1471,4 +1537,12 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user: { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+export type TUserQuery = { user: { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+
+export type TClaimGoldenRainMutationVariables = Exact<{
+  claimGoldenRainId: Scalars['Int']['input'];
+  score: Scalars['Int']['input'];
+}>;
+
+
+export type TClaimGoldenRainMutation = { claimGoldenRain: { id: number } };

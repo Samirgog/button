@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useTaskList } from "../model";
 
 import { Task } from "@/entities/task";

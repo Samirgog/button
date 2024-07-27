@@ -8,7 +8,7 @@ export function useTaskList(shouldGetCurrentTasks = false) {
   const completedTasksIds =
     user?.completedTasks?.map((completed) => Number(completed.taskId)) ?? [];
 
-  const { data } = useTasksQuery(gqlClient, {
+  const { data, isLoading } = useTasksQuery(gqlClient, {
     sorting: { field: TTaskSortFields.Id, direction: TSortDirection.Desc },
     paging: { limit: 15, offset: 0 },
     filter: {
@@ -17,5 +17,5 @@ export function useTaskList(shouldGetCurrentTasks = false) {
     }
   });
 
-  return { tasks: data?.tasks.nodes };
+  return { tasks: data?.tasks.nodes, isLoading };
 }

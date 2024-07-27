@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 import { Layout } from "@/app/layouts/layout";
 import { GoldenRainGame } from "@/features/golden-rain-game";
 import { Header } from "@/features/header";
 import { useTimer } from "@/shared/hooks/useTimer";
 import { Button, Emodji, Stack, Typography } from "@/shared/ui";
 import { EmodjiName } from "@/shared/ui/emodji/types";
+import { useClaim } from "../model";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 
@@ -15,12 +14,12 @@ const TOTAL_COINS = 200;
 const INTERVAL_MS = 150;
 
 export const GoldenRain: React.FC = () => {
-  const navigate = useNavigate();
   const [stage, setStage] = useState<Stage>("init");
   const [score, setScore] = useState(0);
   const { timerValue: gameTimerValue, setTimerValue: setGameTimerValue } = useTimer(0);
   const { timerValue: startTimerValue, setTimerValue: setStartTimerValue } = useTimer(0);
   const { timerValue: claimTimerValue, setTimerValue: setClaimTimerValue } = useTimer(0);
+  const { claim, isLoadingClaim } = useClaim();
 
   const handleStart = () => {
     setStage("countdown");
@@ -28,8 +27,7 @@ export const GoldenRain: React.FC = () => {
   };
 
   const handleEnd = () => {
-    //TODO: действие с пополнением баланса пользователя
-    navigate(-1);
+    claim(score);
   };
 
   useEffect(() => {
@@ -104,7 +102,7 @@ export const GoldenRain: React.FC = () => {
               size="md"
               style={{ width: 200, marginTop: 24 }}
               onClick={handleEnd}
-              disabled={claimTimerValue !== 0}
+              disabled={claimTimerValue !== 0 || isLoadingClaim}
             >
               <Typography type="mega" weight="bold">
                 {claimTimerValue === 0 ? (score > 0 ? "Claim" : "Back") : claimTimerValue}
