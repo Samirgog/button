@@ -356,7 +356,7 @@ type Mutation {
   addCreatedTasksToUser(input: AddCreatedTasksToUserInput!): User!
   addReferralsToUser(input: AddReferralsToUserInput!): User!
   auth(input: AuthInput!): User!
-  claimGoldenRain(id: Int!, score: Int!): User!
+  claimGoldenRain(score: Int!, userId: Int!): User!
   completeTask(id: Int!, userId: Int!): Task!
   createManyCompletedTasks(input: CreateManyCompletedTasksInput!): [CompletedTask!]!
   createManyTasks(input: CreateManyTasksInput!): [Task!]!
@@ -384,6 +384,7 @@ type Mutation {
   setCompletedTasksOnUser(input: SetCompletedTasksOnUserInput!): User!
   setCreatedTasksOnUser(input: SetCreatedTasksOnUserInput!): User!
   setCreatorOnTask(input: SetCreatorOnTaskInput!): Task!
+  setGoldenRainTimestamp(userId: Int!): User!
   setReferralParentOnUser(input: SetReferralParentOnUserInput!): User!
   setReferralsOnUser(input: SetReferralsOnUserInput!): User!
   setTaskOnCompletedTask(input: SetTaskOnCompletedTaskInput!): CompletedTask!
@@ -1190,6 +1191,9 @@ input UserUpdateFilter {
 
 """Базовый тестовый запрос"""
 type getHello {
+  """Дата и время сервера"""
+  datetime: DateTime!
+
   """Offset текущей timezone"""
   offset: Int!
 

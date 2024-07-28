@@ -56,25 +56,23 @@ const routerCreator = createBrowserRouter(
 const typeAccount = "default";
 export const App: React.FC = () => {
   const platform = window.Telegram?.WebApp?.platform;
-  // const isMobile = platform === "android" || platform === "ios";
-  const isMobile = true;
+  const isMobile = platform === "android" || platform === "ios";
 
   const { isLoading: isLoadingAuth, isAuthenticated } = userModel.useAuth();
   const showSplash = isLoadingAuth || !isAuthenticated;
-
-  // if (!isMobile) {
-  //   return <MobileOnlyQR />;
-  // }
 
   useEffect(() => {
     window.Telegram?.WebApp?.expand?.();
     window.Telegram?.WebApp?.ready?.();
   }, []);
 
+  if (!isMobile) {
+    return <MobileOnlyQR />;
+  }
+
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
-      {/* <RouterProvider router={routerDefault} /> */}
     </TonConnectUIProvider>
   );
 };

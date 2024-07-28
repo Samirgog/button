@@ -38,8 +38,16 @@ gql`
 `;
 
 gql`
-  mutation ClaimGoldenRain($claimGoldenRainId: Int!, $score: Int!) {
-    claimGoldenRain(id: $claimGoldenRainId, score: $score) {
+  mutation ClaimGoldenRain($userId: Int!, $score: Int!) {
+    claimGoldenRain(userId: $userId, score: $score) {
+      id
+    }
+  }
+`;
+
+gql`
+  mutation SetGoldenRainTimestamp($userId: Int!) {
+    setGoldenRainTimestamp(userId: $userId) {
       id
     }
   }

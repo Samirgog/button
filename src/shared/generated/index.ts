@@ -377,6 +377,7 @@ export type TMutation = {
   setCompletedTasksOnUser: TUser;
   setCreatedTasksOnUser: TUser;
   setCreatorOnTask: TTask;
+  setGoldenRainTimestamp: TUser;
   setReferralParentOnUser: TUser;
   setReferralsOnUser: TUser;
   setTaskOnCompletedTask: TCompletedTask;
@@ -421,8 +422,8 @@ export type TMutationAuthArgs = {
 
 
 export type TMutationClaimGoldenRainArgs = {
-  id: Scalars['Int']['input'];
   score: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
 };
 
 
@@ -559,6 +560,11 @@ export type TMutationSetCreatedTasksOnUserArgs = {
 
 export type TMutationSetCreatorOnTaskArgs = {
   input: TSetCreatorOnTaskInput;
+};
+
+
+export type TMutationSetGoldenRainTimestampArgs = {
+  userId: Scalars['Int']['input'];
 };
 
 
@@ -1328,6 +1334,8 @@ export type TUserUpdateFilter = {
 
 /** Базовый тестовый запрос */
 export type TGetHello = {
+  /** Дата и время сервера */
+  datetime: Scalars['DateTime']['output'];
   /** Offset текущей timezone */
   offset: Scalars['Int']['output'];
   /** Статус backend (при успешном запросе отдаст - online) */
@@ -1481,8 +1489,8 @@ useUserQuery.getKey = (variables: TUserQueryVariables) => ['User', variables];
 useUserQuery.fetcher = (client: GraphQLClient, variables: TUserQueryVariables, headers?: RequestInit['headers']) => fetcher<TUserQuery, TUserQueryVariables>(client, UserDocument, variables, headers);
 
 export const ClaimGoldenRainDocument = /*#__PURE__*/ `
-    mutation ClaimGoldenRain($claimGoldenRainId: Int!, $score: Int!) {
-  claimGoldenRain(id: $claimGoldenRainId, score: $score) {
+    mutation ClaimGoldenRain($userId: Int!, $score: Int!) {
+  claimGoldenRain(userId: $userId, score: $score) {
     id
   }
 }
@@ -1505,6 +1513,32 @@ export const useClaimGoldenRainMutation = <
 
 
 useClaimGoldenRainMutation.fetcher = (client: GraphQLClient, variables: TClaimGoldenRainMutationVariables, headers?: RequestInit['headers']) => fetcher<TClaimGoldenRainMutation, TClaimGoldenRainMutationVariables>(client, ClaimGoldenRainDocument, variables, headers);
+
+export const SetGoldenRainTimestampDocument = /*#__PURE__*/ `
+    mutation SetGoldenRainTimestamp($userId: Int!) {
+  setGoldenRainTimestamp(userId: $userId) {
+    id
+  }
+}
+    `;
+
+export const useSetGoldenRainTimestampMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<TSetGoldenRainTimestampMutation, TError, TSetGoldenRainTimestampMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) => {
+    
+    return useMutation<TSetGoldenRainTimestampMutation, TError, TSetGoldenRainTimestampMutationVariables, TContext>(
+      ['SetGoldenRainTimestamp'],
+      (variables?: TSetGoldenRainTimestampMutationVariables) => fetcher<TSetGoldenRainTimestampMutation, TSetGoldenRainTimestampMutationVariables>(client, SetGoldenRainTimestampDocument, variables, headers)(),
+      options
+    )};
+
+
+useSetGoldenRainTimestampMutation.fetcher = (client: GraphQLClient, variables: TSetGoldenRainTimestampMutationVariables, headers?: RequestInit['headers']) => fetcher<TSetGoldenRainTimestampMutation, TSetGoldenRainTimestampMutationVariables>(client, SetGoldenRainTimestampDocument, variables, headers);
 
 export type TTasksQueryVariables = Exact<{
   paging: TOffsetPaging;
@@ -1540,9 +1574,16 @@ export type TUserQueryVariables = Exact<{
 export type TUserQuery = { user: { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
 
 export type TClaimGoldenRainMutationVariables = Exact<{
-  claimGoldenRainId: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
   score: Scalars['Int']['input'];
 }>;
 
 
 export type TClaimGoldenRainMutation = { claimGoldenRain: { id: number } };
+
+export type TSetGoldenRainTimestampMutationVariables = Exact<{
+  userId: Scalars['Int']['input'];
+}>;
+
+
+export type TSetGoldenRainTimestampMutation = { setGoldenRainTimestamp: { id: number } };

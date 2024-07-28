@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
+import { useGoldenRain } from "../model";
+
 import { Layout } from "@/app/layouts/layout";
 import { GoldenRainGame } from "@/features/golden-rain-game";
 import { Header } from "@/features/header";
 import { useTimer } from "@/shared/hooks/useTimer";
 import { Button, Emodji, Stack, Typography } from "@/shared/ui";
 import { EmodjiName } from "@/shared/ui/emodji/types";
-import { useClaim } from "../model";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 
@@ -14,12 +15,12 @@ const TOTAL_COINS = 200;
 const INTERVAL_MS = 150;
 
 export const GoldenRain: React.FC = () => {
+  const { claim, setAttemptTimestamp, storageScore, isLoadingClaim } = useGoldenRain();
   const [stage, setStage] = useState<Stage>("init");
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(Number(storageScore ?? 0));
   const { timerValue: gameTimerValue, setTimerValue: setGameTimerValue } = useTimer(0);
   const { timerValue: startTimerValue, setTimerValue: setStartTimerValue } = useTimer(0);
   const { timerValue: claimTimerValue, setTimerValue: setClaimTimerValue } = useTimer(0);
-  const { claim, isLoadingClaim } = useClaim();
 
   const handleStart = () => {
     setStage("countdown");
@@ -31,6 +32,11 @@ export const GoldenRain: React.FC = () => {
   };
 
   useEffect(() => {
+    if (storageScore) {
+      setStage("finish");
+      return;
+    }
+
     if (stage === "countdown" && startTimerValue === 0) {
       setStage("in-progress");
       setGameTimerValue((TOTAL_COINS * INTERVAL_MS) / 1000);
@@ -39,10 +45,20 @@ export const GoldenRain: React.FC = () => {
 
     if (stage === "in-progress" && gameTimerValue === 0) {
       setStage("finish");
+      setAttemptTimestamp(score);
       setClaimTimerValue(3);
       return;
     }
-  }, [gameTimerValue, setClaimTimerValue, setGameTimerValue, stage, startTimerValue]);
+  }, [
+    gameTimerValue,
+    storageScore,
+    score,
+    setAttemptTimestamp,
+    setClaimTimerValue,
+    setGameTimerValue,
+    stage,
+    startTimerValue
+  ]);
 
   return (
     <Layout hideNavbar style={{ overflow: "hidden", paddingBottom: 0 }}>
