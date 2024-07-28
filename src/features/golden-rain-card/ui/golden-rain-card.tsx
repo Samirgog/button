@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "@/entities/user/model";
-import { useGoldenRain } from "@/pages/golden-rain/model";
 import { useTimer } from "@/shared/hooks/useTimer";
-import { getTimeDifferenceMs, getUTCMidnightDate } from "@/shared/lib/date";
+import { checkThisDay, getTimeDifferenceMs, getUTCMidnightDate } from "@/shared/lib/date";
 import { CardGame } from "@/shared/ui/card-game";
 
 type Props = React.HTMLAttributes<HTMLDivElement>;
@@ -21,28 +20,26 @@ const formatTime = (seconds: number) => {
 export const GoldenRainCard: React.FC<Props> = ({ ...htmlAttributes }) => {
   const navigate = useNavigate();
   const user = useUser();
-  const { timerValue, setTimerValue } = useTimer(0);
-  const [active, setActive] = useState(false);
 
+  const lastPlayDate = user?.lastPlayedGoldenRain ? new Date(user?.lastPlayedGoldenRain) : null;
+  const isThisDay = checkThisDay(lastPlayDate);
+
+  const nowDate = new Date();
   const utcMidnightDate = getUTCMidnightDate();
-  const lastPlayDate = user?.lastPlayedGoldenRain;
-  const { storageScore } = useGoldenRain();
+  const secondsLeft = isThisDay
+    ? Math.ceil(getTimeDifferenceMs(utcMidnightDate, nowDate) / 1000)
+    : 0;
+
+  const { timerValue, setTimerValue } = useTimer(0);
 
   useEffect(() => {
-    if (!lastPlayDate) {
-      setActive(true);
-      return;
+    if (secondsLeft > 0) {
+      setTimerValue(secondsLeft);
     }
-
-    setTimerValue(getTimeDifferenceMs(utcMidnightDate, lastPlayDate) / 1000);
-  }, [lastPlayDate, setTimerValue, utcMidnightDate]);
-
-  useEffect(() => {
-    setActive(timerValue === 0 && !storageScore);
-  }, [storageScore, timerValue]);
+  }, [secondsLeft, setTimerValue]);
 
   const handleClick = () => {
-    if (!active) {
+    if (timerValue !== 0) {
       return;
     }
 
@@ -54,7 +51,7 @@ export const GoldenRainCard: React.FC<Props> = ({ ...htmlAttributes }) => {
       {...htmlAttributes}
       bgImage="/button/games/golden-rain.webp"
       title="Golden Rain"
-      time={!active ? formatTime(timerValue) : undefined}
+      time={timerValue !== 0 ? formatTime(timerValue) : undefined}
       onClick={handleClick}
     />
   );

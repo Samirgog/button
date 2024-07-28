@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { STORAGE_KEY_GOLDEN_RAIN_SCORE } from "@/entities/task/ui/consts";
 import { useUser } from "@/entities/user/model";
 import { useClaimGoldenRainMutation, useSetGoldenRainTimestampMutation } from "@/shared/generated";
-import { checkBeforeUTCMidnight } from "@/shared/lib/date";
+import { checkBeforeUTCMidnight, checkThisDay } from "@/shared/lib/date";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 
 export function useGoldenRain() {
@@ -47,7 +47,9 @@ export function useGoldenRain() {
       return;
     }
 
-    if (!checkBeforeUTCMidnight(user?.lastPlayedGoldenRain)) {
+    const lastPlayedDate = new Date(user?.lastPlayedGoldenRain);
+
+    if (checkThisDay(lastPlayedDate) && !checkBeforeUTCMidnight(lastPlayedDate)) {
       localStorage.removeItem(STORAGE_KEY_GOLDEN_RAIN_SCORE);
     }
   }, [user?.lastPlayedGoldenRain]);

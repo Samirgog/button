@@ -8,13 +8,21 @@ export const getUTCMidnightDate = () => {
   return midnight;
 };
 
+export const checkThisDay = (date: Date | null) => {
+  if (!date) {
+    return false;
+  }
+
+  return date.getDate() === new Date().getDate();
+};
+
 export const checkBeforeUTCMidnight = (date: Date) => {
   const nextDayMidnight = getUTCMidnightDate();
 
   return date < nextDayMidnight;
 };
 
-export const getTimeDifferenceMs = (from: Date, to: Date) => {
+export const getTimeDifferenceMs = (from: Date | null, to: Date | null) => {
   if (!from || !to) {
     return 0;
   }
