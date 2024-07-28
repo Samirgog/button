@@ -1,7 +1,12 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { getRandomNumber } from "@/features/golden-rain-game/lib/getRandomNumber";
-import { CoinStyled, CoinWrapperStyled, RewardStyled } from "@/features/golden-rain-game/ui/styled";
+import {
+  CoinContainerStyled,
+  CoinStyled,
+  CoinWrapperStyled,
+  RewardStyled
+} from "@/features/golden-rain-game/ui/styled";
 
 type Props = {
   setScore: Dispatch<SetStateAction<number>>;
@@ -42,20 +47,20 @@ export const Coin: React.FC<Props> = ({ setScore }) => {
   }
 
   return (
-    <CoinWrapperStyled factor={factor} xOffset={xOffset} onAnimationEnd={handleAnimationEnd}>
-      <CoinStyled
-        src="/button/loaf_coin.png"
-        factor={factor}
+    <CoinContainerStyled factor={factor} xOffset={xOffset} onAnimationEnd={handleAnimationEnd}>
+      <CoinWrapperStyled
         onMouseDown={handleClick}
         onTouchStart={handleClick}
-        style={{ opacity: clicked ? 0 : 1 }}
-      />
+        style={{ display: clicked ? "none" : "block" }}
+      >
+        <CoinStyled src="/button/loaf_coin.png" factor={factor} />
+      </CoinWrapperStyled>
 
       {clicked && (
         <RewardStyled type="mega" weight="semi-bold">
           {`+${reward}`}
         </RewardStyled>
       )}
-    </CoinWrapperStyled>
+    </CoinContainerStyled>
   );
 };

@@ -7,6 +7,10 @@ export const GoldenRainContainerStyled = styled.div`
   width: 100%;
   overflow: hidden;
   position: relative;
+
+  & > * {
+    user-select: none;
+  }
 `;
 
 const spin = keyframes`
@@ -38,13 +42,17 @@ const riseUp = keyframes`
   }
 `;
 
-export const CoinWrapperStyled = styled.div<{ factor: number; xOffset: number }>`
+export const CoinContainerStyled = styled.div<{ factor: number; xOffset: number }>`
   position: absolute;
   top: 0;
   left: calc(45% + ${({ xOffset }) => xOffset}px);
   transform: translateY(-100px);
   z-index: ${({ factor }) => `${factor * 100}`};
   animation: ${fall} ${({ factor }) => `${2 * (2 - factor)}s`} linear;
+`;
+
+export const CoinWrapperStyled = styled.div`
+  padding: 10px;
 `;
 
 export const CoinStyled = styled.img<{ factor: number }>`
