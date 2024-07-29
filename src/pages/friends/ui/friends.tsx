@@ -4,14 +4,17 @@ import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
 import { InviteButton } from "@/features/invite-button";
 import { Card, CardStats, emodjiTypes, Stack, Typography } from "@/shared/ui";
+import { SlideInWrapper } from "@/shared/ui/slide-in-wrapper";
 
 export const Friends: React.FC = () => {
   const user = userModel.useUser();
 
   return (
-    <Layout>
+    <Layout style={{ overflowY: "hidden" }}>
       <Stack direction="column" gap={20}>
-        <InviteButton />
+        <SlideInWrapper direction="ttb">
+          <InviteButton />
+        </SlideInWrapper>
 
         <Stack direction="column" gap={10}>
           <Typography type="title" weight="medium">
@@ -37,19 +40,21 @@ export const Friends: React.FC = () => {
           <Typography type="title" weight="medium">
             Invite friends and get Bonus
           </Typography>
-          <Card size="xl">
-            <Stack direction="column" align="center" gap={16}>
-              <Stack align="center" justify="center" gap={12}>
-                <img width={48} height={48} src={"/button/loaf_coin.png"} alt={"coin"} />
-                <Typography type="mega" weight="semi-bold">
-                  +150
+          <SlideInWrapper direction="btt">
+            <Card size="xl">
+              <Stack direction="column" align="center" gap={16}>
+                <Stack align="center" justify="center" gap={12}>
+                  <img width={48} height={48} src={"/button/loaf_coin.png"} alt={"coin"} />
+                  <Typography type="mega" weight="semi-bold">
+                    +150
+                  </Typography>
+                </Stack>
+                <Typography type="text" weight="semi-bold">
+                  FOR YOU AND A FRIEND
                 </Typography>
               </Stack>
-              <Typography type="text" weight="semi-bold">
-                FOR YOU AND A FRIEND
-              </Typography>
-            </Stack>
-          </Card>
+            </Card>
+          </SlideInWrapper>
         </Stack>
       </Stack>
     </Layout>

@@ -17,5 +17,8 @@ export const MAP_NAMES_EMODJI: Record<EmodjiName, string> = {
   [EmodjiName.DOCUMENT_ASSIGNMENT]: "📝",
   [EmodjiName.STATS]: "📊",
   [EmodjiName.PARTY_POPPER]: "🎉",
-  [EmodjiName.SAD]: "🙁"
+  [EmodjiName.SAD]: "🙁",
+  [EmodjiName.STOP_HAND]: "✋",
+  [EmodjiName.ANGRY_FACE]: "🤬",
+  [EmodjiName.MONEY_FACE]: "🤑"
 };

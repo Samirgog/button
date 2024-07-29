@@ -7,4 +7,5 @@ export const LayoutStyled = styled.div<{ isHiddenNavbar: boolean }>`
   max-height: 100vh;
   padding: ${({ isHiddenNavbar }) => (isHiddenNavbar ? "24px 16px" : "24px 16px 106px 16px")};
   overflow-y: auto;
+  overflow-x: hidden;
 `;

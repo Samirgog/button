@@ -8,6 +8,7 @@ import { Header } from "@/features/header";
 import { useTimer } from "@/shared/hooks/useTimer";
 import { Button, Emodji, Stack, Typography } from "@/shared/ui";
 import { EmodjiName } from "@/shared/ui/emodji/types";
+import { vibrate } from "@/shared/lib/navigator";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 
@@ -28,6 +29,7 @@ export const GoldenRain: React.FC = () => {
   };
 
   const handleEnd = () => {
+    vibrate(200);
     claim(score);
   };
 

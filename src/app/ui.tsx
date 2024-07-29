@@ -20,6 +20,8 @@ import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";
 
@@ -53,7 +55,6 @@ const routerCreator = createBrowserRouter(
   )
 );
 
-const typeAccount = "default";
 export const App: React.FC = () => {
   const platform = window.Telegram?.WebApp?.platform;
   const isMobile = platform === "android" || platform === "ios";
@@ -73,6 +74,18 @@ export const App: React.FC = () => {
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        theme="dark"
+        style={{
+          height: "80px",
+          borderRadius: "24px"
+        }}
+      />
     </TonConnectUIProvider>
   );
 };

@@ -6,6 +6,8 @@ import { useStoreUser } from "./store";
 
 import { TUser, useAuthMutation, useUserQuery } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
+import { toast } from "react-toastify";
+import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 
 export function useAuth() {
   const [setUser] = useStoreUser(useShallow((state) => [state.setUser]));
@@ -15,15 +17,26 @@ export function useAuth() {
   const { data: { user } = {} } = useUserQuery(
     gqlClient,
     { userId: Number(userId) },
-    { enabled: Boolean(userId) }
+    {
+      enabled: Boolean(userId),
+      onError: () => {
+        toast(
+          `${emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.ANGRY_FACE]} Server erorr! We are trying to fix. Please try later`
+        );
+      }
+    }
   );
 
   const { mutateAsync: authUser, isLoading } = useAuthMutation(gqlClient, {
     onSuccess: (data) => {
       if (data.auth) {
         setUserId(data.auth.id);
-        setIsAuthenticated(true);
       }
+    },
+    onError: () => {
+      toast(
+        `${emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.STOP_HAND]} Authentication error! Please try later.`
+      );
     }
   });
 
@@ -48,6 +61,7 @@ export function useAuth() {
   useEffect(() => {
     if (user) {
       setUser(user as TUser);
+      setIsAuthenticated(true);
     }
   }, [setUser, user]);
 

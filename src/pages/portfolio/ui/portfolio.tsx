@@ -9,6 +9,7 @@ import { ConvertButton } from "@/features/convert-button";
 import { GoldenRainCard } from "@/features/golden-rain-card";
 import { emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { CardStats } from "@/shared/ui/card-stats";
+import { SlideInWrapper } from "@/shared/ui/slide-in-wrapper";
 
 export const Portfolio: React.FC = () => {
   const user = userModel.useUser();
@@ -24,7 +25,9 @@ export const Portfolio: React.FC = () => {
             <TonConnectButton style={{ alignSelf: "flex-end" }} />
           </Stack>
           <Balance balance={user?.balance ?? 0} />
-          <ConvertButton />
+          <SlideInWrapper>
+            <ConvertButton />
+          </SlideInWrapper>
         </Stack>
 
         <Stack direction="column" gap={10}>
@@ -41,18 +44,22 @@ export const Portfolio: React.FC = () => {
             Statistics
           </Typography>
           <Stack gap={12} style={{ width: "100%" }}>
-            <CardStats
-              title="Completed"
-              emodjiName={emodjiTypes.EmodjiName.SUCCESS_CHECK}
-              total={user?.completedTasks?.length ?? 0}
-              style={{ flexBasis: "50%" }}
-            />
-            <CardStats
-              title="Earned"
-              emodjiName={emodjiTypes.EmodjiName.FLYING_MONEY}
-              total={user?.earned ?? 0}
-              style={{ flexBasis: "50%" }}
-            />
+            <SlideInWrapper style={{ flexBasis: "50%" }}>
+              <CardStats
+                title="Completed"
+                emodjiName={emodjiTypes.EmodjiName.SUCCESS_CHECK}
+                total={user?.completedTasks?.length ?? 0}
+                style={{ flex: 1 }}
+              />
+            </SlideInWrapper>
+            <SlideInWrapper direction="rtl" style={{ flexBasis: "50%" }}>
+              <CardStats
+                title="Earned"
+                emodjiName={emodjiTypes.EmodjiName.FLYING_MONEY}
+                total={user?.earned ?? 0}
+                style={{ flex: 1 }}
+              />
+            </SlideInWrapper>
           </Stack>
         </Stack>
       </Stack>

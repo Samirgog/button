@@ -7,6 +7,7 @@ import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
 import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
+import { vibrate } from "@/shared/lib/navigator";
 
 type Props = {
   task: TTask;
@@ -21,6 +22,7 @@ export const Task: React.FC<Props> = ({ task }) => {
 
   const handleCheckTask = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
+    vibrate(200);
     const checked = await checkTask(task?.id);
 
     setModeration(!checked);

@@ -7,6 +7,9 @@ import { StorageTask } from "@/entities/task/model/types";
 import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
+import { emodjiConsts, emodjiTypes } from "@/shared/ui";
+import { toast } from "react-toastify";
+import { vibrate } from "@/shared/lib/navigator";
 
 const LIMIT_MINUTES = 1;
 
@@ -19,6 +22,16 @@ export function useTask(task: TTask) {
       onSuccess: async () => {
         await queryClient.invalidateQueries({ queryKey: ["User"] });
         await queryClient.invalidateQueries({ queryKey: ["Tasks"] });
+
+        vibrate(200);
+        toast(
+          `${emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.MONEY_FACE]} Task completed. Buttons earned!`
+        );
+      },
+      onError: () => {
+        toast(
+          `${emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.ANGRY_FACE]} Server erorr! We are trying to fix. Please try later`
+        );
       }
     }
   );
@@ -65,6 +78,7 @@ export function useTask(task: TTask) {
 
       localStorage.setItem(STORAGE_KEY_TASKS, JSON.stringify(newTasks));
       setInProgress(false);
+
       await completeTask({ userId: Number(user.id), completeTaskId: Number(currentTask.id) });
 
       return true;
@@ -75,6 +89,7 @@ export function useTask(task: TTask) {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
+    vibrate(200);
     window.open(task.url ?? "", "_blank");
     setStorageTask(task.id);
     setInProgress(true);
