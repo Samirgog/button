@@ -8,7 +8,7 @@ import { STORAGE_KEY_GOLDEN_RAIN_SCORE } from "@/entities/task/ui/consts";
 import { useUser } from "@/entities/user/model";
 import { useClaimGoldenRainMutation, useSetGoldenRainTimestampMutation } from "@/shared/generated";
 import { checkBeforeUTCMidnight, checkThisDay } from "@/shared/lib/date";
-import { vibrate } from "@/shared/lib/navigator";
+import { vibrate } from "@/shared/lib/telegram";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 
@@ -31,7 +31,7 @@ export function useGoldenRain() {
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries({ queryKey: ["User"] });
-        vibrate("light");
+        vibrate("soft");
         navigate(-1);
       },
       onError: () => {

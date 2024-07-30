@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { optionsNavbarCreator, optionsNavbarDefault } from "./consts";
 import { NavbarItemWrapperStyled, NavbarWrapperStyled } from "./styled";
 
-import { vibrate } from "@/shared/lib/navigator";
+import { vibrate } from "@/shared/lib/telegram";
 import { Emodji, Typography } from "@/shared/ui";
 
 type Props = {

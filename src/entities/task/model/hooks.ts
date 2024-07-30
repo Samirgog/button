@@ -7,7 +7,7 @@ import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
 import { StorageTask } from "@/entities/task/model/types";
 import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
-import { vibrate } from "@/shared/lib/navigator";
+import { vibrate } from "@/shared/lib/telegram";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 
@@ -23,7 +23,7 @@ export function useTask(task: TTask) {
         await queryClient.invalidateQueries({ queryKey: ["User"] });
         await queryClient.invalidateQueries({ queryKey: ["Tasks"] });
 
-        vibrate("light");
+        vibrate("soft");
         toast(
           `${emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.MONEY_FACE]} Task completed. Buttons earned!`
         );
@@ -89,7 +89,7 @@ export function useTask(task: TTask) {
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    vibrate("medium");
+    vibrate("soft");
     window.open(task.url ?? "", "_blank");
     setStorageTask(task.id);
     setInProgress(true);

@@ -5,7 +5,7 @@ import { useTask } from "../model";
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
-import { vibrate } from "@/shared/lib/navigator";
+import { vibrate } from "@/shared/lib/telegram";
 import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
@@ -22,7 +22,7 @@ export const Task: React.FC<Props> = ({ task }) => {
 
   const handleCheckTask = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    vibrate("heavy");
+    vibrate("soft");
     const checked = await checkTask(task?.id);
 
     setModeration(!checked);

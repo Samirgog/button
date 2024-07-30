@@ -1,7 +1,7 @@
 import React from "react";
 
 import { userModel } from "@/entities/user";
-import { vibrate } from "@/shared/lib/navigator";
+import { vibrate } from "@/shared/lib/telegram";
 import { Button, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 
 const TEXT = "\nHi, friend! Join and earn buttons! Nothing but ton... Do you get it? 🤪🥖";
@@ -16,7 +16,7 @@ export const InviteButton: React.FC = () => {
   const referralLink = `https://t.me/share/url?url=${encodeURI(URl)}&text=${encodeURI(TEXT)}`;
 
   const handleClick = () => {
-    vibrate("rigid");
+    vibrate("soft");
   };
   // const handleClick = () => {
   //   if (user?.telegramId) {
