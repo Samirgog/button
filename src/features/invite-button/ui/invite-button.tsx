@@ -12,7 +12,7 @@ export const InviteButton: React.FC = () => {
 
   const user = userModel.useUser();
 
-  const URl = `https://t.me/nothing_but_ton_bot/start?referralId=${user?.telegramId}`;
+  const URl = `https://t.me/nothing_but_ton_bot?start=r_${user?.telegramId}`;
   const referralLink = `https://t.me/share/url?url=${encodeURI(URl)}&text=${encodeURI(TEXT)}`;
 
   const handleClick = () => {
