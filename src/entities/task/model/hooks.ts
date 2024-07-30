@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
 import { StorageTask } from "@/entities/task/model/types";
 import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
+import { vibrate } from "@/shared/lib/navigator";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 import { emodjiConsts, emodjiTypes } from "@/shared/ui";
-import { toast } from "react-toastify";
-import { vibrate } from "@/shared/lib/navigator";
 
 const LIMIT_MINUTES = 1;
 

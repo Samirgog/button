@@ -8,6 +8,7 @@ import {
   Route,
   RouterProvider
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
@@ -20,7 +21,6 @@ import { Portfolio } from "@/pages/portfolio";
 import { Splash } from "@/pages/splash";
 import { Tasks } from "@/pages/tasks";
 import { Navbar } from "@/widgets/navbar";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const manifestUrl = "https://samirgog.github.io/button/tonconnect-manifest.json";

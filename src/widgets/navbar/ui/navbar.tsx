@@ -5,8 +5,8 @@ import { useLocation } from "react-router-dom";
 import { optionsNavbarCreator, optionsNavbarDefault } from "./consts";
 import { NavbarItemWrapperStyled, NavbarWrapperStyled } from "./styled";
 
-import { Emodji, Typography } from "@/shared/ui";
 import { vibrate } from "@/shared/lib/navigator";
+import { Emodji, Typography } from "@/shared/ui";
 
 type Props = {
   mode?: "default" | "creator";

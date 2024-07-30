@@ -1,4 +1,5 @@
 import React from "react";
+
 import { SlideInWrapperStyled } from "./styled";
 import { DirectionSlideIn } from "./types";
 

@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+
 import { DirectionSlideIn } from "./types";
 
 const slideIn = (direction: DirectionSlideIn) => {

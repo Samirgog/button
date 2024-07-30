@@ -1,8 +1,8 @@
 import React from "react";
 
 import { userModel } from "@/entities/user";
-import { Button, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { vibrate } from "@/shared/lib/navigator";
+import { Button, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 
 const TEXT = "\nHi, friend! Join and earn buttons! Nothing but ton... Do you get it? 🤪🥖";
 

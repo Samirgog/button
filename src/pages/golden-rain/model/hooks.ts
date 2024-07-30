@@ -2,15 +2,15 @@ import { useEffect } from "react";
 
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { STORAGE_KEY_GOLDEN_RAIN_SCORE } from "@/entities/task/ui/consts";
 import { useUser } from "@/entities/user/model";
 import { useClaimGoldenRainMutation, useSetGoldenRainTimestampMutation } from "@/shared/generated";
 import { checkBeforeUTCMidnight, checkThisDay } from "@/shared/lib/date";
-import { gqlClient } from "@/shared/providers/GraphqlClient";
-import { toast } from "react-toastify";
-import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 import { vibrate } from "@/shared/lib/navigator";
+import { gqlClient } from "@/shared/providers/GraphqlClient";
+import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 
 export function useGoldenRain() {
   const queryClient = useQueryClient();

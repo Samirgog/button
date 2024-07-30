@@ -6,9 +6,9 @@ import { Layout } from "@/app/layouts/layout";
 import { GoldenRainGame } from "@/features/golden-rain-game";
 import { Header } from "@/features/header";
 import { useTimer } from "@/shared/hooks/useTimer";
+import { vibrate } from "@/shared/lib/navigator";
 import { Button, Emodji, Stack, Typography } from "@/shared/ui";
 import { EmodjiName } from "@/shared/ui/emodji/types";
-import { vibrate } from "@/shared/lib/navigator";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 

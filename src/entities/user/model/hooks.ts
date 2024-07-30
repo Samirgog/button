@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
+import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
 
 import { useStoreUser } from "./store";
 
 import { TUser, useAuthMutation, useUserQuery } from "@/shared/generated";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
-import { toast } from "react-toastify";
 import { emodjiConsts, emodjiTypes } from "@/shared/ui";
 
 export function useAuth() {

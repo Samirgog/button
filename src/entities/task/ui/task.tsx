@@ -5,9 +5,9 @@ import { useTask } from "../model";
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
+import { vibrate } from "@/shared/lib/navigator";
 import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
-import { vibrate } from "@/shared/lib/navigator";
 
 type Props = {
   task: TTask;
