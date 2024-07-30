@@ -67,13 +67,14 @@ export const App: React.FC = () => {
     window.Telegram?.WebApp?.ready?.();
   }, []);
 
-  if (!isMobile) {
-    return <MobileOnlyQR />;
-  }
+  // if (!isMobile) {
+  //   return <MobileOnlyQR />;
+  // }
 
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       {showSplash ? <Splash /> : <RouterProvider router={routerDefault} />}
+      {/* <RouterProvider router={routerDefault} /> */}
       <ToastContainer
         position="top-center"
         autoClose={3000}

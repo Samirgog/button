@@ -1,5 +1,9 @@
+import { toast } from "react-toastify";
+
 export const vibrate = (ms: number) => {
+  console.log("navigator", navigator);
   if (navigator.vibrate) {
-    navigator.vibrate(ms);
+    toast("In vibrator wtf");
+    navigator.vibrate(500);
   }
 };
