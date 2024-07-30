@@ -29,7 +29,7 @@ export const GoldenRain: React.FC = () => {
   };
 
   const handleEnd = () => {
-    vibrate(200);
+    vibrate("light");
     claim(score);
   };
 

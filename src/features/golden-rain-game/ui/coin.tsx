@@ -7,6 +7,7 @@ import {
   CoinWrapperStyled,
   RewardStyled
 } from "@/features/golden-rain-game/ui/styled";
+import { vibrate } from "@/shared/lib/navigator";
 
 type Props = {
   setScore: Dispatch<SetStateAction<number>>;
@@ -22,6 +23,7 @@ export const Coin: React.FC<Props> = ({ setScore }) => {
   const reward = Math.ceil(factor * 50);
 
   const handleClick = () => {
+    vibrate("light");
     setScore((prev) => prev + reward);
     setClicked(true);
   };

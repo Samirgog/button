@@ -16,7 +16,7 @@ export const InviteButton: React.FC = () => {
   const referralLink = `https://t.me/share/url?url=${encodeURI(URl)}&text=${encodeURI(TEXT)}`;
 
   const handleClick = () => {
-    vibrate(200);
+    vibrate("rigid");
   };
   // const handleClick = () => {
   //   if (user?.telegramId) {

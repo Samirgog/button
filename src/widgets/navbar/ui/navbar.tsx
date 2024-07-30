@@ -25,7 +25,7 @@ export const Navbar: React.FC<Props> = ({ mode = "default" }) => {
   };
 
   const handleClick = () => {
-    vibrate(200);
+    vibrate("soft");
   };
 
   return (

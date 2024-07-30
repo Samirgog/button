@@ -31,7 +31,7 @@ export function useGoldenRain() {
     {
       onSuccess: async () => {
         await queryClient.invalidateQueries({ queryKey: ["User"] });
-        vibrate(200);
+        vibrate("light");
         navigate(-1);
       },
       onError: () => {

@@ -22,7 +22,7 @@ export const Task: React.FC<Props> = ({ task }) => {
 
   const handleCheckTask = async (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
-    vibrate(200);
+    vibrate("heavy");
     const checked = await checkTask(task?.id);
 
     setModeration(!checked);
