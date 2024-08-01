@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { TonConnectButton } from "@tonconnect/ui-react";
+// import { TonConnectButton } from "@tonconnect/ui-react";
 
 import { Layout } from "@/app/layouts/layout";
 import { Balance } from "@/entities/balance";
@@ -22,7 +22,7 @@ export const Portfolio: React.FC = () => {
             <Typography type="mega" weight="bold">
               BUTTON
             </Typography>
-            <TonConnectButton style={{ alignSelf: "flex-end" }} />
+            {/* <TonConnectButton style={{ alignSelf: "flex-end" }} /> */}
           </Stack>
           <Balance balance={user?.balance ?? 0} />
           <SlideInWrapper>
