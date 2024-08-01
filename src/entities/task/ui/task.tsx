@@ -75,7 +75,7 @@ export const Task: React.FC<Props> = ({ task }) => {
           </Stack>
 
           <Button type="outline" size="sm" onClick={onClick}>
-            Execute
+            Go
           </Button>
         </ButtonsWrapper>
       )}

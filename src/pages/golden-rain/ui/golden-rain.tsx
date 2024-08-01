@@ -4,11 +4,10 @@ import { useGoldenRain } from "../model";
 
 import { Layout } from "@/app/layouts/layout";
 import { GoldenRainGame } from "@/features/golden-rain-game";
-import { Header } from "@/features/header";
 import { useTimer } from "@/shared/hooks/useTimer";
 import { vibrate } from "@/shared/lib/telegram";
-import { Button, Emodji, Stack, Typography } from "@/shared/ui";
-import { EmodjiName } from "@/shared/ui/emodji/types";
+import { Button, Emodji, emodjiConsts, emodjiTypes, Stack, Typography } from "@/shared/ui";
+import { useNavigate } from "react-router-dom";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 
@@ -16,6 +15,7 @@ const TOTAL_COINS = 200;
 const INTERVAL_MS = 150;
 
 export const GoldenRain: React.FC = () => {
+  const navigate = useNavigate();
   const { claim, setAttemptTimestamp, storageScore, isLoadingClaim } = useGoldenRain();
   const [stage, setStage] = useState<Stage>("init");
   const [score, setScore] = useState(Number(storageScore ?? 0));
@@ -32,6 +32,20 @@ export const GoldenRain: React.FC = () => {
     vibrate("soft");
     claim(score);
   };
+
+  useEffect(() => {
+    const handleClickBack = () => navigate(-1);
+
+    if (window.Telegram?.WebApp?.BackButton) {
+      window.Telegram.WebApp.BackButton.show();
+      window.Telegram.WebApp.BackButton.onClick(handleClickBack);
+    }
+
+    return () => {
+      window.Telegram.WebApp.BackButton.offClick(handleClickBack);
+      window.Telegram.WebApp.BackButton.hide();
+    };
+  }, []);
 
   useEffect(() => {
     if (storageScore) {
@@ -65,7 +79,11 @@ export const GoldenRain: React.FC = () => {
   return (
     <Layout hideNavbar style={{ overflow: "hidden", paddingBottom: 0 }}>
       <Stack direction="column" gap={20} style={{ height: "100vh" }}>
-        <Header title="Golden Rain" withBack />
+        <Stack align="center" justify="center">
+          <Typography type="mega" weight="bold" color="warning">
+            {emodjiConsts.MAP_NAMES_EMODJI[emodjiTypes.EmodjiName.CLOUD_WITH_RAIN]} Golden Rain
+          </Typography>
+        </Stack>
 
         {stage === "in-progress" && (
           <Stack align="center" justify="space-between" gap={16}>
@@ -106,7 +124,12 @@ export const GoldenRain: React.FC = () => {
             gap={12}
             style={{ flexGrow: 1, marginBottom: 50 }}
           >
-            <Emodji emodjiName={score > 300 ? EmodjiName.PARTY_POPPER : EmodjiName.SAD} size={48} />
+            <Emodji
+              emodjiName={
+                score > 300 ? emodjiTypes.EmodjiName.PARTY_POPPER : emodjiTypes.EmodjiName.SAD
+              }
+              size={48}
+            />
             <Typography type="title" weight="semi-bold">
               {score > 300 ? "Congratulations!" : "Better luck next time..."}
             </Typography>

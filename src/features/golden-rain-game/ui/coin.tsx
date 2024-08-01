@@ -57,7 +57,6 @@ export const Coin: React.FC<Props> = ({ setScore }) => {
       >
         <CoinStyled src="/button/loaf_coin.png" factor={factor} />
       </CoinWrapperStyled>
-
       {clicked && (
         <RewardStyled type="mega" weight="semi-bold">
           {`+${reward}`}
