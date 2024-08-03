@@ -21,5 +21,6 @@ export const MAP_NAMES_EMODJI: Record<EmodjiName, string> = {
   [EmodjiName.STOP_HAND]: "✋",
   [EmodjiName.ANGRY_FACE]: "🤬",
   [EmodjiName.MONEY_FACE]: "🤑",
-  [EmodjiName.CLOUD_WITH_RAIN]: "🌧️"
+  [EmodjiName.CLOUD_WITH_RAIN]: "🌧️",
+  [EmodjiName.FIRE]: "🔥"
 };

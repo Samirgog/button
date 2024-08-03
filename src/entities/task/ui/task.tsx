@@ -6,7 +6,7 @@ import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
 import { vibrate } from "@/shared/lib/telegram";
-import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
+import { Button, Card, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 
 export const Task: React.FC<Props> = ({ task }) => {
   const [moderation, setModeration] = useState(false);
-  const { name, reward, type } = task ?? {};
+  const { name, reward, type, priority } = task ?? {};
   const { getHandlers, inProgress, checkTask, isLoadingComplete } = useTask(task);
   const { onClick } = getHandlers();
 
@@ -29,7 +29,18 @@ export const Task: React.FC<Props> = ({ task }) => {
   };
 
   return (
-    <Card size="md" onClick={!inProgress ? onClick : undefined}>
+    <Card
+      size="md"
+      onClick={!inProgress ? onClick : undefined}
+      style={Number(priority) >= 100 ? { position: "relative" } : undefined}
+    >
+      {Number(priority) >= 100 && (
+        <Emodji
+          size={24}
+          emodjiName={emodjiTypes.EmodjiName.FIRE}
+          style={{ position: "absolute", top: "-16px", right: "8px" }}
+        />
+      )}
       <Stack gap={8} justify="space-between" align="center">
         <Stack gap={12} align="center">
           <AvatarCircle>

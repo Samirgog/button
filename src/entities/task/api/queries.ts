@@ -16,6 +16,7 @@ gql`
         total
         type
         url
+        priority
       }
     }
   }

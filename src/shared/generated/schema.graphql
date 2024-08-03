@@ -120,6 +120,7 @@ input CompletedTaskFilterTaskFilter {
   id: IntFieldComparison
   name: StringFieldComparison
   or: [CompletedTaskFilterTaskFilter!]
+  priority: NumberFieldComparison
   remaining: NumberFieldComparison
   reward: StringFieldComparison
   total: NumberFieldComparison
@@ -214,6 +215,9 @@ input CreateTaskInput {
 
   """Название"""
   name: String!
+
+  """Приоритет"""
+  priority: Float
 
   """Оставшееся количество"""
   remaining: Float
@@ -668,6 +672,9 @@ type Task {
   """Название"""
   name: String
 
+  """Приоритет"""
+  priority: Float
+
   """Оставшееся количество"""
   remaining: Float
 
@@ -703,6 +710,7 @@ input TaskDeleteFilter {
   id: IntFieldComparison
   name: StringFieldComparison
   or: [TaskDeleteFilter!]
+  priority: NumberFieldComparison
   remaining: NumberFieldComparison
   reward: StringFieldComparison
   total: NumberFieldComparison
@@ -722,6 +730,9 @@ type TaskDeleteResponse {
 
   """Название"""
   name: String
+
+  """Приоритет"""
+  priority: Float
 
   """Оставшееся количество"""
   remaining: Float
@@ -745,9 +756,10 @@ type TaskEntity {
   createdAt: DateTime!
   creator: UserEntity
   creatorId: Float
-  disabled: Boolean!
+  disabled: Boolean
   id: Int!
   name: String!
+  priority: Float!
   remaining: Float
   reward: Float
   total: Float
@@ -765,6 +777,7 @@ input TaskFilter {
   id: IntFieldComparison
   name: StringFieldComparison
   or: [TaskFilter!]
+  priority: NumberFieldComparison
   remaining: NumberFieldComparison
   reward: StringFieldComparison
   total: NumberFieldComparison
@@ -806,6 +819,7 @@ enum TaskSortFields {
   disabled
   id
   name
+  priority
   remaining
   reward
   total
@@ -826,6 +840,7 @@ input TaskUpdateFilter {
   id: IntFieldComparison
   name: StringFieldComparison
   or: [TaskUpdateFilter!]
+  priority: NumberFieldComparison
   remaining: NumberFieldComparison
   reward: StringFieldComparison
   total: NumberFieldComparison
@@ -908,6 +923,9 @@ input UpdateTaskInput {
 
   """Название"""
   name: String
+
+  """Приоритет"""
+  priority: Float
 
   """Оставшееся количество"""
   remaining: Float
@@ -1133,6 +1151,7 @@ input UserFilterTaskFilter {
   id: IntFieldComparison
   name: StringFieldComparison
   or: [UserFilterTaskFilter!]
+  priority: NumberFieldComparison
   remaining: NumberFieldComparison
   reward: StringFieldComparison
   total: NumberFieldComparison

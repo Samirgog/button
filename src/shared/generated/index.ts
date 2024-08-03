@@ -135,6 +135,7 @@ export type TCompletedTaskFilterTaskFilter = {
   id?: InputMaybe<TIntFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TCompletedTaskFilterTaskFilter>>;
+  priority?: InputMaybe<TNumberFieldComparison>;
   remaining?: InputMaybe<TNumberFieldComparison>;
   reward?: InputMaybe<TStringFieldComparison>;
   total?: InputMaybe<TNumberFieldComparison>;
@@ -224,6 +225,8 @@ export type TCreateTaskInput = {
   disabled?: InputMaybe<Scalars['Boolean']['input']>;
   /** Название */
   name: Scalars['String']['input'];
+  /** Приоритет */
+  priority?: InputMaybe<Scalars['Float']['input']>;
   /** Оставшееся количество */
   remaining?: InputMaybe<Scalars['Float']['input']>;
   /** Вознаграждение */
@@ -864,6 +867,8 @@ export type TTask = {
   id: Scalars['Int']['output'];
   /** Название */
   name?: Maybe<Scalars['String']['output']>;
+  /** Приоритет */
+  priority?: Maybe<Scalars['Float']['output']>;
   /** Оставшееся количество */
   remaining?: Maybe<Scalars['Float']['output']>;
   /** Вознаграждение */
@@ -900,6 +905,7 @@ export type TTaskDeleteFilter = {
   id?: InputMaybe<TIntFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TTaskDeleteFilter>>;
+  priority?: InputMaybe<TNumberFieldComparison>;
   remaining?: InputMaybe<TNumberFieldComparison>;
   reward?: InputMaybe<TStringFieldComparison>;
   total?: InputMaybe<TNumberFieldComparison>;
@@ -916,6 +922,8 @@ export type TTaskDeleteResponse = {
   id?: Maybe<Scalars['Int']['output']>;
   /** Название */
   name?: Maybe<Scalars['String']['output']>;
+  /** Приоритет */
+  priority?: Maybe<Scalars['Float']['output']>;
   /** Оставшееся количество */
   remaining?: Maybe<Scalars['Float']['output']>;
   /** Вознаграждение */
@@ -934,9 +942,10 @@ export type TTaskEntity = {
   createdAt: Scalars['DateTime']['output'];
   creator?: Maybe<TUserEntity>;
   creatorId?: Maybe<Scalars['Float']['output']>;
-  disabled: Scalars['Boolean']['output'];
+  disabled?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
+  priority: Scalars['Float']['output'];
   remaining?: Maybe<Scalars['Float']['output']>;
   reward?: Maybe<Scalars['Float']['output']>;
   total?: Maybe<Scalars['Float']['output']>;
@@ -954,6 +963,7 @@ export type TTaskFilter = {
   id?: InputMaybe<TIntFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TTaskFilter>>;
+  priority?: InputMaybe<TNumberFieldComparison>;
   remaining?: InputMaybe<TNumberFieldComparison>;
   reward?: InputMaybe<TStringFieldComparison>;
   total?: InputMaybe<TNumberFieldComparison>;
@@ -995,6 +1005,7 @@ export enum TTaskSortFields {
   Disabled = 'disabled',
   Id = 'id',
   Name = 'name',
+  Priority = 'priority',
   Remaining = 'remaining',
   Reward = 'reward',
   Total = 'total',
@@ -1015,6 +1026,7 @@ export type TTaskUpdateFilter = {
   id?: InputMaybe<TIntFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TTaskUpdateFilter>>;
+  priority?: InputMaybe<TNumberFieldComparison>;
   remaining?: InputMaybe<TNumberFieldComparison>;
   reward?: InputMaybe<TStringFieldComparison>;
   total?: InputMaybe<TNumberFieldComparison>;
@@ -1086,6 +1098,8 @@ export type TUpdateTaskInput = {
   disabled?: InputMaybe<Scalars['Boolean']['input']>;
   /** Название */
   name?: InputMaybe<Scalars['String']['input']>;
+  /** Приоритет */
+  priority?: InputMaybe<Scalars['Float']['input']>;
   /** Оставшееся количество */
   remaining?: InputMaybe<Scalars['Float']['input']>;
   /** Вознаграждение */
@@ -1276,6 +1290,7 @@ export type TUserFilterTaskFilter = {
   id?: InputMaybe<TIntFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserFilterTaskFilter>>;
+  priority?: InputMaybe<TNumberFieldComparison>;
   remaining?: InputMaybe<TNumberFieldComparison>;
   reward?: InputMaybe<TStringFieldComparison>;
   total?: InputMaybe<TNumberFieldComparison>;

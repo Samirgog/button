@@ -11,7 +11,7 @@ export function useTaskList(shouldGetCurrentTasks = false) {
   const { data, isLoading } = useTasksQuery(
     gqlClient,
     {
-      sorting: { field: TTaskSortFields.Id, direction: TSortDirection.Desc },
+      sorting: { field: TTaskSortFields.Priority, direction: TSortDirection.Desc },
       paging: { limit: 15, offset: 0 },
       filter: {
         id: completedTasksIds.length !== 0 ? { notIn: completedTasksIds } : undefined,
