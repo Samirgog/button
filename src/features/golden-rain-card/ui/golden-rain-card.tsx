@@ -39,9 +39,9 @@ export const GoldenRainCard: React.FC<Props> = ({ ...htmlAttributes }) => {
   }, [secondsLeft, setTimerValue]);
 
   const handleClick = () => {
-    // if (timerValue !== 0) {
-    //   return;
-    // }
+    if (timerValue !== 0) {
+      return;
+    }
 
     navigate("/button/golden-rain");
   };

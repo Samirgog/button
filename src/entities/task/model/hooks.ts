@@ -3,15 +3,13 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-import { STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
+import { LIMIT_MINUTES, STORAGE_KEY_TASKS } from "@/entities/task/model/consts";
 import { StorageTask } from "@/entities/task/model/types";
 import { useUser } from "@/entities/user/model";
 import { TTask, useCompleteTaskMutation } from "@/shared/generated";
 import { vibrate } from "@/shared/lib/telegram";
 import { gqlClient } from "@/shared/providers/GraphqlClient";
 import { emodjiConsts, emodjiTypes } from "@/shared/ui";
-
-const LIMIT_MINUTES = 1;
 
 export function useTask(task: TTask) {
   const queryClient = useQueryClient();

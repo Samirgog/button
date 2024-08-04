@@ -1394,6 +1394,7 @@ export const TasksDocument = /*#__PURE__*/ `
       total
       type
       url
+      priority
     }
   }
 }
@@ -1562,7 +1563,7 @@ export type TTasksQueryVariables = Exact<{
 }>;
 
 
-export type TTasksQuery = { tasks: { totalCount: number, pageInfo: { hasNextPage?: boolean | null, hasPreviousPage?: boolean | null }, nodes: Array<{ id: number, name?: string | null, remaining?: number | null, reward?: string | null, total?: number | null, type?: string | null, url?: string | null }> } };
+export type TTasksQuery = { tasks: { totalCount: number, pageInfo: { hasNextPage?: boolean | null, hasPreviousPage?: boolean | null }, nodes: Array<{ id: number, name?: string | null, remaining?: number | null, reward?: string | null, total?: number | null, type?: string | null, url?: string | null, priority?: number | null }> } };
 
 export type TCompleteTaskMutationVariables = Exact<{
   completeTaskId: Scalars['Int']['input'];

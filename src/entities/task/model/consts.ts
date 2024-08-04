@@ -14,3 +14,5 @@ export const MAP_TASK_EMODJI: Record<TTaskTypesEnum, EmodjiName> = {
   [TTaskTypesEnum.Subscribe]: EmodjiName.SELFIE,
   [TTaskTypesEnum.Join]: EmodjiName.SPEECH_BALLOON
 };
+
+export const LIMIT_MINUTES = 5;
