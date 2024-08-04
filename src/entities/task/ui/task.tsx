@@ -38,7 +38,7 @@ export const Task: React.FC<Props> = ({ task }) => {
         <Emodji
           size={24}
           emodjiName={emodjiTypes.EmodjiName.FIRE}
-          style={{ position: "absolute", top: "-16px", right: "8px" }}
+          style={{ position: "absolute", top: "-16px", right: "8px", zIndex: 30 }}
         />
       )}
       <Stack gap={8} justify="space-between" align="center">

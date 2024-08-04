@@ -1,11 +1,12 @@
 import React from "react";
 
+import { REFERRAL_BONUS } from "../model";
+
 import { Layout } from "@/app/layouts/layout";
 import { userModel } from "@/entities/user";
 import { InviteButton } from "@/features/invite-button";
 import { Card, CardStats, emodjiTypes, Stack, Typography } from "@/shared/ui";
 import { SlideInWrapper } from "@/shared/ui/slide-in-wrapper";
-import { REFERRAL_BONUS } from "../model";
 
 export const Friends: React.FC = () => {
   const user = userModel.useUser();

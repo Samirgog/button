@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { useGoldenRain } from "../model";
 
 import { Layout } from "@/app/layouts/layout";
@@ -7,7 +9,6 @@ import { GoldenRainGame } from "@/features/golden-rain-game";
 import { useTimer } from "@/shared/hooks/useTimer";
 import { vibrate } from "@/shared/lib/telegram";
 import { Button, Emodji, emodjiConsts, emodjiTypes, Stack, Typography } from "@/shared/ui";
-import { useNavigate } from "react-router-dom";
 
 type Stage = "init" | "countdown" | "in-progress" | "finish";
 

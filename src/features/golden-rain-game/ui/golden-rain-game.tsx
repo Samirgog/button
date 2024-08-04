@@ -1,8 +1,9 @@
 import React, { Dispatch, ReactNode, SetStateAction, useEffect, useRef, useState } from "react";
 
+import { v4 as uuid } from "uuid";
+
 import { Coin } from "@/features/golden-rain-game/ui/coin";
 import { GoldenRainContainerStyled } from "@/features/golden-rain-game/ui/styled";
-import { v4 as uuid } from "uuid";
 
 type Props = {
   totalCoins: number;

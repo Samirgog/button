@@ -18,16 +18,16 @@ export const InviteButton: React.FC = () => {
 
   return (
     <Stack direction="column" gap={8}>
-      <Button size="md" style={{ width: "100%" }} onClick={handleClick}>
-        <a href={referralLink}>
+      <a href={referralLink} style={{ width: "100%" }} onClick={handleClick}>
+        <Button size="md" style={{ width: "100%" }} onClick={(e) => e.preventDefault()}>
           <Stack gap={8} justify="center" align="center">
             <Typography type="title" weight="bold">
-              Invite a friend via link
+              Invite a friend
             </Typography>
             <Emodji emodjiName={emodjiTypes.EmodjiName.FRIEND} size={24} />
           </Stack>
-        </a>
-      </Button>
+        </Button>
+      </a>
     </Stack>
   );
 };
