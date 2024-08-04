@@ -123,6 +123,7 @@ Error generating stack: `+o.message+`
       total
       type
       url
+      priority
     }
   }
 }
