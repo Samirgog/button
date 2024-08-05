@@ -42,9 +42,12 @@ export const GoldenRain: React.FC = () => {
       window.Telegram.WebApp.BackButton.onClick(handleClickBack);
     }
 
+    window.Telegram?.WebApp?.disableVerticalSwipes?.();
+
     return () => {
       window.Telegram.WebApp.BackButton.offClick(handleClickBack);
       window.Telegram.WebApp.BackButton.hide();
+      window.Telegram?.WebApp?.enableVerticalSwipes?.();
     };
   }, []);
 

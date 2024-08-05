@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
+import Lottie from "lottie-react";
+
 import { useTask } from "../model";
 
 import { MAP_TASK_EMODJI, MAP_TASK_TYPES } from "@/entities/task/model/consts";
 import { ButtonsWrapper, ErrorStyled } from "@/entities/task/ui/styled";
 import { TTask, TTaskTypesEnum } from "@/shared/generated";
 import { vibrate } from "@/shared/lib/telegram";
-import { Button, Card, Emodji, emodjiTypes, Stack, Typography } from "@/shared/ui";
+import { Button, Card, Emodji, Stack, Typography } from "@/shared/ui";
+import fireAnimation from "@/shared/ui/animations/fire.json";
 import { AvatarCircle } from "@/shared/ui/avatar-circle";
 
 type Props = {
@@ -35,11 +38,11 @@ export const Task: React.FC<Props> = ({ task }) => {
       style={Number(priority) >= 100 ? { position: "relative" } : undefined}
     >
       {Number(priority) >= 100 && (
-        <Emodji
-          size={24}
-          emodjiName={emodjiTypes.EmodjiName.FIRE}
-          style={{ position: "absolute", top: "-16px", right: "8px", zIndex: 30 }}
-        />
+        <Stack
+          style={{ position: "absolute", top: "-16px", right: "8px", width: "24px", zIndex: 1000 }}
+        >
+          <Lottie animationData={fireAnimation} loop={true} />
+        </Stack>
       )}
       <Stack gap={8} justify="space-between" align="center">
         <Stack gap={12} align="center">

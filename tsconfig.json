@@ -28,6 +28,6 @@
     },
     "types": ["vite/client", "@types/telegram-web-app"]
   },
-  "include": ["vite.config.ts", "src"],
+  "include": ["vite.config.ts", "src", "src/shared/ui/animations/fire.json"],
   "exclude": ["node_modules", "public/**", "build/**"]
 }
