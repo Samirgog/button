@@ -28,4 +28,4 @@ dist-ssr
 .env
 
 # Typescript
-tsconfig.tsbuildinfo
+*.tsbuildinfo
