@@ -137,9 +137,9 @@ input CompletedTaskFilterUserFilter {
   lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [CompletedTaskFilterUserFilter!]
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 
@@ -254,7 +254,7 @@ input CreateUserInput {
   name: String!
 
   """ID пригласившего пользователя"""
-  referralParentId: Float
+  referralParentId: String
 
   """Роль пользователя"""
   role: RolesEnum
@@ -802,9 +802,9 @@ input TaskFilterUserFilter {
   lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [TaskFilterUserFilter!]
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 
@@ -962,7 +962,7 @@ input UpdateUserInput {
   name: String
 
   """ID пригласившего пользователя"""
-  referralParentId: Float
+  referralParentId: String
 
   """Роль пользователя"""
   role: RolesEnum
@@ -1015,7 +1015,7 @@ type User {
   referralParent: User
 
   """ID пригласившего пользователя"""
-  referralParentId: Float
+  referralParentId: String
 
   """Приглашенные пользователи"""
   referrals(
@@ -1030,7 +1030,7 @@ type User {
   role: String!
 
   """ID Телеграма"""
-  telegramId: Float
+  telegramId: String
   updatedAt: DateTime!
 
   """Никнейм пользователя в телеграме"""
@@ -1057,9 +1057,9 @@ input UserDeleteFilter {
   lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserDeleteFilter!]
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 
@@ -1084,13 +1084,13 @@ type UserDeleteResponse {
   name: String
 
   """ID пригласившего пользователя"""
-  referralParentId: Float
+  referralParentId: String
 
   """Роль пользователя"""
   role: String
 
   """ID Телеграма"""
-  telegramId: Float
+  telegramId: String
   updatedAt: DateTime
 
   """Никнейм пользователя в телеграме"""
@@ -1109,10 +1109,10 @@ type UserEntity {
   name: String!
   password: String!
   referralParent: UserEntity
-  referralParentId: Float
+  referralParentId: String
   referrals: [UserEntity!]
   role: String!
-  telegramId: Float
+  telegramId: String
   updatedAt: DateTime!
   username: String!
 }
@@ -1129,10 +1129,10 @@ input UserFilter {
   name: StringFieldComparison
   or: [UserFilter!]
   referralParent: UserFilterUserFilter
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   referrals: UserFilterUserFilter
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 
@@ -1168,9 +1168,9 @@ input UserFilterUserFilter {
   lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserFilterUserFilter!]
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 
@@ -1202,9 +1202,9 @@ input UserUpdateFilter {
   lastPlayedGoldenRain: DateFieldComparison
   name: StringFieldComparison
   or: [UserUpdateFilter!]
-  referralParentId: NumberFieldComparison
+  referralParentId: StringFieldComparison
   role: StringFieldComparison
-  telegramId: NumberFieldComparison
+  telegramId: StringFieldComparison
   username: StringFieldComparison
 }
 

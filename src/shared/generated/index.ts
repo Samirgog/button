@@ -152,9 +152,9 @@ export type TCompletedTaskFilterUserFilter = {
   lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TCompletedTaskFilterUserFilter>>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -253,7 +253,7 @@ export type TCreateUserInput = {
   /** Имя пользователя */
   name: Scalars['String']['input'];
   /** ID пригласившего пользователя */
-  referralParentId?: InputMaybe<Scalars['Float']['input']>;
+  referralParentId?: InputMaybe<Scalars['String']['input']>;
   /** Роль пользователя */
   role?: InputMaybe<TRolesEnum>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -988,9 +988,9 @@ export type TTaskFilterUserFilter = {
   lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TTaskFilterUserFilter>>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -1126,7 +1126,7 @@ export type TUpdateUserInput = {
   /** Имя пользователя */
   name?: InputMaybe<Scalars['String']['input']>;
   /** ID пригласившего пользователя */
-  referralParentId?: InputMaybe<Scalars['Float']['input']>;
+  referralParentId?: InputMaybe<Scalars['String']['input']>;
   /** Роль пользователя */
   role?: InputMaybe<TRolesEnum>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1155,13 +1155,13 @@ export type TUser = {
   /** Пригласивший пользователь */
   referralParent?: Maybe<TUser>;
   /** ID пригласившего пользователя */
-  referralParentId?: Maybe<Scalars['Float']['output']>;
+  referralParentId?: Maybe<Scalars['String']['output']>;
   /** Приглашенные пользователи */
   referrals?: Maybe<Array<TUser>>;
   /** Роль пользователя */
   role: Scalars['String']['output'];
   /** ID Телеграма */
-  telegramId?: Maybe<Scalars['Float']['output']>;
+  telegramId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
   /** Никнейм пользователя в телеграме */
   username?: Maybe<Scalars['String']['output']>;
@@ -1206,9 +1206,9 @@ export type TUserDeleteFilter = {
   lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserDeleteFilter>>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -1226,11 +1226,11 @@ export type TUserDeleteResponse = {
   /** Имя пользователя */
   name?: Maybe<Scalars['String']['output']>;
   /** ID пригласившего пользователя */
-  referralParentId?: Maybe<Scalars['Float']['output']>;
+  referralParentId?: Maybe<Scalars['String']['output']>;
   /** Роль пользователя */
   role?: Maybe<Scalars['String']['output']>;
   /** ID Телеграма */
-  telegramId?: Maybe<Scalars['Float']['output']>;
+  telegramId?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
   /** Никнейм пользователя в телеграме */
   username?: Maybe<Scalars['String']['output']>;
@@ -1248,10 +1248,10 @@ export type TUserEntity = {
   name: Scalars['String']['output'];
   password: Scalars['String']['output'];
   referralParent?: Maybe<TUserEntity>;
-  referralParentId?: Maybe<Scalars['Float']['output']>;
+  referralParentId?: Maybe<Scalars['String']['output']>;
   referrals?: Maybe<Array<TUserEntity>>;
   role: Scalars['String']['output'];
-  telegramId?: Maybe<Scalars['Float']['output']>;
+  telegramId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
   username: Scalars['String']['output'];
 };
@@ -1268,10 +1268,10 @@ export type TUserFilter = {
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserFilter>>;
   referralParent?: InputMaybe<TUserFilterUserFilter>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   referrals?: InputMaybe<TUserFilterUserFilter>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -1307,9 +1307,9 @@ export type TUserFilterUserFilter = {
   lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserFilterUserFilter>>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -1341,9 +1341,9 @@ export type TUserUpdateFilter = {
   lastPlayedGoldenRain?: InputMaybe<TDateFieldComparison>;
   name?: InputMaybe<TStringFieldComparison>;
   or?: InputMaybe<Array<TUserUpdateFilter>>;
-  referralParentId?: InputMaybe<TNumberFieldComparison>;
+  referralParentId?: InputMaybe<TStringFieldComparison>;
   role?: InputMaybe<TStringFieldComparison>;
-  telegramId?: InputMaybe<TNumberFieldComparison>;
+  telegramId?: InputMaybe<TStringFieldComparison>;
   username?: InputMaybe<TStringFieldComparison>;
 };
 
@@ -1573,7 +1573,7 @@ export type TCompleteTaskMutationVariables = Exact<{
 
 export type TCompleteTaskMutation = { completeTask: { id: number, remaining?: number | null, reward?: string | null } };
 
-export type TUserFieldsFragment = { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
+export type TUserFieldsFragment = { id: number, telegramId?: string | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null };
 
 export type TAuthMutationVariables = Exact<{
   input: TAuthInput;
@@ -1587,7 +1587,7 @@ export type TUserQueryVariables = Exact<{
 }>;
 
 
-export type TUserQuery = { user: { id: number, telegramId?: number | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
+export type TUserQuery = { user: { id: number, telegramId?: string | null, name?: string | null, earned?: number | null, balance?: number | null, lastPlayedGoldenRain?: any | null, completedTasks?: Array<{ id: number, taskId?: number | null }> | null, referrals?: Array<{ id: number, name?: string | null }> | null } };
 
 export type TClaimGoldenRainMutationVariables = Exact<{
   userId: Scalars['Int']['input'];
